@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/PSNewPostWorkflow">
+  <process id="ps_New_Post_Workflow" name="PS New Post Workflow" isExecutable="true">
+    <endEvent id="endevent1" name="End"></endEvent>
+    <startEvent id="alfrescoStartevent1" name="Alfresco start" activiti:formKey="pswf:standardWorkflow"></startEvent>
+    <userTask id="SetTaskType" name="Set Task Type" activiti:candidateGroups="${bpm_groupAssignee.properties.authorityName}" activiti:formKey="pswf:standardWorkflow">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/PS_New_Post.jsp");
+execution.setVariableLocal('bpm_description',"New Post");]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariable('bpm_groupAssignee', task.getVariable('bpm_groupAssignee'));
+execution.setVariable('pswf_sourceSystem', task.getVariable('pswf_sourceSystem'));
+execution.setVariable('pswf_dateReceived', task.getVariable('pswf_dateReceived'));
+execution.setVariable('pswf_teamName', task.getVariable('pswf_teamName'));
+execution.setVariable('pswf_certificateWorkflowRequired', task.getVariable('pswf_certificateWorkflowRequired'));
+execution.setVariable('pswf_workflowTaskType', task.getVariable('pswf_workflowTaskType'));
+execution.setVariable('pswf_decision', task.getVariable('pswf_decision'));
+execution.setVariable('pswf_activity', task.getVariable('pswf_activity'));
+execution.setVariable('pswf_subActivity', task.getVariable('pswf_subActivity'));
+execution.setVariable('pswf_deadline', task.getVariable('pswf_deadline'));
+execution.setVariable('pswf_internalDeadline', task.getVariable('pswf_internalDeadline'));
+execution.setVariable('bpm_comment', task.getVariable('bpm_comment'));
+execution.setVariable('pswf_taskDetail', task.getVariable('pswf_taskDetail'));
+execution.setVariable('pswf_taskStatus', task.getVariable('pswf_taskStatus'));
+execution.setVariable('pswf_taskNumber', task.getVariable('pswf_taskNumber'));
+execution.setVariable('pswf_calcs', task.getVariable('pswf_calcs'));
+execution.setVariable('pswf_centralID', task.getVariable('pswf_centralID'));
+execution.setVariable('pswf_firstName', task.getVariable('pswf_firstName'));
+execution.setVariable('pswf_surname', task.getVariable('pswf_surname'));
+execution.setVariable('pswf_nino', task.getVariable('pswf_nino'));
+execution.setVariable('pswf_dob', task.getVariable('pswf_dob'));
+execution.setVariable('pswf_relevantMemberID', task.getVariable('pswf_relevantMemberID'));
+execution.setVariable('pswf_adminSchemeID', task.getVariable('pswf_adminSchemeID'));
+execution.setVariable('pswf_adminSchemeName', task.getVariable('pswf_adminSchemeName'));
+execution.setVariable('pswf_payrollSchemeID', task.getVariable('pswf_payrollSchemeID'));
+execution.setVariable('pswf_payrollSchemeName', task.getVariable('pswf_payrollSchemeName'));
+execution.setVariable('pswf_greenErrors', task.getVariable('pswf_greenErrors'));
+execution.setVariable('pswf_amberErrors', task.getVariable('pswf_amberErrors'));
+execution.setVariable('pswf_redErrors', task.getVariable('pswf_redErrors'));
+execution.setVariable('pswf_errorExplanation', task.getVariable('pswf_errorExplanation'));
+execution.setVariable('pswf_doer', task.getVariable('pswf_doer'));
+execution.setVariable('pswf_doerDate', task.getVariable('pswf_doerDate'));
+execution.setVariable('pswf_checker', task.getVariable('pswf_checker'));
+execution.setVariable('pswf_checkerDate', task.getVariable('pswf_checkerDate'));
+execution.setVariable('pswf_authoriser', task.getVariable('pswf_authoriser'));
+execution.setVariable('pswf_authoriserDate', task.getVariable('pswf_authoriserDate'));
+execution.setVariable('pswf_completedBy', task.getVariable('pswf_completedBy'));
+execution.setVariable('pswf_completedDate', task.getVariable('pswf_completedDate'));
+execution.setVariable('pswf_processID', task.getVariable('pswf_processID'));
+execution.setVariable('pswf_documentAddedBy', task.getVariable('pswf_documentAddedBy'));
+execution.setVariable('pswf_documentName', task.getVariable('pswf_documentName'));]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow4" sourceRef="alfrescoStartevent1" targetRef="servicetask1"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="SetTaskType" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask1" name="Service Task" activiti:delegateExpression="${setBPMGroupAssignee}"></serviceTask>
+    <sequenceFlow id="flow6" sourceRef="servicetask1" targetRef="SetTaskType"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_ps_New_Post_Workflow">
+    <bpmndi:BPMNPlane bpmnElement="ps_New_Post_Workflow" id="BPMNPlane_ps_New_Post_Workflow">
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="560.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoStartevent1" id="BPMNShape_alfrescoStartevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="140.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="SetTaskType" id="BPMNShape_SetTaskType">
+        <omgdc:Bounds height="55.0" width="105.0" x="400.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="241.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="175.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="241.0" y="217.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="505.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="217.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="346.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="217.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -48,7 +48,7 @@ public class PSGDocumentImporter {
 	private ContentService contentService;
 	private JobLockService jobLockService;
 	private String repositoryRoot;
-	private String filesystemRoot;
+	private String fileSystemRoot;
 	private static final QName LOCK_QNAME = QName.createQName(NamespaceService.SYSTEM_MODEL_1_0_URI, "PSGDocumentImporterJob"); 
 	private static final long LOCK_TTL = 30000L;
 
@@ -138,7 +138,7 @@ public class PSGDocumentImporter {
 	
 	/*************************************************************************************************/
 	public void setFileSystemRoot(String filesystemRoot) {
-		this.filesystemRoot = filesystemRoot;
+		this.fileSystemRoot = filesystemRoot;
 	}
 	
 	/*************************************************************************************************/
@@ -158,7 +158,7 @@ public class PSGDocumentImporter {
 			String[] offices = officeLocations.split(",");
 			
 			for (int i=0; i<offices.length; i++) {
-				String fileSystemPath = filesystemRoot.concat("/"+offices[i]);
+				String fileSystemPath = fileSystemRoot.concat("/"+offices[i]);
 				String repoPath="PATH:\"/app:company_home/"+(repositoryRoot.replace("/","/cm:") + "\"");
 				logger.debug("Adding fileSystemPath : " + fileSystemPath);
 				logger.debug("Adding repoPath : " + repoPath);

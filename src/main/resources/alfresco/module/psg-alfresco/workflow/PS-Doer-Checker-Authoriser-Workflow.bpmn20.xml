@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="DoerCheckerAuthoriserWorkflow" name="Doer Checker Authoriser Workflow" isExecutable="true">
+    <userTask id="alfrescoUsertaskDoTask" name="Do Task" activiti:assignee="${pswf_doer}" activiti:formKey="pswf:standardWorkflow">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[if (String(execution.getVariable('pswf_workflowTaskType')) == "NewMember"){
+	execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/PS_DoTaskNewMember.jsp");
+}
+else{
+	execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/PS_DoTask.jsp");
+}
+
+
+//count the number of incoming post documents
+var numberOfInitiatingDocs = 0;
+for (var i = 0; i < bpm_package.children.length; i++)
+{
+	if(bpm_package.children[i].properties["psdoc:initiatingDoc"])
+		{
+			numberOfInitiatingDocs++; 
+		}
+
+}
+execution.setVariable('pswf_intVar1',numberOfInitiatingDocs);]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariable('pswf_selectedTasklist', task.getVariable('pswf_selectedTasklist'));execution.setVariable('pswf_selectedTasklistVersion', task.getVariable('pswf_selectedTasklistVersion'));
+execution.setVariable('pswf_sourceSystem', task.getVariable('pswf_sourceSystem'));
+execution.setVariable('pswf_dateReceived', task.getVariable('pswf_dateReceived'));
+execution.setVariable('pswf_teamName', task.getVariable('pswf_teamName'));
+execution.setVariable('pswf_certificateWorkflowRequired', task.getVariable('pswf_certificateWorkflowRequired'));
+execution.setVariable('pswf_workflowTaskType', task.getVariable('pswf_workflowTaskType'));
+execution.setVariable('pswf_decision', task.getVariable('pswf_decision'));
+execution.setVariable('pswf_activity', task.getVariable('pswf_activity'));
+execution.setVariable('pswf_subActivity', task.getVariable('pswf_subActivity'));
+execution.setVariable('pswf_deadline', task.getVariable('pswf_deadline'));
+execution.setVariable('pswf_internalDeadline', task.getVariable('pswf_internalDeadline'));
+execution.setVariable('bpm_comment', task.getVariable('bpm_comment'));
+execution.setVariable('pswf_taskDetail', task.getVariable('pswf_taskDetail'));
+execution.setVariable('pswf_taskStatus', task.getVariable('pswf_taskStatus'));
+execution.setVariable('pswf_taskNumber', task.getVariable('pswf_taskNumber'));
+execution.setVariable('pswf_calcs', task.getVariable('pswf_calcs'));
+execution.setVariable('pswf_centralID', task.getVariable('pswf_centralID'));
+execution.setVariable('pswf_firstName', task.getVariable('pswf_firstName'));
+execution.setVariable('pswf_surname', task.getVariable('pswf_surname'));
+execution.setVariable('pswf_nino', task.getVariable('pswf_nino'));
+execution.setVariable('pswf_dob', task.getVariable('pswf_dob'));
+execution.setVariable('pswf_relevantMemberID', task.getVariable('pswf_relevantMemberID'));
+execution.setVariable('pswf_adminSchemeID', task.getVariable('pswf_adminSchemeID'));
+execution.setVariable('pswf_adminSchemeName', task.getVariable('pswf_adminSchemeName'));
+execution.setVariable('pswf_payrollSchemeID', task.getVariable('pswf_payrollSchemeID'));
+execution.setVariable('pswf_payrollSchemeName', task.getVariable('pswf_payrollSchemeName'));
+execution.setVariable('pswf_greenErrors', task.getVariable('pswf_greenErrors'));
+execution.setVariable('pswf_amberErrors', task.getVariable('pswf_amberErrors'));
+execution.setVariable('pswf_redErrors', task.getVariable('pswf_redErrors'));
+execution.setVariable('pswf_errorExplanation', task.getVariable('pswf_errorExplanation'));
+execution.setVariable('pswf_doer', task.getVariable('pswf_doer'));
+execution.setVariable('pswf_doerDate', task.getVariable('pswf_doerDate'));
+execution.setVariable('pswf_checker', task.getVariable('pswf_checker'));
+execution.setVariable('pswf_checkerDate', task.getVariable('pswf_checkerDate'));
+execution.setVariable('pswf_authoriser', task.getVariable('pswf_authoriser'));
+execution.setVariable('pswf_authoriserDate', task.getVariable('pswf_authoriserDate'));
+execution.setVariable('pswf_completedBy', task.getVariable('pswf_completedBy'));
+execution.setVariable('pswf_completedDate', task.getVariable('pswf_completedDate'));
+execution.setVariable('pswf_processID', task.getVariable('pswf_processID'));
+execution.setVariable('pswf_documentAddedBy', task.getVariable('pswf_documentAddedBy'));
+execution.setVariable('pswf_documentName', task.getVariable('pswf_documentName'));
+//increment reworkNumber
+if (task.getVariable('pswf_reworkNumber') == null){
+	execution.setVariable('pswf_reworkNumber',parseInt('1'));
+}
+else
+{
+var x =  parseInt(task.getVariable('pswf_reworkNumber'));
+x = x + 1;
+execution.setVariable('pswf_reworkNumber',parseInt(x));
+}]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="alfrescoUsertaskCheckTask" name="Check Task" activiti:assignee="${pswf_checker}" activiti:formKey="pswf:standardWorkflow">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/PS_CheckTask.jsp");
+//execution.setVariableLocal('pswf_accuracySubmitted',"");
+execution.setVariableLocal('bpm_description',"Check Task");]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariable('pswf_selectedTasklist', task.getVariable('pswf_selectedTasklist'));execution.setVariable('pswf_selectedTasklistVersion', task.getVariable('pswf_selectedTasklistVersion'));
+execution.setVariable('pswf_sourceSystem', task.getVariable('pswf_sourceSystem'));
+execution.setVariable('pswf_dateReceived', task.getVariable('pswf_dateReceived'));
+execution.setVariable('pswf_teamName', task.getVariable('pswf_teamName'));
+execution.setVariable('pswf_certificateWorkflowRequired', task.getVariable('pswf_certificateWorkflowRequired'));
+execution.setVariable('pswf_workflowTaskType', task.getVariable('pswf_workflowTaskType'));
+execution.setVariable('pswf_decision', task.getVariable('pswf_decision'));
+execution.setVariable('pswf_activity', task.getVariable('pswf_activity'));
+execution.setVariable('pswf_subActivity', task.getVariable('pswf_subActivity'));
+execution.setVariable('pswf_deadline', task.getVariable('pswf_deadline'));
+execution.setVariable('pswf_internalDeadline', task.getVariable('pswf_internalDeadline'));
+execution.setVariable('bpm_comment', task.getVariable('bpm_comment'));
+execution.setVariable('pswf_taskDetail', task.getVariable('pswf_taskDetail'));
+execution.setVariable('pswf_taskStatus', task.getVariable('pswf_taskStatus'));
+execution.setVariable('pswf_taskNumber', task.getVariable('pswf_taskNumber'));
+execution.setVariable('pswf_calcs', task.getVariable('pswf_calcs'));
+execution.setVariable('pswf_centralID', task.getVariable('pswf_centralID'));
+execution.setVariable('pswf_firstName', task.getVariable('pswf_firstName'));
+execution.setVariable('pswf_surname', task.getVariable('pswf_surname'));
+execution.setVariable('pswf_nino', task.getVariable('pswf_nino'));
+execution.setVariable('pswf_dob', task.getVariable('pswf_dob'));
+execution.setVariable('pswf_relevantMemberID', task.getVariable('pswf_relevantMemberID'));
+execution.setVariable('pswf_adminSchemeID', task.getVariable('pswf_adminSchemeID'));
+execution.setVariable('pswf_adminSchemeName', task.getVariable('pswf_adminSchemeName'));
+execution.setVariable('pswf_payrollSchemeID', task.getVariable('pswf_payrollSchemeID'));
+execution.setVariable('pswf_payrollSchemeName', task.getVariable('pswf_payrollSchemeName'));
+execution.setVariable('pswf_doer', task.getVariable('pswf_doer'));
+execution.setVariable('pswf_doerDate', task.getVariable('pswf_doerDate'));
+execution.setVariable('pswf_checker', task.getVariable('pswf_checker'));
+execution.setVariable('pswf_checkerDate', task.getVariable('pswf_checkerDate'));
+execution.setVariable('pswf_authoriser', task.getVariable('pswf_authoriser'));
+execution.setVariable('pswf_authoriserDate', task.getVariable('pswf_authoriserDate'));
+execution.setVariable('pswf_completedBy', task.getVariable('pswf_completedBy'));
+execution.setVariable('pswf_completedDate', task.getVariable('pswf_completedDate'));
+execution.setVariable('pswf_processID', task.getVariable('pswf_processID'));
+execution.setVariable('pswf_documentAddedBy', task.getVariable('pswf_documentAddedBy'));
+execution.setVariable('pswf_documentName', task.getVariable('pswf_documentName'));]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="FlowDoerToGate1Flow" sourceRef="alfrescoUsertaskDoTask" targetRef="alfrescoScripttask1"></sequenceFlow>
+    <startEvent id="StarteventDoerCheckerAuthoriser" name="Alfresco start" activiti:formKey="pswf:standardWorkflow"></startEvent>
+    <userTask id="alfrescoUsertaskAuthoriseTask" name="Authorise Task" activiti:assignee="${pswf_authoriser}" activiti:formKey="pswf:standardWorkflow">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/PS_AuthoriseTask.jsp");
+execution.setVariableLocal('pswf_accuracySubmitted',"");
+execution.setVariableLocal('bpm_description',"Authorise Task");]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariable('pswf_selectedTasklist', task.getVariable('pswf_selectedTasklist'));execution.setVariable('pswf_selectedTasklistVersion', task.getVariable('pswf_selectedTasklistVersion'));
+execution.setVariable('pswf_sourceSystem', task.getVariable('pswf_sourceSystem'));
+execution.setVariable('pswf_dateReceived', task.getVariable('pswf_dateReceived'));
+execution.setVariable('pswf_teamName', task.getVariable('pswf_teamName'));
+execution.setVariable('pswf_certificateWorkflowRequired', task.getVariable('pswf_certificateWorkflowRequired'));
+execution.setVariable('pswf_workflowTaskType', task.getVariable('pswf_workflowTaskType'));
+execution.setVariable('pswf_decision', task.getVariable('pswf_decision'));
+execution.setVariable('pswf_activity', task.getVariable('pswf_activity'));
+execution.setVariable('pswf_subActivity', task.getVariable('pswf_subActivity'));
+execution.setVariable('pswf_deadline', task.getVariable('pswf_deadline'));
+execution.setVariable('pswf_internalDeadline', task.getVariable('pswf_internalDeadline'));
+execution.setVariable('bpm_comment', task.getVariable('bpm_comment'));
+execution.setVariable('pswf_taskDetail', task.getVariable('pswf_taskDetail'));
+execution.setVariable('pswf_taskStatus', task.getVariable('pswf_taskStatus'));
+execution.setVariable('pswf_taskNumber', task.getVariable('pswf_taskNumber'));
+execution.setVariable('pswf_calcs', task.getVariable('pswf_calcs'));
+execution.setVariable('pswf_centralID', task.getVariable('pswf_centralID'));
+execution.setVariable('pswf_firstName', task.getVariable('pswf_firstName'));
+execution.setVariable('pswf_surname', task.getVariable('pswf_surname'));
+execution.setVariable('pswf_nino', task.getVariable('pswf_nino'));
+execution.setVariable('pswf_dob', task.getVariable('pswf_dob'));
+execution.setVariable('pswf_relevantMemberID', task.getVariable('pswf_relevantMemberID'));
+execution.setVariable('pswf_adminSchemeID', task.getVariable('pswf_adminSchemeID'));
+execution.setVariable('pswf_adminSchemeName', task.getVariable('pswf_adminSchemeName'));
+execution.setVariable('pswf_payrollSchemeID', task.getVariable('pswf_payrollSchemeID'));
+execution.setVariable('pswf_payrollSchemeName', task.getVariable('pswf_payrollSchemeName'));
+execution.setVariable('pswf_doer', task.getVariable('pswf_doer'));
+execution.setVariable('pswf_doerDate', task.getVariable('pswf_doerDate'));
+execution.setVariable('pswf_checker', task.getVariable('pswf_checker'));
+execution.setVariable('pswf_checkerDate', task.getVariable('pswf_checkerDate'));
+execution.setVariable('pswf_authoriser', task.getVariable('pswf_authoriser'));
+execution.setVariable('pswf_authoriserDate', task.getVariable('pswf_authoriserDate'));
+execution.setVariable('pswf_completedBy', task.getVariable('pswf_completedBy'));
+execution.setVariable('pswf_completedDate', task.getVariable('pswf_completedDate'));
+execution.setVariable('pswf_processID', task.getVariable('pswf_processID'));
+execution.setVariable('pswf_documentAddedBy', task.getVariable('pswf_documentAddedBy'));
+execution.setVariable('pswf_documentName', task.getVariable('pswf_documentName'));]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="ExclusiveGateway3" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowAuthoriseToGateway3" sourceRef="alfrescoUsertaskAuthoriseTask" targetRef="ExclusiveGateway3"></sequenceFlow>
+    <sequenceFlow id="FlowGateway3ToIssueCorres" name="Approve" sourceRef="ExclusiveGateway3" targetRef="alfrescoScripttask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Issue communication'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowGateway3ToDoTask" name="Reject" sourceRef="ExclusiveGateway3" targetRef="alfrescoUsertaskDoTask">
+      <extensionElements>
+        <activiti:executionListener event="take" class="org.alfresco.repo.workflow.activiti.listener.ScriptExecutionListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[if (String(execution.getVariable('pswf_workflowTaskType')) == "NewMember"){
+	execution.setVariableLocal('bpm_description',"Re-Do Task - New Member");
+}
+else{
+	execution.setVariableLocal('bpm_description',"Re-Do Task");
+}]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Reject for correction'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowSatrtToDoTask" sourceRef="StarteventDoerCheckerAuthoriser" targetRef="alfrescoUsertaskDoTask">
+      <extensionElements>
+        <activiti:executionListener event="take" class="org.alfresco.repo.workflow.activiti.listener.ScriptExecutionListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[if (String(execution.getVariable('pswf_workflowTaskType')) == "NewMember"){
+	execution.setVariableLocal('bpm_description',"Do Task - New Member");
+}
+else{
+	execution.setVariableLocal('bpm_description',"Do Task");
+}]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <exclusiveGateway id="ExclusiveGateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowGateway1ToEndTask" name="Logged Incorrectly" sourceRef="ExclusiveGateway1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Logged incorrectly'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="ExclusiveGateway2" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowGateway2ToDoTask" name="Reject" sourceRef="ExclusiveGateway2" targetRef="alfrescoUsertaskDoTask">
+      <extensionElements>
+        <activiti:executionListener event="take" class="org.alfresco.repo.workflow.activiti.listener.ScriptExecutionListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[if (String(execution.getVariable('pswf_workflowTaskType')) == "NewMember"){
+	execution.setVariableLocal('bpm_description',"Re-Do Task - New Member");
+}
+else{
+	execution.setVariableLocal('bpm_description',"Re-Do Task");
+}]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Reject for correction'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="ncflow4" sourceRef="alfrescoUsertaskCheckTask" targetRef="ExclusiveGateway2"></sequenceFlow>
+    <sequenceFlow id="flow1" sourceRef="ExclusiveGateway2" targetRef="alfrescoScripttask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Issue communication' || pswf_decision == 'No correspondence'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow2" name="Additional correspondence" sourceRef="ExclusiveGateway1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Additional correspondence'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="ExclusiveGateway2" targetRef="alfrescoUsertaskAuthoriseTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Pass to authoriser'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="alfrescoScripttask1" name="Update doc metadat - NewMember tasktype" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string><![CDATA[var tasktype = String(execution.getVariable('pswf_workflowTaskType'));
+
+//rename initiating document if sourcesystem scanning - only rename first initiating doc if multiple
+var iniatingDocCounter = 0;
+if (String(execution.getVariable('pswf_sourceSystem')).substring(0,8) == 'Scanning') {
+	for (var i = 0; i < bpm_package.children.length; i++)
+	{		
+		if (execution.getVariable('parentWorkflowID') == bpm_package.children[i].properties["psdoc:initiatingDocWorkflowID"]) {
+			iniatingDocCounter = iniatingDocCounter + 1;
+			if (iniatingDocCounter = 1){
+				
+				var initialDoc = bpm_package.children[i].properties["cm:name"];
+				var fileExt = null;
+				if(initialDoc.lastIndexOf('.') != -1){
+					fileExt = initialDoc.substring(initialDoc.lastIndexOf('.'));
+				}
+				
+				var myMime = bpm_package.children[i].getMimetype();
+				var mimesToExt = {
+					'application/pdf' : '.pdf'}
+
+				if (mimesToExt.hasOwnProperty(myMime)) {
+					fileExt = mimesToExt[myMime];
+				}
+				
+				
+				var newName = execution.getVariable('pswf_documentName');
+				var newfileExt = null;
+				if(newName.lastIndexOf('.') != -1){
+					newfileExt = newName.substring(newName.lastIndexOf('.'));
+				}
+				if (fileExt!=newfileExt && initialDoc.lastIndexOf('.') != -1){
+					newName = newName + fileExt;
+				}
+				
+				//check if newName already exists
+				var destNode = bpm_package.children[i].getParent();
+				var destNode = companyhome.childByNamePath(bpm_package.children[i].getDisplayPath().slice(14));
+				var existingFile = destNode.childByNamePath(newName);								
+				var tmpFilename = newName;
+				var counter = 1;
+				var counterForFilename = "0001";
+				var pad = "0000";
+				
+				// While there is a file with the same newName in the folder
+				while (existingFile !== null) {
+				
+					dotIndex = newName.lastIndexOf(".");
+					
+					if (dotIndex == 0) {
+						// File didn't have a proper 'name' instead it had just a suffix and started with a ".", create "1.txt"
+						tmpFilename = counterForFilename + newName;
+					}
+					else if (dotIndex > 0) {
+						// newName contained ".", create "newName-1.txt"
+						tmpFilename = newName.substring(0, dotIndex) + "-" + counterForFilename + newName.substring(dotIndex);
+						
+					}
+					else {
+						// newName didn't contain a dot at all, create "newName-1"
+						tmpFilename = newName + "-" + counterForFilename;
+					}
+						
+					existingFile = destNode.childByNamePath(tmpFilename);
+					counter++; 					
+    
+					//new line
+					counterForFilename = pad.substring(0, 4 - counter.toString().length) + counter.toString();
+				}
+								
+				bpm_package.children[i].properties["cm:name"] = tmpFilename;
+				bpm_package.children[i].save();
+			}
+		}
+	}
+}
+
+// first pass, add metadata to all documents
+
+	//add the meta data depending on the type of work for each file
+	switch(tasktype)
+	{
+		case "NewMember":
+			for (var i = 0; i < bpm_package.children.length; i++)
+			{
+				bpm_package.children[i].specializeType("psdoc:adminMemberDocument");
+
+				bpm_package.children[i].save();			
+				
+				// add the common fields to the meta data for each file//
+				bpm_package.children[i].properties["psdoc:department"] = 'Admin';
+				bpm_package.children[i].properties["psdoc:clientName"] = execution.getVariable('pswf_clientName');
+				bpm_package.children[i].properties["psdoc:clientID"] = execution.getVariable('pswf_clientID');
+				bpm_package.children[i].properties["psdoc:schemeName"] = execution.getVariable('pswf_adminSchemeName');
+				bpm_package.children[i].properties["psdoc:schemeID"] = execution.getVariable('pswf_adminSchemeID');
+				bpm_package.children[i].properties["psdoc:activity"] = execution.getVariable('pswf_activity');
+				bpm_package.children[i].properties["psdoc:subActivity"] = execution.getVariable('pswf_subActivity');
+				bpm_package.children[i].properties["psdoc:docDate"] = bpm_package.children[i].properties["cm:created"]
+				bpm_package.children[i].properties["psdoc:webDoc"] = "false";
+				
+				bpm_package.children[i].save();
+							
+				bpm_package.children[i].addAspect("psdoc:memberDetailsAspect");
+				
+				bpm_package.children[i].properties["psdoc:firstName"] = execution.getVariable('pswf_firstName');
+				bpm_package.children[i].properties["psdoc:surname"] = execution.getVariable('pswf_surname');
+				bpm_package.children[i].properties["psdoc:nino"] = execution.getVariable('pswf_nino');
+				bpm_package.children[i].properties["psdoc:dob"] = execution.getVariable('pswf_dob');
+				bpm_package.children[i].properties["psdoc:centralID"] = execution.getVariable('pswf_centralID');
+				bpm_package.children[i].properties["psdoc:memberRecordID"] = execution.getVariable('pswf_relevantMemberID');
+				
+				
+
+				if(bpm_package.children[i].properties["psdoc:initiatingDoc"] == true){
+					//add incoming correspondence if not already in the doc type list metadata
+					if (bpm_package.children[i].properties["psdoc:type"] === null || bpm_package.children[i].properties["psdoc:type"].indexOf('Incoming Correspondence') == -1){
+						if(bpm_package.children[i].properties["psdoc:type"] === null ){
+							bpm_package.children[i].properties["psdoc:type"] =  "Incoming Correspondence";
+							bpm_package.children[i].save();
+						}
+						if (bpm_package.children[i].properties["psdoc:type"].indexOf('Incoming Correspondence') == -1){
+							bpm_package.children[i].properties["psdoc:type"].push("Incoming Correspondence");
+							bpm_package.children[i].save();
+						}						
+					}
+				}
+				
+				bpm_package.children[i].save();
+				
+				// begin the workflow aspect
+				bpm_package.children[i].addAspect("psdoc:workflowAspect");
+				bpm_package.children[i].properties["psdoc:taskNumber"] = execution.getVariable('pswf_taskNumber');
+				
+				bpm_package.children[i].save();
+				
+				if (String(execution.getVariable('pswf_sourceSystem')).substring(0,8) == 'Scanning') {
+					bpm_package.children[i].properties["cmis:name"] = execution.getVariable('pswf_documentName');
+					bpm_package.children[i].save();
+				}									
+			}
+			
+			//move files into folder that has filing rule
+			var myNode = companyhome.childByNamePath("Uploads/Move Document");
+			for (var i = 0; i < bpm_package.children.length; i++)
+			{
+				bpm_package.children[i].move(myNode);
+			}
+			
+			break;
+		
+		
+			
+		default: 
+			
+			
+			break;
+
+	}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow12" sourceRef="alfrescoScripttask1" targetRef="ExclusiveGateway1"></sequenceFlow>
+    <sequenceFlow id="flow13" sourceRef="ExclusiveGateway1" targetRef="alfrescoUsertaskCheckTask"></sequenceFlow>
+    <serviceTask id="alfrescoScripttask2" name="Update New Pensioner Form status" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string><![CDATA[//change form status of new pensioner form document
+for (var i = 0; i < bpm_package.children.length; i++)
+{	
+	if (bpm_package.children[i].getTypeShort() == "psform:newPayrollStarterForm")
+	{
+		bpm_package.children[i].properties["psform:formStatus"] = "Approved by Admin";
+		bpm_package.children[i].save();
+	}
+}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow14" sourceRef="alfrescoScripttask2" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_DoerCheckerAuthoriserWorkflow">
+    <bpmndi:BPMNPlane bpmnElement="DoerCheckerAuthoriserWorkflow" id="BPMNPlane_DoerCheckerAuthoriserWorkflow">
+      <bpmndi:BPMNShape bpmnElement="alfrescoUsertaskDoTask" id="BPMNShape_alfrescoUsertaskDoTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="271.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoUsertaskCheckTask" id="BPMNShape_alfrescoUsertaskCheckTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="661.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1252.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="StarteventDoerCheckerAuthoriser" id="BPMNShape_StarteventDoerCheckerAuthoriser">
+        <omgdc:Bounds height="35.0" width="35.0" x="1.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoUsertaskAuthoriseTask" id="BPMNShape_alfrescoUsertaskAuthoriseTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="892.0" y="420.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway3" id="BPMNShape_ExclusiveGateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1042.0" y="428.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway1" id="BPMNShape_ExclusiveGateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="581.0" y="277.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ExclusiveGateway2" id="BPMNShape_ExclusiveGateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="850.0" y="277.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoScripttask1" id="BPMNShape_alfrescoScripttask1">
+        <omgdc:Bounds height="71.0" width="131.0" x="421.0" y="262.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoScripttask2" id="BPMNShape_alfrescoScripttask2">
+        <omgdc:Bounds height="68.0" width="105.0" x="930.0" y="263.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="FlowDoerToGate1Flow" id="BPMNEdge_FlowDoerToGate1Flow">
+        <omgdi:waypoint x="376.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="421.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowAuthoriseToGateway3" id="BPMNEdge_FlowAuthoriseToGateway3">
+        <omgdi:waypoint x="997.0" y="447.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1042.0" y="448.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowGateway3ToIssueCorres" id="BPMNEdge_FlowGateway3ToIssueCorres">
+        <omgdi:waypoint x="1062.0" y="428.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1062.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1035.0" y="297.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="42.0" x="1071.0" y="371.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowGateway3ToDoTask" id="BPMNEdge_FlowGateway3ToDoTask">
+        <omgdi:waypoint x="1062.0" y="468.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1062.0" y="516.0"></omgdi:waypoint>
+        <omgdi:waypoint x="323.0" y="516.0"></omgdi:waypoint>
+        <omgdi:waypoint x="323.0" y="325.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="30.0" x="798.0" y="519.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowSatrtToDoTask" id="BPMNEdge_FlowSatrtToDoTask">
+        <omgdi:waypoint x="36.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="271.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowGateway1ToEndTask" id="BPMNEdge_FlowGateway1ToEndTask">
+        <omgdi:waypoint x="601.0" y="317.0"></omgdi:waypoint>
+        <omgdi:waypoint x="601.0" y="617.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1269.0" y="617.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1269.0" y="315.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="90.0" x="781.0" y="589.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowGateway2ToDoTask" id="BPMNEdge_FlowGateway2ToDoTask">
+        <omgdi:waypoint x="870.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="870.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="642.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="322.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="323.0" y="270.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="30.0" x="728.0" y="161.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ncflow4" id="BPMNEdge_ncflow4">
+        <omgdi:waypoint x="766.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="850.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="890.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="930.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="601.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="600.0" y="48.0"></omgdi:waypoint>
+        <omgdi:waypoint x="819.0" y="48.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1269.0" y="48.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1269.0" y="280.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="42.0" width="100.0" x="901.0" y="51.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="870.0" y="317.0"></omgdi:waypoint>
+        <omgdi:waypoint x="869.0" y="446.0"></omgdi:waypoint>
+        <omgdi:waypoint x="892.0" y="447.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="552.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="581.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="621.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="661.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="1035.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1252.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

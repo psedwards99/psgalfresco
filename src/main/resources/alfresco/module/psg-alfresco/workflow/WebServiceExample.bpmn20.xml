@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="webServiceExample" name="Web Service Example Process" isExecutable="true">
+    <endEvent id="endevent1" name="End"></endEvent>
+    <userTask id="doerTask" name="Doer Task" activiti:assignee="admin" activiti:formKey="pswf:standardWorkflow">
+    <extensionElements>        
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+            execution.setVariable('pswf_adminSchemeName', task.getVariable('pswf_adminSchemeName'));
+            execution.setVariable('pswf_activity', task.getVariable('pswf_activity'));
+            execution.setVariable('pswf_subActivity', task.getVariable('pswf_subActivity'));
+            execution.setVariable('pswf_deadline', task.getVariable('pswf_deadline'));
+            execution.setVariable('pswf_firstName', task.getVariable('pswf_firstName'));
+			execution.setVariable('pswf_surname', task.getVariable('pswf_surname'));
+			execution.setVariable('pswf_calcs', task.getVariable('pswf_calcs'));]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>       
+      </extensionElements>
+    </userTask>
+    <startEvent id="alfrescoStartevent1" name="Alfresco start" activiti:formKey="pswf:standardWorkflow"></startEvent>
+    <sequenceFlow id="flow3" sourceRef="alfrescoStartevent1" targetRef="doerTask"></sequenceFlow>
+    <userTask id="checkerTask" name="Checker Task" activiti:assignee="admin" activiti:formKey="pswf:standardWorkflow"></userTask>
+    <serviceTask id="javaService" name="Java service invocation" activiti:class="com.puntersouthall.workflow.delegates.GetCreateTaskNumberDelegate">
+      <extensionElements>
+        <activiti:field name="schemeName">
+          <activiti:expression>${pswf_adminSchemeName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="activity">
+          <activiti:expression>${pswf_activity}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="subActivity">
+          <activiti:expression>${pswf_subActivity}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="deadline">
+          <activiti:expression>${pswf_deadline}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="firstName">
+          <activiti:expression>${pswf_firstName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="surname">
+          <activiti:expression>${pswf_surname}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="numberOfTasks">
+          <activiti:expression>${pswf_calcs}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="doer">
+          <activiti:expression>Phil King</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="doerTask" targetRef="javaService"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="javaService" targetRef="checkerTask"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="checkerTask" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_webServiceExample">
+    <bpmndi:BPMNPlane bpmnElement="webServiceExample" id="BPMNPlane_webServiceExample">
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1000.0" y="330.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="doerTask" id="BPMNShape_doerTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="260.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoStartevent1" id="BPMNShape_alfrescoStartevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="110.0" y="330.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkerTask" id="BPMNShape_checkerTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="690.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="javaService" id="BPMNShape_javaService">
+        <omgdc:Bounds height="85.0" width="151.0" x="440.0" y="305.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="145.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="260.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="365.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="440.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="591.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="690.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="795.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1000.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

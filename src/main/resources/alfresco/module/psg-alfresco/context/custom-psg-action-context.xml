@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+	<bean id="action.userUploadedDocument" class="com.puntersouthall.actions.UserUploadedDocumentAction" parent="action-executer">
+		<property name="serviceRegistry">
+        	<ref bean="ServiceRegistry"/>
+        </property>
+	 	<property name="MOVE_DOCUMENT_FOLDER_PATH">
+	 		<value>${action.custom.userUploadedDocument.targetFolderMoveDocument}</value>
+	 	</property>
+	 	<property name="START_WORKFLOW_FOLDER_PATH">
+	 		<value>${action.custom.userUploadedDocument.targetFolderStartWorkflow}</value>
+	 	</property>
+	 	<property name="FILING_ERRORS_FOLDER_PATH">
+	 		<value>${action.custom.userUploadedDocument.targetFolderFilingErrors}</value>
+	 	</property>
+	</bean>
+	
+	<bean id="action.startWorkflowFromUserDocument" class="com.puntersouthall.actions.LaunchWorkflowFromUserDocumentAction" parent="action-executer">
+		<property name="serviceRegistry">
+        	<ref bean="ServiceRegistry"/>
+        </property>
+	 	<property name="USER_ATTACHMENTS_TARGET_FOLDER_PATH">
+	 		<value>${action.custom.userUploadedDocument.targetFolderMoveDocument}</value>
+	 	</property>
+	</bean>
+
+	<bean id="action.startWorkflowFromScannedDocument" class="com.puntersouthall.actions.LaunchWorkflowFromScannedDocumentAction" parent="action-executer">
+		<property name="serviceRegistry">
+        	<ref bean="ServiceRegistry"/>
+        </property>
+        <property name="PROP_SOURCE_SYSTEM">
+	 		<value>${action.custom.startWorkflowFromEmail.sourceSystem}</value>
+	 	</property>
+	 	<property name="PROP_ADMIN_SCHEME_GROUP">
+	 		<value>${action.custom.startWorkflowFromEmail.adminSchemGroup}</value>
+	 	</property>
+	 	<property name="ATTACHMENTS_TARGET_FOLDER_PATH">
+	 		<value>${action.custom.startWorkflowFromEmail.targetFolderAttachments}</value>
+	 	</property>
+	 	<property name="PROP_BIRM_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.birminghamMyPensionClientGroup}</value>
+	 	</property>	 	
+	 	<property name="PROP_BRIS_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.bristolMyPensionClientGroup}</value>
+	 	</property>	 
+	 	<property name="PROP_CHEL_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.chelmsfordMyPensionClientGroup}</value>
+	 	</property>		
+	  	<property name="PROP_EDIN_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.edinburghMyPensionClientGroup}</value>
+	 	</property>		 	
+	 	<property name="PROP_LOND_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.londonMyPensionClientGroup}</value>
+	 	</property>	
+	 	<property name="PROP_NEWC_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.newcastleMyPensionClientGroup}</value>
+	 	</property>	
+	 	<property name="PROP_PERT_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.perthMyPensionClientGroup}</value>
+	 	</property>		 
+	 	<property name="PROP_WOKO_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.wokinghamMyPensionClientGroup}</value>
+	 	</property>		
+	</bean>
+
+	<bean id="action.startWorkflowFromEmail" class="com.puntersouthall.actions.LaunchWorkflowFromEmailAction" parent="action-executer">
+		<property name="serviceRegistry">
+        	<ref bean="ServiceRegistry"/>
+        </property>
+        <property name="PROP_SOURCE_SYSTEM">
+	 		<value>${action.custom.startWorkflowFromEmail.sourceSystem}</value>
+	 	</property>
+	 	<property name="PROP_ADMIN_SCHEME_GROUP">
+	 		<value>${action.custom.startWorkflowFromEmail.adminSchemGroup}</value>
+	 	</property>
+	 	<property name="ATTACHMENTS_TARGET_FOLDER_PATH">
+	 		<value>${action.custom.startWorkflowFromEmail.targetFolderAttachments}</value>
+	 	</property>
+	 	<property name="ARCHIVED_EMAIL_FOLDER_PATH">
+	 		<value>${action.custom.startWorkflowFromEmail.targetFolderEmails}</value>
+	 	</property>
+	 	<property name="PROP_BIRM_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.birminghamMyPensionClientGroup}</value>
+	 	</property>	 	
+	 	<property name="PROP_BRIS_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.bristolMyPensionClientGroup}</value>
+	 	</property>	 	
+	 	<property name="PROP_CHEL_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.chelmsfordMyPensionClientGroup}</value>
+	 	</property>	
+	  	<property name="PROP_EDIN_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.edinburghMyPensionClientGroup}</value>
+	 	</property>		 	
+	 	<property name="PROP_LOND_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.londonMyPensionClientGroup}</value>
+	 	</property>	
+	 	<property name="PROP_NEWC_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.newcastleMyPensionClientGroup}</value>
+	 	</property>		 
+	 	<property name="PROP_PERT_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.perthMyPensionClientGroup}</value>
+	 	</property>	
+	 	<property name="PROP_WOKO_INDEXING_TEAM">
+	 		<value>${action.custom.startWorkflowFromEmail.wokinghamMyPensionClientGroup}</value>
+	 	</property>		
+	</bean>
+
+	<bean id="psg.actionResourceBundles" parent="actionResourceBundles">
+		<property name="resourceBundles">
+			<list>
+				<value>alfresco.module.${project.artifactId}.messages.psgActions</value>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="action.DocumentFilerAction" class="com.puntersouthall.actions.DocumentFilerAction" parent="action-executer">
+		<property name="serviceRegistry">
+        	<ref bean="ServiceRegistry"/>
+        </property>
+	</bean>
+	
+</beans>

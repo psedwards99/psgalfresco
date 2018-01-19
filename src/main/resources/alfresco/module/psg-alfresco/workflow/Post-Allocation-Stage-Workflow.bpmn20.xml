@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="PostAllocationWorkflow" name="Post Allocation Workflow" isExecutable="true">
+    <startEvent id="alfrescoStartevent1" name="Alfresco start" activiti:formKey="pswf:standardWorkflow"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="alfrescoStartevent1" targetRef="servicetask1"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <serviceTask id="getCreateVOServiceTask" name="Get VO Task number" activiti:class="com.puntersouthall.workflow.delegates.GetCreateTaskNumberDelegate">
+      <extensionElements>
+        <activiti:field name="schemeName">
+          <activiti:expression>${pswf_adminSchemeName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="activity">
+          <activiti:expression>${pswf_activityVariableForVOCreateTask}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="subActivity">
+          <activiti:expression>${pswf_subActivity}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="deadline">
+          <activiti:expression>${pswf_deadline}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="firstName">
+          <activiti:expression>${pswf_firstName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="surname">
+          <activiti:expression>${pswf_surname}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="numberOfTasks">
+          <activiti:expression>${pswf_calcs}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="doer">
+          <activiti:expression>${pswf_doer}</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="getCreateVOServiceTask" targetRef="alfrescoScripttask1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow6" sourceRef="exclusivegateway1" targetRef="getCreateVOServiceTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_taskNumber == null}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="getChangeVOServiceTask" name="Update VO Task number" activiti:class="com.puntersouthall.workflow.delegates.GetChangeTaskNumberDelegate">
+      <extensionElements>
+        <activiti:field name="schemeName">
+          <activiti:expression>${pswf_adminSchemeName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="activity">
+          <activiti:expression>${pswf_activityVariableForVOCreateTask}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="subActivity">
+          <activiti:expression>${pswf_subActivity}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="deadline">
+          <activiti:expression>${pswf_deadline}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="firstName">
+          <activiti:expression>${pswf_firstName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="surname">
+          <activiti:expression>${pswf_surname}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="numberOfTasks">
+          <activiti:expression>${pswf_calcs}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="doer">
+          <activiti:expression>${pswf_doer}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="taskID">
+          <activiti:expression>${pswf_taskNumber}</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="getChangeVOServiceTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_taskNumber > 0}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="getChangeVOServiceTask" targetRef="alfrescoScripttask1"></sequenceFlow>
+    <serviceTask id="alfrescoScripttask1" name="Update doc meta data" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string><![CDATA[execution.setVariable('pswf_reworkNumber',parseInt(0));
+
+var tasktype = String(execution.getVariable('pswf_workflowTaskType'));
+
+
+// first pass, add metadata to all documents
+
+	//add the meta data depending on the type of work for each file
+	switch(tasktype)
+	{
+		case "Admin-MemberWork":
+			for (var i = 0; i < bpm_package.children.length; i++)
+			{
+				
+				bpm_package.children[i].specializeType("psdoc:adminMemberDocument");
+
+				bpm_package.children[i].save();			
+				
+				// add the common fields to the meta data for each file//
+				bpm_package.children[i].properties["psdoc:department"] = 'Admin';
+				bpm_package.children[i].properties["psdoc:clientName"] = execution.getVariable('pswf_clientName');
+				bpm_package.children[i].properties["psdoc:clientID"] = execution.getVariable('pswf_clientID');
+				bpm_package.children[i].properties["psdoc:schemeName"] = execution.getVariable('pswf_adminSchemeName');
+				bpm_package.children[i].properties["psdoc:schemeID"] = execution.getVariable('pswf_adminSchemeID');
+				bpm_package.children[i].properties["psdoc:activity"] = execution.getVariable('pswf_activity');
+				bpm_package.children[i].properties["psdoc:subActivity"] = execution.getVariable('pswf_subActivity');
+				bpm_package.children[i].properties["psdoc:docDate"] = bpm_package.children[i].properties["cm:created"]
+				bpm_package.children[i].properties["psdoc:webDoc"] = "false";
+				//add incoming correspondence if not already in the doc type list metadata
+				if (bpm_package.children[i].properties["psdoc:type"] === null || bpm_package.children[i].properties["psdoc:type"].indexOf('Incoming Correspondence') == -1){
+					if(bpm_package.children[i].properties["psdoc:type"] === null ){
+						bpm_package.children[i].properties["psdoc:type"] =  ["Incoming Correspondence"];
+					}
+					if (bpm_package.children[i].properties["psdoc:type"].indexOf('Incoming Correspondence') == -1){
+						bpm_package.children[i].properties["psdoc:type"].push("Incoming Correspondence");
+					}
+					
+				}
+				bpm_package.children[i].save();
+							
+				bpm_package.children[i].addAspect("psdoc:memberDetailsAspect");
+				
+				bpm_package.children[i].properties["psdoc:firstName"] = execution.getVariable('pswf_firstName');
+				bpm_package.children[i].properties["psdoc:surname"] = execution.getVariable('pswf_surname');
+				bpm_package.children[i].properties["psdoc:nino"] = execution.getVariable('pswf_nino');
+				bpm_package.children[i].properties["psdoc:dob"] = execution.getVariable('pswf_dob');
+				bpm_package.children[i].properties["psdoc:centralID"] = execution.getVariable('pswf_centralID');
+				bpm_package.children[i].properties["psdoc:memberRecordID"] = execution.getVariable('pswf_relevantMemberID');
+				
+				bpm_package.children[i].save();
+				
+				// begin the workflow aspect
+				bpm_package.children[i].addAspect("psdoc:workflowAspect");
+				bpm_package.children[i].properties["psdoc:taskNumber"] = execution.getVariable('pswf_taskNumber');
+				
+				bpm_package.children[i].save();
+				
+			}
+			
+			//move files into folder that has filing rule
+			var myNode = companyhome.childByNamePath("Uploads/Move Document");
+			for (var i = 0; i < bpm_package.children.length; i++)
+			{
+				bpm_package.children[i].move(myNode);
+			}
+			
+			break;
+		
+		case "Admin-SchemeWork":
+			for (var i = 0; i < bpm_package.children.length; i++)
+			{
+				
+				bpm_package.children[i].specializeType("psdoc:adminSchemeDocument");
+
+				bpm_package.children[i].save();			
+				
+				// add the common fields to the meta data for each file//
+				bpm_package.children[i].properties["psdoc:department"] = 'Admin';
+				bpm_package.children[i].properties["psdoc:clientName"] = execution.getVariable('pswf_clientName');
+				bpm_package.children[i].properties["psdoc:clientID"] = execution.getVariable('pswf_clientID');
+				bpm_package.children[i].properties["psdoc:schemeName"] = execution.getVariable('pswf_adminSchemeName');
+				bpm_package.children[i].properties["psdoc:schemeID"] = execution.getVariable('pswf_adminSchemeID');
+				bpm_package.children[i].properties["psdoc:activity"] = execution.getVariable('pswf_activity');
+				bpm_package.children[i].properties["psdoc:subActivity"] = execution.getVariable('pswf_subActivity');
+				bpm_package.children[i].properties["psdoc:docDate"] = bpm_package.children[i].properties["cm:created"]
+				bpm_package.children[i].properties["psdoc:webDoc"] = "false";
+				//add incoming correspondence if not already in the doc type list metadata
+				if (bpm_package.children[i].properties["psdoc:type"] === null || bpm_package.children[i].properties["psdoc:type"].indexOf('Incoming Correspondence') == -1){
+					if(bpm_package.children[i].properties["psdoc:type"] === null ){
+						bpm_package.children[i].properties["psdoc:type"] =  ["Incoming Correspondence"];
+					}
+					if (bpm_package.children[i].properties["psdoc:type"].indexOf('Incoming Correspondence') == -1){
+						bpm_package.children[i].properties["psdoc:type"].push("Incoming Correspondence");
+					}
+					
+				}						
+				bpm_package.children[i].save();
+				
+				// begin the workflow aspect
+				bpm_package.children[i].addAspect("psdoc:workflowAspect");
+				bpm_package.children[i].properties["psdoc:taskNumber"] = execution.getVariable('pswf_taskNumber');
+				
+				bpm_package.children[i].save();
+
+			}
+			
+			//move files into folder that has filing rule
+			var myNode = companyhome.childByNamePath("Uploads/Move Document");
+			for (var i = 0; i < bpm_package.children.length; i++)
+			{
+				bpm_package.children[i].move(myNode);
+			}
+			
+			break;
+			
+		default: 
+			
+			
+			break;
+
+	}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow9" sourceRef="alfrescoScripttask1" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask1" name="Service Task" activiti:delegateExpression="${setBPMGroupAssignee}"></serviceTask>
+    <userTask id="FinalIndexingUserTask" name="Enter Final Indexing Values" activiti:candidateGroups="${bpm_groupAssignee.properties.authorityName}" activiti:formKey="pswf:standardWorkflow">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/PS_Allocate.jsp");
+execution.setVariableLocal('bpm_description',"Enter Final Indexing Values");]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariable('pswf_sourceSystem', task.getVariable('pswf_sourceSystem'));
+execution.setVariable('pswf_dateReceived', task.getVariable('pswf_dateReceived'));
+execution.setVariable('pswf_teamName', task.getVariable('pswf_teamName'));
+execution.setVariable('pswf_certificateWorkflowRequired', task.getVariable('pswf_certificateWorkflowRequired'));
+execution.setVariable('pswf_workflowTaskType', task.getVariable('pswf_workflowTaskType'));
+execution.setVariable('pswf_decision', task.getVariable('pswf_decision'));
+execution.setVariable('pswf_activity', task.getVariable('pswf_activity'));
+execution.setVariable('pswf_subActivity', task.getVariable('pswf_subActivity'));
+execution.setVariable('pswf_deadline', task.getVariable('pswf_deadline'));
+execution.setVariable('pswf_internalDeadline', task.getVariable('pswf_internalDeadline'));
+execution.setVariable('bpm_comment', task.getVariable('bpm_comment'));
+execution.setVariable('pswf_taskDetail', task.getVariable('pswf_taskDetail'));
+execution.setVariable('pswf_taskStatus', task.getVariable('pswf_taskStatus'));
+execution.setVariable('pswf_taskNumber', task.getVariable('pswf_taskNumber'));
+execution.setVariable('pswf_calcs', task.getVariable('pswf_calcs'));
+execution.setVariable('pswf_centralID', task.getVariable('pswf_centralID'));
+execution.setVariable('pswf_firstName', task.getVariable('pswf_firstName'));
+execution.setVariable('pswf_surname', task.getVariable('pswf_surname'));
+execution.setVariable('pswf_nino', task.getVariable('pswf_nino'));
+execution.setVariable('pswf_dob', task.getVariable('pswf_dob'));
+execution.setVariable('pswf_relevantMemberID', task.getVariable('pswf_relevantMemberID'));
+execution.setVariable('pswf_clientID', task.getVariable('pswf_clientID'));
+execution.setVariable('pswf_clientName', task.getVariable('pswf_clientName'));
+execution.setVariable('pswf_adminSchemeID', task.getVariable('pswf_adminSchemeID'));
+execution.setVariable('pswf_adminSchemeName', task.getVariable('pswf_adminSchemeName'));
+execution.setVariable('pswf_adminSchemeGroup', task.getVariable('pswf_adminSchemeGroup'));
+execution.setVariable('pswf_payrollSchemeID', task.getVariable('pswf_payrollSchemeID'));
+execution.setVariable('pswf_payrollSchemeName', task.getVariable('pswf_payrollSchemeName'));
+execution.setVariable('pswf_reworkNumber', task.getVariable('pswf_reworkNumber'));
+execution.setVariable('pswf_doer', task.getVariable('pswf_doer'));
+execution.setVariable('pswf_doerDate', task.getVariable('pswf_doerDate'));
+execution.setVariable('pswf_checker', task.getVariable('pswf_checker'));
+execution.setVariable('pswf_checkerDate', task.getVariable('pswf_checkerDate'));
+execution.setVariable('pswf_authoriser', task.getVariable('pswf_authoriser'));
+execution.setVariable('pswf_authoriserDate', task.getVariable('pswf_authoriserDate'));
+execution.setVariable('pswf_completedBy', task.getVariable('pswf_completedBy'));
+execution.setVariable('pswf_completedDate', task.getVariable('pswf_completedDate'));
+execution.setVariable('pswf_processID', task.getVariable('pswf_processID'));
+execution.setVariable('pswf_documentAddedBy', task.getVariable('pswf_documentAddedBy'));
+execution.setVariable('pswf_documentName', task.getVariable('pswf_documentName'));
+execution.setVariable('pswf_success', task.getVariable('pswf_success'));
+execution.setVariable('pswf_boolVar1', task.getVariable('pswf_boolVar1'));
+execution.setVariable('pswf_boolVar2', task.getVariable('pswf_boolVar2'));
+execution.setVariable('pswf_boolVar3', task.getVariable('pswf_boolVar3'));
+execution.setVariable('pswf_stringVar1', task.getVariable('pswf_stringVar1'));
+execution.setVariable('pswf_stringVar2', task.getVariable('pswf_stringVar2'));
+execution.setVariable('pswf_stringVar3', task.getVariable('pswf_stringVar3'));
+execution.setVariable('pswf_intVar1', task.getVariable('pswf_intVar1'));
+execution.setVariable('pswf_intVar2', task.getVariable('pswf_intVar2'));
+execution.setVariable('pswf_intVar3', task.getVariable('pswf_intVar3'));
+execution.setVariable('pswf_dateVar1', task.getVariable('pswf_dateVar1'));
+execution.setVariable('pswf_dateVar2', task.getVariable('pswf_dateVar2'));
+execution.setVariable('pswf_dateVar3', task.getVariable('pswf_dateVar3'));
+execution.setVariable('pswf_initiatingDocNode', task.getVariable('pswf_initiatingDocNode'));
+execution.setVariable('bpm_groupAssignee', task.getVariable('bpm_groupAssignee'));]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[var tasktype = String(execution.getVariable('pswf_workflowTaskType'));
+switch(tasktype)
+{
+	case "Admin-MemberWork":
+		execution.setVariable('pswf_activityVariableForVOCreateTask',"IC " + execution.getVariable('pswf_activity'));
+		break;
+		
+	default: 
+		execution.setVariable('pswf_activityVariableForVOCreateTask',execution.getVariable('pswf_activity'));
+		break;
+}]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow10" sourceRef="servicetask1" targetRef="FinalIndexingUserTask"></sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="FinalIndexingUserTask" targetRef="exclusivegateway1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_PostAllocationWorkflow">
+    <bpmndi:BPMNPlane bpmnElement="PostAllocationWorkflow" id="BPMNPlane_PostAllocationWorkflow">
+      <bpmndi:BPMNShape bpmnElement="alfrescoStartevent1" id="BPMNShape_alfrescoStartevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="56.0" y="363.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="870.0" y="363.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="getCreateVOServiceTask" id="BPMNShape_getCreateVOServiceTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="490.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="400.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="getChangeVOServiceTask" id="BPMNShape_getChangeVOServiceTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="490.0" y="450.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoScripttask1" id="BPMNShape_alfrescoScripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="690.0" y="353.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="116.0" y="353.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="FinalIndexingUserTask" id="BPMNShape_FinalIndexingUserTask">
+        <omgdc:Bounds height="58.0" width="115.0" x="250.0" y="352.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="91.0" y="380.0"></omgdi:waypoint>
+        <omgdi:waypoint x="116.0" y="380.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="595.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="353.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="420.0" y="360.0"></omgdi:waypoint>
+        <omgdi:waypoint x="420.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="420.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="420.0" y="477.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="477.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="595.0" y="477.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="477.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="408.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="795.0" y="380.0"></omgdi:waypoint>
+        <omgdi:waypoint x="870.0" y="380.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="221.0" y="380.0"></omgdi:waypoint>
+        <omgdi:waypoint x="250.0" y="381.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="365.0" y="381.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="380.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

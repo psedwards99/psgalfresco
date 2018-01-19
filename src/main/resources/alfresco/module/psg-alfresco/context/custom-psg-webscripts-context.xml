@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="webscript.puntersouthall.activities.get" class="com.puntersouthall.webscripts.GetActivities"
+		parent="webscript">
+	</bean>
+
+
+	<bean id="webscript.puntersouthall.request-deletion-diaryNote.post" 
+		class="com.puntersouthall.webscripts.DiaryNoteRequestDeletionPost"
+		parent="webscript">
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
+		</property>
+	</bean>
+	
+	<bean id="webscript.puntersouthall.help-html.get" class="com.puntersouthall.webscripts.GetHelpHtml"
+		parent="webscript">
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
+		</property>
+	</bean>
+	
+	<bean id="webscript.puntersouthall.createClientFolder.get" class="com.puntersouthall.webscripts.CreateClientFolder"
+		parent="webscript">
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
+		</property>
+	</bean>
+	<bean id="webscript.puntersouthall.LockNodes.get" class="com.puntersouthall.webscripts.LockNodes"
+		parent="webscript">
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
+		</property>
+	</bean>
+	<bean id="webscript.puntersouthall.UpdateClientSchemeMetadata.get" class="com.puntersouthall.webscripts.UpdateClientSchemeMetadata"
+		parent="webscript">
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
+		</property>
+	</bean>
+	<bean id="webscript.puntersouthall.adhoc.AppendExtension.get" class="com.puntersouthall.webscripts.adhoc.AppendExtension"
+		parent="webscript">
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
+		</property>
+	</bean>
+</beans>

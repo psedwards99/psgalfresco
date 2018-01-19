@@ -1,0 +1,165 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <!-- Activiti Platform Jobs -->
+    <!-- These are jobs that perform tasks that involve the Activiti deployment
+    	 They are not used by the workdesk deployment -->
+    
+    <bean id="com.puntersouthall.schedule.PSGDocumentImporter.Executer" class="com.puntersouthall.schedule.PSGDocumentImporter">
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry" />
+		</property>
+	    <property name="officeLocations">
+			<value>${psgdocumentimporter.officelocations}</value>
+		</property>
+		<property name="repositoryRoot">
+			<value>${psgdocumentimporter.repositoryroot}</value>
+		</property>
+		<property name="fileSystemRoot">
+			<value>${psgdocumentimporter.filesystemroot}</value>
+		</property>
+	</bean>
+
+	<bean id="com.puntersouthall.psgdocumentimporter.jobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>com.puntersouthall.schedule.PSGDocumentImporterScheduledJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="jobExecuter">
+					<ref bean="com.puntersouthall.schedule.PSGDocumentImporter.Executer" />
+				</entry>
+				<entry key="jobLockService">
+					<ref bean="jobLockService" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="com.puntersouthall.psgdocumentimporter.scheduledjob.trigger" class="org.alfresco.util.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="com.puntersouthall.psgdocumentimporter.jobDetail" />
+		</property>
+		<property name="scheduler">
+			<ref bean="schedulerFactory"/>
+		</property>
+		<property name="cronExpression">
+			<value>${psgdocumentimporter.cronexpression}</value>
+		</property>
+	</bean>
+
+
+    
+    
+    <!-- OLD Jobs, BUT THEY ARE STILL IN USE UNTIL WORKDESK IS FULLY RETIRED -->
+    <!-- Document Importer Job -->
+	<bean id="automatedDocumentImporterDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+	 	<property name="jobClass">       
+			<value>com.puntersouthall.schedule.AutomatedDocumentImporterJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map> 
+				<entry key="scanningLocation">
+					<value>${automatedDocumentImporter.scanningLocation}</value>
+				</entry>
+	        	<entry key="abstractAuthenticationService"> 
+	            	<ref bean="authenticationService" /> 
+				</entry> 
+			</map> 
+		</property> 
+	</bean>
+	<bean id="automatedDocumentImporterTrigger" class="org.alfresco.util.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="automatedDocumentImporterDetail"/>
+	 	</property>
+	 	<property name="scheduler">
+	 		<ref bean="schedulerFactory"/>
+	 	</property>
+	 	<property name="cronExpression">
+	 		<value>${automatedDocumentImporter.cron}</value>
+	 	</property>
+	</bean>
+	
+	<!-- Document Updater Job -->
+	<bean id="automatedDocumentUpdaterDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+	 	<property name="jobClass">       
+			<value>com.puntersouthall.schedule.AutomatedDocumentUpdaterJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map> 
+	        	<entry key="abstractAuthenticationService"> 
+	            	<ref bean="authenticationService" /> 
+				</entry> 
+			</map> 
+		</property> 
+	</bean>
+	 
+	<bean id="automatedDocumentUpdaterTrigger" class="org.alfresco.util.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="automatedDocumentUpdaterDetail"/>
+	 	</property>
+	 	<property name="scheduler">
+	 		<ref bean="schedulerFactory"/>
+	 	</property>
+	 	<property name="cronExpression">
+	 		<value>${automatedDocumentUpdater.cron}</value>
+	 	</property>
+	</bean>
+	
+	<!-- MyPension Exporter Job -->
+	<bean id="myPensionExporterDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+	 	<property name="jobClass">       
+			<value>com.puntersouthall.schedule.MyPensionExporterJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map> 
+				<entry key="outputLocation">
+					<value>${myPensionExporter.outputLocation}</value>
+				</entry>
+	        	<entry key="abstractAuthenticationService"> 
+	            	<ref bean="authenticationService" /> 
+				</entry> 
+			</map> 
+		</property> 
+	</bean>
+	 
+	<bean id="myPensionExporterTrigger" class="org.alfresco.util.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="myPensionExporterDetail"/>
+	 	</property>
+	 	<property name="scheduler">
+	 		<ref bean="schedulerFactory"/>
+	 	</property>
+	 	<property name="cronExpression">
+	 		<value>${myPensionExporter.cron}</value>
+	 	</property>
+	</bean>
+	
+	<!-- Workflow Launcher job -->
+	<bean id="automatedProcessLauncherDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+	 	<property name="jobClass">       
+			<value>com.puntersouthall.schedule.AutomatedProcessLauncherJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map> 
+	        	<entry key="abstractAuthenticationService"> 
+	            	<ref bean="authenticationService" /> 
+				</entry> 
+			</map> 
+		</property> 
+	</bean>
+	<bean id="automatedProcessLauncherTrigger" class="org.alfresco.util.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="automatedProcessLauncherDetail"/>
+	 	</property>
+	 	<property name="scheduler">
+	 		<ref bean="schedulerFactory"/>
+	 	</property>
+	 	<property name="cronExpression">
+	 		<value>${automatedProcessLauncher.cron}</value>
+	 	</property>
+	</bean>
+	
+</beans>

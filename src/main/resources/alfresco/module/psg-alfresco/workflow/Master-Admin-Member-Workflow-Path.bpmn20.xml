@@ -1,0 +1,1218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="adminMemberWorkflowProcess" name="Launch Admin Workflow" isExecutable="true">
+    <startEvent id="alfrescoStartevent1" name="Alfresco start" activiti:formKey="pswf:standardWorkflow"></startEvent>
+    <callActivity id="callPostAllocation" name="Call Post Allocation Workflow" calledElement="PostAllocationWorkflow">
+      <extensionElements>
+        <activiti:in source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:in>
+        <activiti:in source="pswf_dateReceived" target="pswf_dateReceived"></activiti:in>
+        <activiti:in source="pswf_teamName" target="pswf_teamName"></activiti:in>
+        <activiti:in source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:in>
+        <activiti:in source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:in>
+        <activiti:in source="pswf_decision" target="pswf_decision"></activiti:in>
+        <activiti:in source="pswf_activity" target="pswf_activity"></activiti:in>
+        <activiti:in source="pswf_subActivity" target="pswf_subActivity"></activiti:in>
+        <activiti:in source="pswf_deadline" target="pswf_deadline"></activiti:in>
+        <activiti:in source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:in>
+        <activiti:in source="pswf_comment" target="pswf_comment"></activiti:in>
+        <activiti:in source="pswf_taskDetail" target="pswf_taskDetail"></activiti:in>
+        <activiti:in source="pswf_taskStatus" target="pswf_taskStatus"></activiti:in>
+        <activiti:in source="pswf_taskNumber" target="pswf_taskNumber"></activiti:in>
+        <activiti:in source="pswf_calcs" target="pswf_calcs"></activiti:in>
+        <activiti:in source="pswf_centralID" target="pswf_centralID"></activiti:in>
+        <activiti:in source="pswf_firstName" target="pswf_firstName"></activiti:in>
+        <activiti:in source="pswf_surname" target="pswf_surname"></activiti:in>
+        <activiti:in source="pswf_nino" target="pswf_nino"></activiti:in>
+        <activiti:in source="pswf_dob" target="pswf_dob"></activiti:in>
+        <activiti:in source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:in>
+        <activiti:in source="pswf_clientID" target="pswf_clientID"></activiti:in>
+        <activiti:in source="pswf_clientName" target="pswf_clientName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:in>
+        <activiti:in source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:in>
+        <activiti:in source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:in>
+        <activiti:in source="pswf_doer" target="pswf_doer"></activiti:in>
+        <activiti:in source="pswf_doerDate" target="pswf_doerDate"></activiti:in>
+        <activiti:in source="pswf_checker" target="pswf_checker"></activiti:in>
+        <activiti:in source="pswf_checkerDate" target="pswf_checkerDate"></activiti:in>
+        <activiti:in source="pswf_authoriser" target="pswf_authoriser"></activiti:in>
+        <activiti:in source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:in>
+        <activiti:in source="pswf_completedBy" target="pswf_completedBy"></activiti:in>
+        <activiti:in source="pswf_completedDate" target="pswf_completedDate"></activiti:in>
+        <activiti:in source="pswf_processID" target="pswf_processID"></activiti:in>
+        <activiti:in source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:in>
+        <activiti:in source="pswf_documentName" target="pswf_documentName"></activiti:in>
+        <activiti:in source="pswf_success" target="pswf_success"></activiti:in>
+        <activiti:in source="pswf_boolVar1" target="pswf_boolVar1"></activiti:in>
+        <activiti:in source="pswf_boolVar2" target="pswf_boolVar2"></activiti:in>
+        <activiti:in source="pswf_boolVar3" target="pswf_boolVar3"></activiti:in>
+        <activiti:in source="pswf_stringVar1" target="pswf_stringVar1"></activiti:in>
+        <activiti:in source="pswf_stringVar2" target="pswf_stringVar2"></activiti:in>
+        <activiti:in source="pswf_stringVar3" target="pswf_stringVar3"></activiti:in>
+        <activiti:in source="pswf_intVar1" target="pswf_intVar1"></activiti:in>
+        <activiti:in source="pswf_intVar2" target="pswf_intVar2"></activiti:in>
+        <activiti:in source="pswf_intVar3" target="pswf_intVar3"></activiti:in>
+        <activiti:in source="pswf_dateVar1" target="pswf_dateVar1"></activiti:in>
+        <activiti:in source="pswf_dateVar2" target="pswf_dateVar2"></activiti:in>
+        <activiti:in source="pswf_dateVar3" target="pswf_dateVar3"></activiti:in>
+        <activiti:in source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="workflowinstanceid" target="parentWorkflowID"></activiti:in>
+        <activiti:in source="bpm_package" target="bpm_package"></activiti:in>
+        <activiti:in source="companyhome" target="companyhome"></activiti:in>
+        <activiti:in source="bpm_comment" target="bpm_comment"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:in>
+        <activiti:in source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:in>
+        <activiti:in source="bpm_reassignable" target="bpm_reassignable"></activiti:in>
+        <activiti:in source="bpm_status" target="bpm_status"></activiti:in>
+        <activiti:in source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:in>
+        <activiti:in source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:in>
+        <activiti:in source="bpm_description" target="bpm_description"></activiti:in>
+        <activiti:in source="bpm_dueDate" target="bpm_dueDate"></activiti:in>
+        <activiti:in source="bpm_priority" target="bpm_priority"></activiti:in>
+        <activiti:in source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:in>
+        <activiti:in source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:in>
+        <activiti:in source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:in>
+        <activiti:in source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:in>
+        <activiti:out source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:out>
+        <activiti:out source="pswf_dateReceived" target="pswf_dateReceived"></activiti:out>
+        <activiti:out source="pswf_teamName" target="pswf_teamName"></activiti:out>
+        <activiti:out source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:out>
+        <activiti:out source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:out>
+        <activiti:out source="pswf_decision" target="pswf_decision"></activiti:out>
+        <activiti:out source="pswf_activity" target="pswf_activity"></activiti:out>
+        <activiti:out source="pswf_subActivity" target="pswf_subActivity"></activiti:out>
+        <activiti:out source="pswf_deadline" target="pswf_deadline"></activiti:out>
+        <activiti:out source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:out>
+        <activiti:out source="pswf_comment" target="pswf_comment"></activiti:out>
+        <activiti:out source="pswf_taskDetail" target="pswf_taskDetail"></activiti:out>
+        <activiti:out source="pswf_taskStatus" target="pswf_taskStatus"></activiti:out>
+        <activiti:out source="pswf_taskNumber" target="pswf_taskNumber"></activiti:out>
+        <activiti:out source="pswf_calcs" target="pswf_calcs"></activiti:out>
+        <activiti:out source="pswf_centralID" target="pswf_centralID"></activiti:out>
+        <activiti:out source="pswf_firstName" target="pswf_firstName"></activiti:out>
+        <activiti:out source="pswf_surname" target="pswf_surname"></activiti:out>
+        <activiti:out source="pswf_nino" target="pswf_nino"></activiti:out>
+        <activiti:out source="pswf_dob" target="pswf_dob"></activiti:out>
+        <activiti:out source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:out>
+        <activiti:out source="pswf_clientID" target="pswf_clientID"></activiti:out>
+        <activiti:out source="pswf_clientName" target="pswf_clientName"></activiti:out>
+        <activiti:out source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:out>
+        <activiti:out source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:out>
+        <activiti:out source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:out>
+        <activiti:out source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:out>
+        <activiti:out source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:out>
+        <activiti:out source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:out>
+        <activiti:out source="pswf_doer" target="pswf_doer"></activiti:out>
+        <activiti:out source="pswf_doerDate" target="pswf_doerDate"></activiti:out>
+        <activiti:out source="pswf_checker" target="pswf_checker"></activiti:out>
+        <activiti:out source="pswf_checkerDate" target="pswf_checkerDate"></activiti:out>
+        <activiti:out source="pswf_authoriser" target="pswf_authoriser"></activiti:out>
+        <activiti:out source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:out>
+        <activiti:out source="pswf_completedBy" target="pswf_completedBy"></activiti:out>
+        <activiti:out source="pswf_completedDate" target="pswf_completedDate"></activiti:out>
+        <activiti:out source="pswf_processID" target="pswf_processID"></activiti:out>
+        <activiti:out source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:out>
+        <activiti:out source="pswf_documentName" target="pswf_documentName"></activiti:out>
+        <activiti:out source="pswf_success" target="pswf_success"></activiti:out>
+        <activiti:out source="pswf_boolVar1" target="pswf_boolVar1"></activiti:out>
+        <activiti:out source="pswf_boolVar2" target="pswf_boolVar2"></activiti:out>
+        <activiti:out source="pswf_boolVar3" target="pswf_boolVar3"></activiti:out>
+        <activiti:out source="pswf_stringVar1" target="pswf_stringVar1"></activiti:out>
+        <activiti:out source="pswf_stringVar2" target="pswf_stringVar2"></activiti:out>
+        <activiti:out source="pswf_stringVar3" target="pswf_stringVar3"></activiti:out>
+        <activiti:out source="pswf_intVar1" target="pswf_intVar1"></activiti:out>
+        <activiti:out source="pswf_intVar2" target="pswf_intVar2"></activiti:out>
+        <activiti:out source="pswf_intVar3" target="pswf_intVar3"></activiti:out>
+        <activiti:out source="pswf_dateVar1" target="pswf_dateVar1"></activiti:out>
+        <activiti:out source="pswf_dateVar2" target="pswf_dateVar2"></activiti:out>
+        <activiti:out source="pswf_dateVar3" target="pswf_dateVar3"></activiti:out>
+        <activiti:out source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:out>
+        <activiti:out source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:out>
+        <activiti:out source="bpm_package" target="bpm_package"></activiti:out>
+        <activiti:out source="companyhome" target="companyhome"></activiti:out>
+        <activiti:out source="bpm_comment" target="bpm_comment"></activiti:out>
+        <activiti:out source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:out>
+        <activiti:out source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:out>
+        <activiti:out source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:out>
+        <activiti:out source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:out>
+        <activiti:out source="bpm_reassignable" target="bpm_reassignable"></activiti:out>
+        <activiti:out source="bpm_status" target="bpm_status"></activiti:out>
+        <activiti:out source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:out>
+        <activiti:out source="bpm_description" target="bpm_description"></activiti:out>
+        <activiti:out source="bpm_dueDate" target="bpm_dueDate"></activiti:out>
+        <activiti:out source="bpm_priority" target="bpm_priority"></activiti:out>
+        <activiti:out source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:out>
+        <activiti:out source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:out>
+        <activiti:out source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:out>
+        <activiti:out source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:out>
+      </extensionElements>
+    </callActivity>
+    <sequenceFlow id="flow3" sourceRef="callactivity1" targetRef="exclusivegateway4"></sequenceFlow>
+    <callActivity id="callDoerCheckerAuthWorkflow" name="Call Doer Checker Auth Workflow" calledElement="DoerCheckerAuthoriserWorkflow">
+      <extensionElements>
+        <activiti:in source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:in>
+        <activiti:in source="pswf_dateReceived" target="pswf_dateReceived"></activiti:in>
+        <activiti:in source="pswf_teamName" target="pswf_teamName"></activiti:in>
+        <activiti:in source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:in>
+        <activiti:in source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:in>
+        <activiti:in source="pswf_decision" target="pswf_decision"></activiti:in>
+        <activiti:in source="pswf_activity" target="pswf_activity"></activiti:in>
+        <activiti:in source="pswf_subActivity" target="pswf_subActivity"></activiti:in>
+        <activiti:in source="pswf_deadline" target="pswf_deadline"></activiti:in>
+        <activiti:in source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:in>
+        <activiti:in source="pswf_comment" target="pswf_comment"></activiti:in>
+        <activiti:in source="pswf_taskDetail" target="pswf_taskDetail"></activiti:in>
+        <activiti:in source="pswf_taskStatus" target="pswf_taskStatus"></activiti:in>
+        <activiti:in source="pswf_taskNumber" target="pswf_taskNumber"></activiti:in>
+        <activiti:in source="pswf_calcs" target="pswf_calcs"></activiti:in>
+        <activiti:in source="pswf_centralID" target="pswf_centralID"></activiti:in>
+        <activiti:in source="pswf_firstName" target="pswf_firstName"></activiti:in>
+        <activiti:in source="pswf_surname" target="pswf_surname"></activiti:in>
+        <activiti:in source="pswf_nino" target="pswf_nino"></activiti:in>
+        <activiti:in source="pswf_dob" target="pswf_dob"></activiti:in>
+        <activiti:in source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:in>
+        <activiti:in source="pswf_clientID" target="pswf_clientID"></activiti:in>
+        <activiti:in source="pswf_clientName" target="pswf_clientName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:in>
+        <activiti:in source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:in>
+        <activiti:in source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:in>
+        <activiti:in source="pswf_doer" target="pswf_doer"></activiti:in>
+        <activiti:in source="pswf_doerDate" target="pswf_doerDate"></activiti:in>
+        <activiti:in source="pswf_checker" target="pswf_checker"></activiti:in>
+        <activiti:in source="pswf_checkerDate" target="pswf_checkerDate"></activiti:in>
+        <activiti:in source="pswf_authoriser" target="pswf_authoriser"></activiti:in>
+        <activiti:in source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:in>
+        <activiti:in source="pswf_completedBy" target="pswf_completedBy"></activiti:in>
+        <activiti:in source="pswf_completedDate" target="pswf_completedDate"></activiti:in>
+        <activiti:in source="pswf_processID" target="pswf_processID"></activiti:in>
+        <activiti:in source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:in>
+        <activiti:in source="pswf_documentName" target="pswf_documentName"></activiti:in>
+        <activiti:in source="pswf_success" target="pswf_success"></activiti:in>
+        <activiti:in source="pswf_boolVar1" target="pswf_boolVar1"></activiti:in>
+        <activiti:in source="pswf_boolVar2" target="pswf_boolVar2"></activiti:in>
+        <activiti:in source="pswf_boolVar3" target="pswf_boolVar3"></activiti:in>
+        <activiti:in source="pswf_stringVar1" target="pswf_stringVar1"></activiti:in>
+        <activiti:in source="pswf_stringVar2" target="pswf_stringVar2"></activiti:in>
+        <activiti:in source="pswf_stringVar3" target="pswf_stringVar3"></activiti:in>
+        <activiti:in source="pswf_intVar1" target="pswf_intVar1"></activiti:in>
+        <activiti:in source="pswf_intVar2" target="pswf_intVar2"></activiti:in>
+        <activiti:in source="pswf_intVar3" target="pswf_intVar3"></activiti:in>
+        <activiti:in source="pswf_dateVar1" target="pswf_dateVar1"></activiti:in>
+        <activiti:in source="pswf_dateVar2" target="pswf_dateVar2"></activiti:in>
+        <activiti:in source="pswf_dateVar3" target="pswf_dateVar3"></activiti:in>
+        <activiti:in source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="workflowinstanceid" target="parentWorkflowID"></activiti:in>
+        <activiti:in source="bpm_package" target="bpm_package"></activiti:in>
+        <activiti:in source="companyhome" target="companyhome"></activiti:in>
+        <activiti:in source="bpm_comment" target="bpm_comment"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:in>
+        <activiti:in source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:in>
+        <activiti:in source="bpm_reassignable" target="bpm_reassignable"></activiti:in>
+        <activiti:in source="bpm_status" target="bpm_status"></activiti:in>
+        <activiti:in source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:in>
+        <activiti:in source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:in>
+        <activiti:in source="bpm_description" target="bpm_description"></activiti:in>
+        <activiti:in source="bpm_dueDate" target="bpm_dueDate"></activiti:in>
+        <activiti:in source="bpm_priority" target="bpm_priority"></activiti:in>
+        <activiti:in source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:in>
+        <activiti:in source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:in>
+        <activiti:in source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:in>
+        <activiti:in source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:in>
+        <activiti:out source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:out>
+        <activiti:out source="pswf_dateReceived" target="pswf_dateReceived"></activiti:out>
+        <activiti:out source="pswf_teamName" target="pswf_teamName"></activiti:out>
+        <activiti:out source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:out>
+        <activiti:out source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:out>
+        <activiti:out source="pswf_decision" target="pswf_decision"></activiti:out>
+        <activiti:out source="pswf_activity" target="pswf_activity"></activiti:out>
+        <activiti:out source="pswf_subActivity" target="pswf_subActivity"></activiti:out>
+        <activiti:out source="pswf_deadline" target="pswf_deadline"></activiti:out>
+        <activiti:out source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:out>
+        <activiti:out source="pswf_comment" target="pswf_comment"></activiti:out>
+        <activiti:out source="pswf_taskDetail" target="pswf_taskDetail"></activiti:out>
+        <activiti:out source="pswf_taskStatus" target="pswf_taskStatus"></activiti:out>
+        <activiti:out source="pswf_taskNumber" target="pswf_taskNumber"></activiti:out>
+        <activiti:out source="pswf_calcs" target="pswf_calcs"></activiti:out>
+        <activiti:out source="pswf_centralID" target="pswf_centralID"></activiti:out>
+        <activiti:out source="pswf_firstName" target="pswf_firstName"></activiti:out>
+        <activiti:out source="pswf_surname" target="pswf_surname"></activiti:out>
+        <activiti:out source="pswf_nino" target="pswf_nino"></activiti:out>
+        <activiti:out source="pswf_dob" target="pswf_dob"></activiti:out>
+        <activiti:out source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:out>
+        <activiti:out source="pswf_clientID" target="pswf_clientID"></activiti:out>
+        <activiti:out source="pswf_clientName" target="pswf_clientName"></activiti:out>
+        <activiti:out source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:out>
+        <activiti:out source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:out>
+        <activiti:out source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:out>
+        <activiti:out source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:out>
+        <activiti:out source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:out>
+        <activiti:out source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:out>
+        <activiti:out source="pswf_doer" target="pswf_doer"></activiti:out>
+        <activiti:out source="pswf_doerDate" target="pswf_doerDate"></activiti:out>
+        <activiti:out source="pswf_checker" target="pswf_checker"></activiti:out>
+        <activiti:out source="pswf_checkerDate" target="pswf_checkerDate"></activiti:out>
+        <activiti:out source="pswf_authoriser" target="pswf_authoriser"></activiti:out>
+        <activiti:out source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:out>
+        <activiti:out source="pswf_completedBy" target="pswf_completedBy"></activiti:out>
+        <activiti:out source="pswf_completedDate" target="pswf_completedDate"></activiti:out>
+        <activiti:out source="pswf_processID" target="pswf_processID"></activiti:out>
+        <activiti:out source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:out>
+        <activiti:out source="pswf_documentName" target="pswf_documentName"></activiti:out>
+        <activiti:out source="pswf_success" target="pswf_success"></activiti:out>
+        <activiti:out source="pswf_boolVar1" target="pswf_boolVar1"></activiti:out>
+        <activiti:out source="pswf_boolVar2" target="pswf_boolVar2"></activiti:out>
+        <activiti:out source="pswf_boolVar3" target="pswf_boolVar3"></activiti:out>
+        <activiti:out source="pswf_stringVar1" target="pswf_stringVar1"></activiti:out>
+        <activiti:out source="pswf_stringVar2" target="pswf_stringVar2"></activiti:out>
+        <activiti:out source="pswf_stringVar3" target="pswf_stringVar3"></activiti:out>
+        <activiti:out source="pswf_intVar1" target="pswf_intVar1"></activiti:out>
+        <activiti:out source="pswf_intVar2" target="pswf_intVar2"></activiti:out>
+        <activiti:out source="pswf_intVar3" target="pswf_intVar3"></activiti:out>
+        <activiti:out source="pswf_dateVar1" target="pswf_dateVar1"></activiti:out>
+        <activiti:out source="pswf_dateVar2" target="pswf_dateVar2"></activiti:out>
+        <activiti:out source="pswf_dateVar3" target="pswf_dateVar3"></activiti:out>
+        <activiti:out source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:out>
+        <activiti:out source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:out>
+        <activiti:out source="bpm_package" target="bpm_package"></activiti:out>
+        <activiti:out source="companyhome" target="companyhome"></activiti:out>
+        <activiti:out source="bpm_comment" target="bpm_comment"></activiti:out>
+        <activiti:out source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:out>
+        <activiti:out source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:out>
+        <activiti:out source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:out>
+        <activiti:out source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:out>
+        <activiti:out source="bpm_reassignable" target="bpm_reassignable"></activiti:out>
+        <activiti:out source="bpm_status" target="bpm_status"></activiti:out>
+        <activiti:out source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:out>
+        <activiti:out source="bpm_description" target="bpm_description"></activiti:out>
+        <activiti:out source="bpm_dueDate" target="bpm_dueDate"></activiti:out>
+        <activiti:out source="bpm_priority" target="bpm_priority"></activiti:out>
+        <activiti:out source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:out>
+        <activiti:out source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:out>
+        <activiti:out source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:out>
+        <activiti:out source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:out>
+      </extensionElements>
+    </callActivity>
+    <callActivity id="callAdditiionalCorrespondance" name="Additional Correspondance" calledElement="AdditionalCorrespondenceWorkflow">
+      <extensionElements>
+        <activiti:in source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:in>
+        <activiti:in source="pswf_dateReceived" target="pswf_dateReceived"></activiti:in>
+        <activiti:in source="pswf_teamName" target="pswf_teamName"></activiti:in>
+        <activiti:in source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:in>
+        <activiti:in source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:in>
+        <activiti:in source="pswf_decision" target="pswf_decision"></activiti:in>
+        <activiti:in source="pswf_activity" target="pswf_activity"></activiti:in>
+        <activiti:in source="pswf_subActivity" target="pswf_subActivity"></activiti:in>
+        <activiti:in source="pswf_deadline" target="pswf_deadline"></activiti:in>
+        <activiti:in source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:in>
+        <activiti:in source="pswf_comment" target="pswf_comment"></activiti:in>
+        <activiti:in source="pswf_taskDetail" target="pswf_taskDetail"></activiti:in>
+        <activiti:in source="pswf_taskStatus" target="pswf_taskStatus"></activiti:in>
+        <activiti:in source="pswf_taskNumber" target="pswf_taskNumber"></activiti:in>
+        <activiti:in source="pswf_calcs" target="pswf_calcs"></activiti:in>
+        <activiti:in source="pswf_centralID" target="pswf_centralID"></activiti:in>
+        <activiti:in source="pswf_firstName" target="pswf_firstName"></activiti:in>
+        <activiti:in source="pswf_surname" target="pswf_surname"></activiti:in>
+        <activiti:in source="pswf_nino" target="pswf_nino"></activiti:in>
+        <activiti:in source="pswf_dob" target="pswf_dob"></activiti:in>
+        <activiti:in source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:in>
+        <activiti:in source="pswf_clientID" target="pswf_clientID"></activiti:in>
+        <activiti:in source="pswf_clientName" target="pswf_clientName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:in>
+        <activiti:in source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:in>
+        <activiti:in source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:in>
+        <activiti:in source="pswf_doer" target="pswf_doer"></activiti:in>
+        <activiti:in source="pswf_doerDate" target="pswf_doerDate"></activiti:in>
+        <activiti:in source="pswf_checker" target="pswf_checker"></activiti:in>
+        <activiti:in source="pswf_checkerDate" target="pswf_checkerDate"></activiti:in>
+        <activiti:in source="pswf_authoriser" target="pswf_authoriser"></activiti:in>
+        <activiti:in source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:in>
+        <activiti:in source="pswf_completedBy" target="pswf_completedBy"></activiti:in>
+        <activiti:in source="pswf_completedDate" target="pswf_completedDate"></activiti:in>
+        <activiti:in source="pswf_processID" target="pswf_processID"></activiti:in>
+        <activiti:in source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:in>
+        <activiti:in source="pswf_documentName" target="pswf_documentName"></activiti:in>
+        <activiti:in source="pswf_success" target="pswf_success"></activiti:in>
+        <activiti:in source="pswf_boolVar1" target="pswf_boolVar1"></activiti:in>
+        <activiti:in source="pswf_boolVar2" target="pswf_boolVar2"></activiti:in>
+        <activiti:in source="pswf_boolVar3" target="pswf_boolVar3"></activiti:in>
+        <activiti:in source="pswf_stringVar1" target="pswf_stringVar1"></activiti:in>
+        <activiti:in source="pswf_stringVar2" target="pswf_stringVar2"></activiti:in>
+        <activiti:in source="pswf_stringVar3" target="pswf_stringVar3"></activiti:in>
+        <activiti:in source="pswf_intVar1" target="pswf_intVar1"></activiti:in>
+        <activiti:in source="pswf_intVar2" target="pswf_intVar2"></activiti:in>
+        <activiti:in source="pswf_intVar3" target="pswf_intVar3"></activiti:in>
+        <activiti:in source="pswf_dateVar1" target="pswf_dateVar1"></activiti:in>
+        <activiti:in source="pswf_dateVar2" target="pswf_dateVar2"></activiti:in>
+        <activiti:in source="pswf_dateVar3" target="pswf_dateVar3"></activiti:in>
+        <activiti:in source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="workflowinstanceid" target="parentWorkflowID"></activiti:in>
+        <activiti:in source="bpm_package" target="bpm_package"></activiti:in>
+        <activiti:in source="companyhome" target="companyhome"></activiti:in>
+        <activiti:in source="bpm_comment" target="bpm_comment"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:in>
+        <activiti:in source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:in>
+        <activiti:in source="bpm_reassignable" target="bpm_reassignable"></activiti:in>
+        <activiti:in source="bpm_status" target="bpm_status"></activiti:in>
+        <activiti:in source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:in>
+        <activiti:in source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:in>
+        <activiti:in source="bpm_description" target="bpm_description"></activiti:in>
+        <activiti:in source="bpm_dueDate" target="bpm_dueDate"></activiti:in>
+        <activiti:in source="bpm_priority" target="bpm_priority"></activiti:in>
+        <activiti:in source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:in>
+        <activiti:in source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:in>
+        <activiti:in source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:in>
+        <activiti:in source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:in>
+        <activiti:out source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:out>
+        <activiti:out source="pswf_dateReceived" target="pswf_dateReceived"></activiti:out>
+        <activiti:out source="pswf_teamName" target="pswf_teamName"></activiti:out>
+        <activiti:out source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:out>
+        <activiti:out source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:out>
+        <activiti:out source="pswf_decision" target="pswf_decision"></activiti:out>
+        <activiti:out source="pswf_activity" target="pswf_activity"></activiti:out>
+        <activiti:out source="pswf_subActivity" target="pswf_subActivity"></activiti:out>
+        <activiti:out source="pswf_deadline" target="pswf_deadline"></activiti:out>
+        <activiti:out source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:out>
+        <activiti:out source="pswf_comment" target="pswf_comment"></activiti:out>
+        <activiti:out source="pswf_taskDetail" target="pswf_taskDetail"></activiti:out>
+        <activiti:out source="pswf_taskStatus" target="pswf_taskStatus"></activiti:out>
+        <activiti:out source="pswf_taskNumber" target="pswf_taskNumber"></activiti:out>
+        <activiti:out source="pswf_calcs" target="pswf_calcs"></activiti:out>
+        <activiti:out source="pswf_centralID" target="pswf_centralID"></activiti:out>
+        <activiti:out source="pswf_firstName" target="pswf_firstName"></activiti:out>
+        <activiti:out source="pswf_surname" target="pswf_surname"></activiti:out>
+        <activiti:out source="pswf_nino" target="pswf_nino"></activiti:out>
+        <activiti:out source="pswf_dob" target="pswf_dob"></activiti:out>
+        <activiti:out source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:out>
+        <activiti:out source="pswf_clientID" target="pswf_clientID"></activiti:out>
+        <activiti:out source="pswf_clientName" target="pswf_clientName"></activiti:out>
+        <activiti:out source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:out>
+        <activiti:out source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:out>
+        <activiti:out source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:out>
+        <activiti:out source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:out>
+        <activiti:out source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:out>
+        <activiti:out source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:out>
+        <activiti:out source="pswf_doer" target="pswf_doer"></activiti:out>
+        <activiti:out source="pswf_doerDate" target="pswf_doerDate"></activiti:out>
+        <activiti:out source="pswf_checker" target="pswf_checker"></activiti:out>
+        <activiti:out source="pswf_checkerDate" target="pswf_checkerDate"></activiti:out>
+        <activiti:out source="pswf_authoriser" target="pswf_authoriser"></activiti:out>
+        <activiti:out source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:out>
+        <activiti:out source="pswf_completedBy" target="pswf_completedBy"></activiti:out>
+        <activiti:out source="pswf_completedDate" target="pswf_completedDate"></activiti:out>
+        <activiti:out source="pswf_processID" target="pswf_processID"></activiti:out>
+        <activiti:out source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:out>
+        <activiti:out source="pswf_documentName" target="pswf_documentName"></activiti:out>
+        <activiti:out source="pswf_success" target="pswf_success"></activiti:out>
+        <activiti:out source="pswf_boolVar1" target="pswf_boolVar1"></activiti:out>
+        <activiti:out source="pswf_boolVar2" target="pswf_boolVar2"></activiti:out>
+        <activiti:out source="pswf_boolVar3" target="pswf_boolVar3"></activiti:out>
+        <activiti:out source="pswf_stringVar1" target="pswf_stringVar1"></activiti:out>
+        <activiti:out source="pswf_stringVar2" target="pswf_stringVar2"></activiti:out>
+        <activiti:out source="pswf_stringVar3" target="pswf_stringVar3"></activiti:out>
+        <activiti:out source="pswf_intVar1" target="pswf_intVar1"></activiti:out>
+        <activiti:out source="pswf_intVar2" target="pswf_intVar2"></activiti:out>
+        <activiti:out source="pswf_intVar3" target="pswf_intVar3"></activiti:out>
+        <activiti:out source="pswf_dateVar1" target="pswf_dateVar1"></activiti:out>
+        <activiti:out source="pswf_dateVar2" target="pswf_dateVar2"></activiti:out>
+        <activiti:out source="pswf_dateVar3" target="pswf_dateVar3"></activiti:out>
+        <activiti:out source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:out>
+        <activiti:out source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:out>
+        <activiti:out source="bpm_package" target="bpm_package"></activiti:out>
+        <activiti:out source="companyhome" target="companyhome"></activiti:out>
+        <activiti:out source="bpm_comment" target="bpm_comment"></activiti:out>
+        <activiti:out source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:out>
+        <activiti:out source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:out>
+        <activiti:out source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:out>
+        <activiti:out source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:out>
+        <activiti:out source="bpm_reassignable" target="bpm_reassignable"></activiti:out>
+        <activiti:out source="bpm_status" target="bpm_status"></activiti:out>
+        <activiti:out source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:out>
+        <activiti:out source="bpm_description" target="bpm_description"></activiti:out>
+        <activiti:out source="bpm_dueDate" target="bpm_dueDate"></activiti:out>
+        <activiti:out source="bpm_priority" target="bpm_priority"></activiti:out>
+        <activiti:out source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:out>
+        <activiti:out source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:out>
+        <activiti:out source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:out>
+        <activiti:out source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:out>
+      </extensionElements>
+    </callActivity>
+    <sequenceFlow id="flow6" name="Work logged incorrectly (pswf_decision)" sourceRef="exclusivegatewaymaster2" targetRef="alfrescoScripttask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Logged incorrectly'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="exclusivegatewaymaster3" targetRef="exclusivegateway3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'AddCorresRejectedFromDoerStage'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegatewaymaster2" name="Exclusive Gateway"></exclusiveGateway>
+    <exclusiveGateway id="exclusivegatewaymaster3" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow11" sourceRef="callAdditiionalCorrespondance" targetRef="exclusivegatewaymaster3"></sequenceFlow>
+    <sequenceFlow id="flow15" sourceRef="callPostAllocation" targetRef="exclusivegateway3"></sequenceFlow>
+    <sequenceFlow id="flow17" sourceRef="exclusivegatewaymaster2" targetRef="callAdditiionalCorrespondance">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Additional correspondence'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <serviceTask id="SetSourceSystem1" name="Set source system default" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string><![CDATA[//set initiating doc field on workflow
+if (bpm_package.children[0] != null){
+	for (var i = 0; i < bpm_package.children.length; i++) {
+		execution.setVariable('pswf_initiatingDocNode',String(bpm_package.children[i].getNodeRef()));
+		bpm_package.children[i].properties["psdoc:initiatingDoc"] = "true";
+		bpm_package.children[i].properties["psdoc:initiatingDocWorkflowID"] = execution.getVariable('workflowinstanceid');
+		bpm_package.children[i].properties["psdoc:status"] = "Draft";
+		bpm_package.children[i].save();
+	}	
+}
+
+try {
+	ss = execution.getVariable('pswf_sourceSystem');
+}
+catch (e) {
+	ss = null
+}
+finally{
+	//workdesk and share retrieve the 'execution.getVariable('pswf_sourceSystem');' differently
+	if (ss == null || ss.empty)
+	{
+		var str = "Manual launch by: " +initiator.properties.userName;
+ 		execution.setVariable('pswf_sourceSystem',str);
+		//execution.setVariable('pswf_teamName', 'GROUP_ALFRESCO_ADMINISTRATORS');
+	}
+}
+
+if ( execution.getVariable('pswf_dateReceived') == null) {
+	var now = new java.util.Date();
+	 execution.setVariable('pswf_dateReceived', now)
+}
+if ( execution.getVariable('pswf_workflowTaskType') == null) {
+	 execution.setVariable('pswf_workflowTaskType', 'Admin-MemberWork')
+}
+
+//check if doer is set and set to null if not
+if ( execution.getVariable('pswf_doer') == null) {
+	 execution.setVariable('pswf_doer',null)
+}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow21" sourceRef="alfrescoStartevent1" targetRef="SetSourceSystem1"></sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="SetSourceSystem1" targetRef="exclusivegateway1"></sequenceFlow>
+    <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
+    <sequenceFlow id="flow23" sourceRef="parallelgateway1" targetRef="callDoerCheckerAuthWorkflow"></sequenceFlow>
+    <callActivity id="callCertificatesWorkflow" name="Call Certificates Workflow" calledElement="CertificatesWorkflow">
+      <extensionElements>
+        <activiti:in source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:in>
+        <activiti:in source="pswf_dateReceived" target="pswf_dateReceived"></activiti:in>
+        <activiti:in source="pswf_teamName" target="pswf_teamName"></activiti:in>
+        <activiti:in source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:in>
+        <activiti:in source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:in>
+        <activiti:in source="pswf_decision" target="pswf_decision"></activiti:in>
+        <activiti:in source="pswf_activity" target="pswf_activity"></activiti:in>
+        <activiti:in source="pswf_subActivity" target="pswf_subActivity"></activiti:in>
+        <activiti:in source="pswf_deadline" target="pswf_deadline"></activiti:in>
+        <activiti:in source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:in>
+        <activiti:in source="pswf_comment" target="pswf_comment"></activiti:in>
+        <activiti:in source="pswf_taskDetail" target="pswf_taskDetail"></activiti:in>
+        <activiti:in source="pswf_taskStatus" target="pswf_taskStatus"></activiti:in>
+        <activiti:in source="pswf_taskNumber" target="pswf_taskNumber"></activiti:in>
+        <activiti:in source="pswf_calcs" target="pswf_calcs"></activiti:in>
+        <activiti:in source="pswf_centralID" target="pswf_centralID"></activiti:in>
+        <activiti:in source="pswf_firstName" target="pswf_firstName"></activiti:in>
+        <activiti:in source="pswf_surname" target="pswf_surname"></activiti:in>
+        <activiti:in source="pswf_nino" target="pswf_nino"></activiti:in>
+        <activiti:in source="pswf_dob" target="pswf_dob"></activiti:in>
+        <activiti:in source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:in>
+        <activiti:in source="pswf_clientID" target="pswf_clientID"></activiti:in>
+        <activiti:in source="pswf_clientName" target="pswf_clientName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:in>
+        <activiti:in source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:in>
+        <activiti:in source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:in>
+        <activiti:in source="pswf_doer" target="pswf_doer"></activiti:in>
+        <activiti:in source="pswf_doerDate" target="pswf_doerDate"></activiti:in>
+        <activiti:in source="pswf_checker" target="pswf_checker"></activiti:in>
+        <activiti:in source="pswf_checkerDate" target="pswf_checkerDate"></activiti:in>
+        <activiti:in source="pswf_authoriser" target="pswf_authoriser"></activiti:in>
+        <activiti:in source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:in>
+        <activiti:in source="pswf_completedBy" target="pswf_completedBy"></activiti:in>
+        <activiti:in source="pswf_completedDate" target="pswf_completedDate"></activiti:in>
+        <activiti:in source="pswf_processID" target="pswf_processID"></activiti:in>
+        <activiti:in source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:in>
+        <activiti:in source="pswf_documentName" target="pswf_documentName"></activiti:in>
+        <activiti:in source="pswf_success" target="pswf_success"></activiti:in>
+        <activiti:in source="pswf_boolVar1" target="pswf_boolVar1"></activiti:in>
+        <activiti:in source="pswf_boolVar2" target="pswf_boolVar2"></activiti:in>
+        <activiti:in source="pswf_boolVar3" target="pswf_boolVar3"></activiti:in>
+        <activiti:in source="pswf_stringVar1" target="pswf_stringVar1"></activiti:in>
+        <activiti:in source="pswf_stringVar2" target="pswf_stringVar2"></activiti:in>
+        <activiti:in source="pswf_stringVar3" target="pswf_stringVar3"></activiti:in>
+        <activiti:in source="pswf_intVar1" target="pswf_intVar1"></activiti:in>
+        <activiti:in source="pswf_intVar2" target="pswf_intVar2"></activiti:in>
+        <activiti:in source="pswf_intVar3" target="pswf_intVar3"></activiti:in>
+        <activiti:in source="pswf_dateVar1" target="pswf_dateVar1"></activiti:in>
+        <activiti:in source="pswf_dateVar2" target="pswf_dateVar2"></activiti:in>
+        <activiti:in source="pswf_dateVar3" target="pswf_dateVar3"></activiti:in>
+        <activiti:in source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="workflowinstanceid" target="parentWorkflowID"></activiti:in>
+        <activiti:in source="bpm_package" target="bpm_package"></activiti:in>
+        <activiti:in source="companyhome" target="companyhome"></activiti:in>
+        <activiti:in source="bpm_comment" target="bpm_comment"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:in>
+        <activiti:in source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:in>
+        <activiti:in source="bpm_reassignable" target="bpm_reassignable"></activiti:in>
+        <activiti:in source="bpm_status" target="bpm_status"></activiti:in>
+        <activiti:in source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:in>
+        <activiti:in source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:in>
+        <activiti:in source="bpm_description" target="bpm_description"></activiti:in>
+        <activiti:in source="bpm_dueDate" target="bpm_dueDate"></activiti:in>
+        <activiti:in source="bpm_priority" target="bpm_priority"></activiti:in>
+        <activiti:in source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:in>
+        <activiti:in source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:in>
+        <activiti:in source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:in>
+        <activiti:in source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:in>
+      </extensionElements>
+    </callActivity>
+    <userTask id="usertaskIssueCommunication" name="Issue Communication" activiti:assignee="${pswf_doer}" activiti:formKey="pswf:standardWorkflow">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/PS_CompleteTask.jsp");
+execution.setVariableLocal('bpm_description',"Issue Communication");]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariable('pswf_sourceSystem', task.getVariable('pswf_sourceSystem'));
+execution.setVariable('pswf_selectedTasklist', task.getVariable('pswf_selectedTasklist'));
+execution.setVariable('pswf_selectedTasklistVersion', task.getVariable('pswf_selectedTasklistVersion'));
+execution.setVariable('pswf_dateReceived', task.getVariable('pswf_dateReceived'));
+execution.setVariable('pswf_teamName', task.getVariable('pswf_teamName'));
+execution.setVariable('pswf_certificateWorkflowRequired', task.getVariable('pswf_certificateWorkflowRequired'));
+execution.setVariable('pswf_workflowTaskType', task.getVariable('pswf_workflowTaskType'));
+execution.setVariable('pswf_decision', task.getVariable('pswf_decision'));
+execution.setVariable('pswf_activity', task.getVariable('pswf_activity'));
+execution.setVariable('pswf_subActivity', task.getVariable('pswf_subActivity'));
+execution.setVariable('pswf_deadline', task.getVariable('pswf_deadline'));
+execution.setVariable('pswf_internalDeadline', task.getVariable('pswf_internalDeadline'));
+execution.setVariable('bpm_comment', task.getVariable('bpm_comment'));
+execution.setVariable('pswf_taskDetail', task.getVariable('pswf_taskDetail'));
+execution.setVariable('pswf_taskStatus', task.getVariable('pswf_taskStatus'));
+execution.setVariable('pswf_taskNumber', task.getVariable('pswf_taskNumber'));
+execution.setVariable('pswf_calcs', task.getVariable('pswf_calcs'));
+execution.setVariable('pswf_centralID', task.getVariable('pswf_centralID'));
+execution.setVariable('pswf_firstName', task.getVariable('pswf_firstName'));
+execution.setVariable('pswf_surname', task.getVariable('pswf_surname'));
+execution.setVariable('pswf_nino', task.getVariable('pswf_nino'));
+execution.setVariable('pswf_dob', task.getVariable('pswf_dob'));
+execution.setVariable('pswf_relevantMemberID', task.getVariable('pswf_relevantMemberID'));
+execution.setVariable('pswf_adminSchemeID', task.getVariable('pswf_adminSchemeID'));
+execution.setVariable('pswf_adminSchemeName', task.getVariable('pswf_adminSchemeName'));
+execution.setVariable('pswf_payrollSchemeID', task.getVariable('pswf_payrollSchemeID'));
+execution.setVariable('pswf_payrollSchemeName', task.getVariable('pswf_payrollSchemeName'));
+execution.setVariable('pswf_doer', task.getVariable('pswf_doer'));
+execution.setVariable('pswf_doerDate', task.getVariable('pswf_doerDate'));
+execution.setVariable('pswf_checker', task.getVariable('pswf_checker'));
+execution.setVariable('pswf_checkerDate', task.getVariable('pswf_checkerDate'));
+execution.setVariable('pswf_authoriser', task.getVariable('pswf_authoriser'));
+execution.setVariable('pswf_authoriserDate', task.getVariable('pswf_authoriserDate'));
+execution.setVariable('pswf_completedBy', task.getVariable('pswf_completedBy'));
+execution.setVariable('pswf_completedDate', task.getVariable('pswf_completedDate'));
+execution.setVariable('pswf_processID', task.getVariable('pswf_processID'));
+execution.setVariable('pswf_documentAddedBy', task.getVariable('pswf_documentAddedBy'));
+execution.setVariable('pswf_documentName', task.getVariable('pswf_documentName'));]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow27" sourceRef="usertaskIssueCommunication" targetRef="getLogOffTaskDelegate"></sequenceFlow>
+    <sequenceFlow id="flow28" sourceRef="exclusivegatewaymaster3" targetRef="getLogOffTaskDelegate">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'End task'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow29" sourceRef="exclusivegatewaymaster2" targetRef="alfrescoScripttask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Issue communication'}]]></conditionExpression>
+    </sequenceFlow>
+    <parallelGateway id="parallelgateway2" name="Parallel Gateway"></parallelGateway>
+    <sequenceFlow id="flow30" sourceRef="callDoerCheckerAuthWorkflow" targetRef="parallelgateway2"></sequenceFlow>
+    <sequenceFlow id="flow31" sourceRef="parallelgateway2" targetRef="exclusivegatewaymaster2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow33" sourceRef="parallelgateway1" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow34" sourceRef="exclusivegateway2" targetRef="callCertificatesWorkflow">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_certificateWorkflowRequired == 'true'}]]></conditionExpression>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="Dummy script task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var str = "certs process";</script>
+    </scriptTask>
+    <sequenceFlow id="flow35" sourceRef="exclusivegateway2" targetRef="scripttask1"></sequenceFlow>
+    <sequenceFlow id="flow36" sourceRef="callCertificatesWorkflow" targetRef="scripttask1"></sequenceFlow>
+    <sequenceFlow id="flow37" sourceRef="scripttask1" targetRef="parallelgateway2"></sequenceFlow>
+    <serviceTask id="alfrescoScripttask1" name="Remove non initiating documents" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string><![CDATA[if (bpm_package.children[0] != null)
+{
+	var temp_length = bpm_package.children.length;
+	for (var i = 1; i <= temp_length; i++)
+	{	
+		if (execution.getVariable('workflowinstanceid') != bpm_package.children[temp_length - i].properties["psdoc:initiatingDocWorkflowID"]) 
+ 		{
+			//remove doc from workflow
+			bpm_package.removeNode(bpm_package.children[temp_length - i]);
+			bpm_package.save();
+		}
+	}
+}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow38" sourceRef="alfrescoScripttask1" targetRef="callPostAllocation"></sequenceFlow>
+    <serviceTask id="alfrescoScripttask2" name="Lock documents" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string><![CDATA[if (bpm_package.children[0] != null)
+{
+	for (var i = 0; i < bpm_package.children.length; i++)
+	{
+       	 if (execution.getVariable('pswf_taskNumber') == bpm_package.children[i].properties["psdoc:taskNumber"] && bpm_package.children[i].getTypeShort() != "psform:newPayrollStarterForm")
+       	 {
+            		bpm_package.children[i].properties["psdoc:status"] = "Final";
+            		bpm_package.children[i].save();
+			//don't lock if cashfac backing doc
+			if(bpm_package.children[i].properties["psdoc:type"].indexOf('CashFac Payment Paperwork') == -1){
+				customLockService.lockNode(bpm_package.children[i].nodeRef);
+			}
+            		
+        	}
+	}
+}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow39" sourceRef="alfrescoScripttask2" targetRef="usertaskIssueCommunication"></sequenceFlow>
+    <callActivity id="callactivity1" name="Call New Post Workflow" calledElement="ps_New_Post_Workflow">
+      <extensionElements>
+        <activiti:in source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:in>
+        <activiti:in source="pswf_dateReceived" target="pswf_dateReceived"></activiti:in>
+        <activiti:in source="pswf_teamName" target="pswf_teamName"></activiti:in>
+        <activiti:in source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:in>
+        <activiti:in source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:in>
+        <activiti:in source="pswf_decision" target="pswf_decision"></activiti:in>
+        <activiti:in source="pswf_activity" target="pswf_activity"></activiti:in>
+        <activiti:in source="pswf_subActivity" target="pswf_subActivity"></activiti:in>
+        <activiti:in source="pswf_deadline" target="pswf_deadline"></activiti:in>
+        <activiti:in source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:in>
+        <activiti:in source="pswf_comment" target="pswf_comment"></activiti:in>
+        <activiti:in source="pswf_taskDetail" target="pswf_taskDetail"></activiti:in>
+        <activiti:in source="pswf_taskStatus" target="pswf_taskStatus"></activiti:in>
+        <activiti:in source="pswf_taskNumber" target="pswf_taskNumber"></activiti:in>
+        <activiti:in source="pswf_calcs" target="pswf_calcs"></activiti:in>
+        <activiti:in source="pswf_centralID" target="pswf_centralID"></activiti:in>
+        <activiti:in source="pswf_firstName" target="pswf_firstName"></activiti:in>
+        <activiti:in source="pswf_surname" target="pswf_surname"></activiti:in>
+        <activiti:in source="pswf_nino" target="pswf_nino"></activiti:in>
+        <activiti:in source="pswf_dob" target="pswf_dob"></activiti:in>
+        <activiti:in source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:in>
+        <activiti:in source="pswf_clientID" target="pswf_clientID"></activiti:in>
+        <activiti:in source="pswf_clientName" target="pswf_clientName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:in>
+        <activiti:in source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:in>
+        <activiti:in source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:in>
+        <activiti:in source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:in>
+        <activiti:in source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:in>
+        <activiti:in source="pswf_doer" target="pswf_doer"></activiti:in>
+        <activiti:in source="pswf_doerDate" target="pswf_doerDate"></activiti:in>
+        <activiti:in source="pswf_checker" target="pswf_checker"></activiti:in>
+        <activiti:in source="pswf_checkerDate" target="pswf_checkerDate"></activiti:in>
+        <activiti:in source="pswf_authoriser" target="pswf_authoriser"></activiti:in>
+        <activiti:in source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:in>
+        <activiti:in source="pswf_completedBy" target="pswf_completedBy"></activiti:in>
+        <activiti:in source="pswf_completedDate" target="pswf_completedDate"></activiti:in>
+        <activiti:in source="pswf_processID" target="pswf_processID"></activiti:in>
+        <activiti:in source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:in>
+        <activiti:in source="pswf_documentName" target="pswf_documentName"></activiti:in>
+        <activiti:in source="pswf_success" target="pswf_success"></activiti:in>
+        <activiti:in source="pswf_boolVar1" target="pswf_boolVar1"></activiti:in>
+        <activiti:in source="pswf_boolVar2" target="pswf_boolVar2"></activiti:in>
+        <activiti:in source="pswf_boolVar3" target="pswf_boolVar3"></activiti:in>
+        <activiti:in source="pswf_stringVar1" target="pswf_stringVar1"></activiti:in>
+        <activiti:in source="pswf_stringVar2" target="pswf_stringVar2"></activiti:in>
+        <activiti:in source="pswf_stringVar3" target="pswf_stringVar3"></activiti:in>
+        <activiti:in source="pswf_intVar1" target="pswf_intVar1"></activiti:in>
+        <activiti:in source="pswf_intVar2" target="pswf_intVar2"></activiti:in>
+        <activiti:in source="pswf_intVar3" target="pswf_intVar3"></activiti:in>
+        <activiti:in source="pswf_dateVar1" target="pswf_dateVar1"></activiti:in>
+        <activiti:in source="pswf_dateVar2" target="pswf_dateVar2"></activiti:in>
+        <activiti:in source="pswf_dateVar3" target="pswf_dateVar3"></activiti:in>
+        <activiti:in source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="workflowinstanceid" target="parentWorkflowID"></activiti:in>
+        <activiti:in source="bpm_package" target="bpm_package"></activiti:in>
+        <activiti:in source="companyhome" target="companyhome"></activiti:in>
+        <activiti:in source="bpm_comment" target="bpm_comment"></activiti:in>
+        <activiti:in source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:in>
+        <activiti:in source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:in>
+        <activiti:in source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:in>
+        <activiti:in source="bpm_reassignable" target="bpm_reassignable"></activiti:in>
+        <activiti:in source="bpm_status" target="bpm_status"></activiti:in>
+        <activiti:in source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:in>
+        <activiti:in source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:in>
+        <activiti:in source="bpm_description" target="bpm_description"></activiti:in>
+        <activiti:in source="bpm_dueDate" target="bpm_dueDate"></activiti:in>
+        <activiti:in source="bpm_priority" target="bpm_priority"></activiti:in>
+        <activiti:in source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:in>
+        <activiti:in source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:in>
+        <activiti:in source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:in>
+        <activiti:in source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:in>
+        <activiti:out source="pswf_sourceSystem" target="pswf_sourceSystem"></activiti:out>
+        <activiti:out source="pswf_dateReceived" target="pswf_dateReceived"></activiti:out>
+        <activiti:out source="pswf_teamName" target="pswf_teamName"></activiti:out>
+        <activiti:out source="pswf_certificateWorkflowRequired" target="pswf_certificateWorkflowRequired"></activiti:out>
+        <activiti:out source="pswf_workflowTaskType" target="pswf_workflowTaskType"></activiti:out>
+        <activiti:out source="pswf_decision" target="pswf_decision"></activiti:out>
+        <activiti:out source="pswf_activity" target="pswf_activity"></activiti:out>
+        <activiti:out source="pswf_subActivity" target="pswf_subActivity"></activiti:out>
+        <activiti:out source="pswf_deadline" target="pswf_deadline"></activiti:out>
+        <activiti:out source="pswf_internalDeadline" target="pswf_internalDeadline"></activiti:out>
+        <activiti:out source="pswf_comment" target="pswf_comment"></activiti:out>
+        <activiti:out source="pswf_taskDetail" target="pswf_taskDetail"></activiti:out>
+        <activiti:out source="pswf_taskStatus" target="pswf_taskStatus"></activiti:out>
+        <activiti:out source="pswf_taskNumber" target="pswf_taskNumber"></activiti:out>
+        <activiti:out source="pswf_calcs" target="pswf_calcs"></activiti:out>
+        <activiti:out source="pswf_centralID" target="pswf_centralID"></activiti:out>
+        <activiti:out source="pswf_firstName" target="pswf_firstName"></activiti:out>
+        <activiti:out source="pswf_surname" target="pswf_surname"></activiti:out>
+        <activiti:out source="pswf_nino" target="pswf_nino"></activiti:out>
+        <activiti:out source="pswf_dob" target="pswf_dob"></activiti:out>
+        <activiti:out source="pswf_relevantMemberID" target="pswf_relevantMemberID"></activiti:out>
+        <activiti:out source="pswf_clientID" target="pswf_clientID"></activiti:out>
+        <activiti:out source="pswf_clientName" target="pswf_clientName"></activiti:out>
+        <activiti:out source="pswf_adminSchemeID" target="pswf_adminSchemeID"></activiti:out>
+        <activiti:out source="pswf_adminSchemeName" target="pswf_adminSchemeName"></activiti:out>
+        <activiti:out source="pswf_adminSchemeGroup" target="pswf_adminSchemeGroup"></activiti:out>
+        <activiti:out source="pswf_payrollSchemeID" target="pswf_payrollSchemeID"></activiti:out>
+        <activiti:out source="pswf_payrollSchemeName" target="pswf_payrollSchemeName"></activiti:out>
+        <activiti:out source="pswf_reworkNumber" target="pswf_reworkNumber"></activiti:out>
+        <activiti:out source="pswf_doer" target="pswf_doer"></activiti:out>
+        <activiti:out source="pswf_doerDate" target="pswf_doerDate"></activiti:out>
+        <activiti:out source="pswf_checker" target="pswf_checker"></activiti:out>
+        <activiti:out source="pswf_checkerDate" target="pswf_checkerDate"></activiti:out>
+        <activiti:out source="pswf_authoriser" target="pswf_authoriser"></activiti:out>
+        <activiti:out source="pswf_authoriserDate" target="pswf_authoriserDate"></activiti:out>
+        <activiti:out source="pswf_completedBy" target="pswf_completedBy"></activiti:out>
+        <activiti:out source="pswf_completedDate" target="pswf_completedDate"></activiti:out>
+        <activiti:out source="pswf_processID" target="pswf_processID"></activiti:out>
+        <activiti:out source="pswf_documentAddedBy" target="pswf_documentAddedBy"></activiti:out>
+        <activiti:out source="pswf_documentName" target="pswf_documentName"></activiti:out>
+        <activiti:out source="pswf_success" target="pswf_success"></activiti:out>
+        <activiti:out source="pswf_boolVar1" target="pswf_boolVar1"></activiti:out>
+        <activiti:out source="pswf_boolVar2" target="pswf_boolVar2"></activiti:out>
+        <activiti:out source="pswf_boolVar3" target="pswf_boolVar3"></activiti:out>
+        <activiti:out source="pswf_stringVar1" target="pswf_stringVar1"></activiti:out>
+        <activiti:out source="pswf_stringVar2" target="pswf_stringVar2"></activiti:out>
+        <activiti:out source="pswf_stringVar3" target="pswf_stringVar3"></activiti:out>
+        <activiti:out source="pswf_intVar1" target="pswf_intVar1"></activiti:out>
+        <activiti:out source="pswf_intVar2" target="pswf_intVar2"></activiti:out>
+        <activiti:out source="pswf_intVar3" target="pswf_intVar3"></activiti:out>
+        <activiti:out source="pswf_dateVar1" target="pswf_dateVar1"></activiti:out>
+        <activiti:out source="pswf_dateVar2" target="pswf_dateVar2"></activiti:out>
+        <activiti:out source="pswf_dateVar3" target="pswf_dateVar3"></activiti:out>
+        <activiti:out source="pswf_initiatingDocNode" target="pswf_initiatingDocNode"></activiti:out>
+        <activiti:out source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:out>
+        <activiti:out source="bpm_package" target="bpm_package"></activiti:out>
+        <activiti:out source="companyhome" target="companyhome"></activiti:out>
+        <activiti:out source="bpm_comment" target="bpm_comment"></activiti:out>
+        <activiti:out source="bpm_groupAssignee" target="bpm_groupAssignee"></activiti:out>
+        <activiti:out source="bpm_hiddenTransitions" target="bpm_hiddenTransitions"></activiti:out>
+        <activiti:out source="bpm_packageActionGroup" target="bpm_packageActionGroup"></activiti:out>
+        <activiti:out source="bpm_packageItemActionGroup" target="bpm_packageItemActionGroup"></activiti:out>
+        <activiti:out source="bpm_reassignable" target="bpm_reassignable"></activiti:out>
+        <activiti:out source="bpm_status" target="bpm_status"></activiti:out>
+        <activiti:out source="bpm_workflowPriority" target="bpm_workflowPriority"></activiti:out>
+        <activiti:out source="bpm_description" target="bpm_description"></activiti:out>
+        <activiti:out source="bpm_dueDate" target="bpm_dueDate"></activiti:out>
+        <activiti:out source="bpm_priority" target="bpm_priority"></activiti:out>
+        <activiti:out source="bpm_percentageComplete" target="bpm_percentageComplete"></activiti:out>
+        <activiti:out source="bpm_workflowDueDate" target="bpm_workflowDueDate"></activiti:out>
+        <activiti:out source="pswf_selectedTasklist" target="pswf_selectedTasklist"></activiti:out>
+        <activiti:out source="pswf_selectedTasklistVersion" target="pswf_selectedTasklistVersion"></activiti:out>
+      </extensionElements>
+    </callActivity>
+    <serviceTask id="getLogOffTaskDelegate" name="Log task off VO" activiti:class="com.puntersouthall.workflow.delegates.GetLogOffTaskDelegate">
+      <extensionElements>
+        <activiti:field name="taskNumber">
+          <activiti:expression>${pswf_taskNumber}</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow40" sourceRef="getLogOffTaskDelegate" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow41" name="No correspondence" sourceRef="exclusivegatewaymaster2" targetRef="getLogOffTaskDelegate">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'No correspondence'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow42" sourceRef="exclusivegateway3" targetRef="parallelgateway1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'Pass to doer' || pswf_decision == 'AddCorresRejectedFromDoerStage'  }]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow43" sourceRef="exclusivegateway4" targetRef="alfrescoScripttask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'End workflow'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow44" sourceRef="exclusivegateway4" targetRef="callPostAllocation"></sequenceFlow>
+    <serviceTask id="alfrescoScripttask3" name="Delete attachments in repo" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string><![CDATA[if (bpm_package.children[0] != null)
+{
+	for (var i = 1; i <= bpm_package.children.length; i++)
+	{	
+			//delete document
+			bpm_package.children[i-1].remove()
+	}
+}]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow45" sourceRef="alfrescoScripttask3" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow46" sourceRef="exclusivegateway3" targetRef="callAdditiionalCorrespondance">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'AddCorresFromPostStage'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow47" sourceRef="exclusivegatewaymaster3" targetRef="callPostAllocation">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_decision == 'AddCorresRejectedFromPostStage'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="getTaskNumberServiceTask" name="get Task Number" activiti:class="com.puntersouthall.workflow.delegates.GetCreateTaskNumberDelegate">
+      <extensionElements>
+        <activiti:field name="schemeName">
+          <activiti:expression>${pswf_adminSchemeName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="activity">
+          <activiti:expression>${pswf_activityVariableForVOCreateTask}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="subActivity">
+          <activiti:expression>${pswf_subActivity}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="deadline">
+          <activiti:expression>${pswf_deadline}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="firstName">
+          <activiti:expression>${pswf_firstName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="surname">
+          <activiti:expression>${pswf_surname}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="numberOfTasks">
+          <activiti:expression>${pswf_calcs}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="doer">
+          <activiti:expression>${pswf_doer}</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow50" sourceRef="getTaskNumberServiceTask" targetRef="exclusivegateway3"></sequenceFlow>
+    <serviceTask id="getDeadlineServiceTask" name="get Deadline" activiti:class="com.puntersouthall.workflow.delegates.GetDeadlineDelegate">
+      <extensionElements>
+        <activiti:field name="activity">
+          <activiti:expression>${pswf_activityVariableForVOCreateTask}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="subActivity">
+          <activiti:expression>${pswf_subActivity}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="dateReceived">
+          <activiti:expression>${pswf_dateReceived}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="schemeName">
+          <activiti:expression>${pswf_adminSchemeName}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="teamName">
+          <activiti:expression>${pswf_teamName}</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow52" sourceRef="exclusivegateway1" targetRef="getDeadlineServiceTask">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_doer != null}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow53" name="If launched by a user skip initial post process" sourceRef="exclusivegateway1" targetRef="callPostAllocation">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${( (pswf_sourceSystem.length() >= 13 && (pswf_sourceSystem.substring(0,13) == 'Manual launch' || pswf_sourceSystem.substring(0,14) == 'Automated Task') ))}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow54" sourceRef="exclusivegateway1" targetRef="callactivity1"></sequenceFlow>
+    <serviceTask id="appendAutoDeadlineTimeStamp" name="Add 2359 to deadline" activiti:class="org.alfresco.repo.workflow.activiti.script.AlfrescoScriptDelegate">
+      <extensionElements>
+        <activiti:field name="script">
+          <activiti:string><![CDATA[var d = execution.getVariable('pswf_deadline');
+d.setHours(23);
+d.setMinutes(59);
+execution.setVariable('pswf_deadline',d);]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow55" sourceRef="getDeadlineServiceTask" targetRef="appendAutoDeadlineTimeStamp"></sequenceFlow>
+    <sequenceFlow id="flow56" sourceRef="appendAutoDeadlineTimeStamp" targetRef="getTaskNumberServiceTask"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_adminMemberWorkflowProcess">
+    <bpmndi:BPMNPlane bpmnElement="adminMemberWorkflowProcess" id="BPMNPlane_adminMemberWorkflowProcess">
+      <bpmndi:BPMNShape bpmnElement="alfrescoStartevent1" id="BPMNShape_alfrescoStartevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1.0" y="268.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="callPostAllocation" id="BPMNShape_callPostAllocation">
+        <omgdc:Bounds height="71.0" width="161.0" x="511.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="callDoerCheckerAuthWorkflow" id="BPMNShape_callDoerCheckerAuthWorkflow">
+        <omgdc:Bounds height="65.0" width="181.0" x="901.0" y="253.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="callAdditiionalCorrespondance" id="BPMNShape_callAdditiionalCorrespondance">
+        <omgdc:Bounds height="65.0" width="171.0" x="1246.0" y="114.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegatewaymaster2" id="BPMNShape_exclusivegatewaymaster2">
+        <omgdc:Bounds height="40.0" width="40.0" x="1311.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegatewaymaster3" id="BPMNShape_exclusivegatewaymaster3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1311.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="171.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="SetSourceSystem1" id="BPMNShape_SetSourceSystem1">
+        <omgdc:Bounds height="55.0" width="105.0" x="51.0" y="258.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway1" id="BPMNShape_parallelgateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="811.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="callCertificatesWorkflow" id="BPMNShape_callCertificatesWorkflow">
+        <omgdc:Bounds height="55.0" width="171.0" x="911.0" y="480.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertaskIssueCommunication" id="BPMNShape_usertaskIssueCommunication">
+        <omgdc:Bounds height="55.0" width="141.0" x="1591.0" y="258.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1911.0" y="268.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway2" id="BPMNShape_parallelgateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="1166.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="811.0" y="487.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="1134.0" y="480.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoScripttask1" id="BPMNShape_alfrescoScripttask1">
+        <omgdc:Bounds height="56.0" width="123.0" x="530.0" y="423.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoScripttask2" id="BPMNShape_alfrescoScripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="1416.0" y="258.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="callactivity1" id="BPMNShape_callactivity1">
+        <omgdc:Bounds height="71.0" width="160.0" x="241.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="getLogOffTaskDelegate" id="BPMNShape_getLogOffTaskDelegate">
+        <omgdc:Bounds height="55.0" width="105.0" x="1761.0" y="258.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="811.0" y="126.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="431.0" y="268.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoScripttask3" id="BPMNShape_alfrescoScripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="1627.0" y="670.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="getTaskNumberServiceTask" id="BPMNShape_getTaskNumberServiceTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="470.0" y="339.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="getDeadlineServiceTask" id="BPMNShape_getDeadlineServiceTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="139.0" y="339.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="appendAutoDeadlineTimeStamp" id="BPMNShape_appendAutoDeadlineTimeStamp">
+        <omgdc:Bounds height="55.0" width="105.0" x="296.0" y="339.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="401.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="431.0" y="288.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="1331.0" y="305.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1331.0" y="633.0"></omgdi:waypoint>
+        <omgdi:waypoint x="952.0" y="633.0"></omgdi:waypoint>
+        <omgdi:waypoint x="591.0" y="633.0"></omgdi:waypoint>
+        <omgdi:waypoint x="591.0" y="479.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="42.0" width="100.0" x="1341.0" y="465.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="1311.0" y="60.0"></omgdi:waypoint>
+        <omgdi:waypoint x="830.0" y="60.0"></omgdi:waypoint>
+        <omgdi:waypoint x="831.0" y="126.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="1331.0" y="114.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1331.0" y="80.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="672.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="741.0" y="286.0"></omgdi:waypoint>
+        <omgdi:waypoint x="741.0" y="146.0"></omgdi:waypoint>
+        <omgdi:waypoint x="811.0" y="146.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="1331.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1331.0" y="179.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="36.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="51.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="156.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="171.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="851.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="901.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="1732.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1761.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="1351.0" y="60.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1813.0" y="60.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1813.0" y="258.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="1351.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1416.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="1082.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1166.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow31" id="BPMNEdge_flow31">
+        <omgdi:waypoint x="1206.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1311.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
+        <omgdi:waypoint x="831.0" y="305.0"></omgdi:waypoint>
+        <omgdi:waypoint x="831.0" y="487.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow34" id="BPMNEdge_flow34">
+        <omgdi:waypoint x="851.0" y="507.0"></omgdi:waypoint>
+        <omgdi:waypoint x="911.0" y="507.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow35" id="BPMNEdge_flow35">
+        <omgdi:waypoint x="831.0" y="527.0"></omgdi:waypoint>
+        <omgdi:waypoint x="831.0" y="590.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1186.0" y="590.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1186.0" y="535.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow36" id="BPMNEdge_flow36">
+        <omgdi:waypoint x="1082.0" y="507.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1134.0" y="507.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="1186.0" y="480.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1186.0" y="305.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="591.0" y="423.0"></omgdi:waypoint>
+        <omgdi:waypoint x="591.0" y="321.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39">
+        <omgdi:waypoint x="1521.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1591.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow40" id="BPMNEdge_flow40">
+        <omgdi:waypoint x="1866.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1911.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="1331.0" y="305.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1417.0" y="415.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1813.0" y="415.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1813.0" y="313.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="96.0" x="1538.0" y="382.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="831.0" y="166.0"></omgdi:waypoint>
+        <omgdi:waypoint x="830.0" y="203.0"></omgdi:waypoint>
+        <omgdi:waypoint x="831.0" y="265.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="451.0" y="308.0"></omgdi:waypoint>
+        <omgdi:waypoint x="449.0" y="696.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1627.0" y="697.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44">
+        <omgdi:waypoint x="471.0" y="288.0"></omgdi:waypoint>
+        <omgdi:waypoint x="511.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow45" id="BPMNEdge_flow45">
+        <omgdi:waypoint x="1732.0" y="697.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1926.0" y="696.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1928.0" y="303.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow46" id="BPMNEdge_flow46">
+        <omgdi:waypoint x="851.0" y="146.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1125.0" y="146.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1246.0" y="146.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow47" id="BPMNEdge_flow47">
+        <omgdi:waypoint x="1331.0" y="40.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1331.0" y="10.0"></omgdi:waypoint>
+        <omgdi:waypoint x="591.0" y="10.0"></omgdi:waypoint>
+        <omgdi:waypoint x="591.0" y="250.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow50" id="BPMNEdge_flow50">
+        <omgdi:waypoint x="575.0" y="366.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="368.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="146.0"></omgdi:waypoint>
+        <omgdi:waypoint x="811.0" y="146.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow52" id="BPMNEdge_flow52">
+        <omgdi:waypoint x="191.0" y="305.0"></omgdi:waypoint>
+        <omgdi:waypoint x="191.0" y="339.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow53" id="BPMNEdge_flow53">
+        <omgdi:waypoint x="191.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="190.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="350.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="591.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="591.0" y="250.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="255.0" y="141.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow54" id="BPMNEdge_flow54">
+        <omgdi:waypoint x="211.0" y="285.0"></omgdi:waypoint>
+        <omgdi:waypoint x="241.0" y="285.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow55" id="BPMNEdge_flow55">
+        <omgdi:waypoint x="244.0" y="366.0"></omgdi:waypoint>
+        <omgdi:waypoint x="296.0" y="366.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow56" id="BPMNEdge_flow56">
+        <omgdi:waypoint x="401.0" y="366.0"></omgdi:waypoint>
+        <omgdi:waypoint x="470.0" y="366.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/DiaryNoteDeletionRequest">
+  <process id="DiaryNoteDeletionRequest" name="PS Diary Note Deletion Request Workflow" isExecutable="true">
+    <endEvent id="endevent1" name="End"></endEvent>
+    <startEvent id="alfrescoStartevent1" name="Alfresco start" activiti:formKey="pswf:diaryNoteDeletionWorkflow"></startEvent>
+    <userTask id="alfrescoUsertaskInitialRequest" name="Diary note deletion request" activiti:assignee="${pswf_diaryDecisionMadeBy}" activiti:formKey="pswf:diaryNoteDeletionWorkflow">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/Workflows/DiaryNoteDeletion/DiaryDeletion.jsp");
+execution.setVariableLocal('bpm_description',"Diary note deletion request");]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariable('pswf_diaryTeamName', task.getVariable('pswf_diaryTeamName'));
+execution.setVariable('pswf_diaryActivity', task.getVariable('pswf_diaryActivity'));
+execution.setVariable('pswf_diarySubActivity', task.getVariable('pswf_diarySubActivity'));
+execution.setVariable('pswf_diaryDateCreated', task.getVariable('pswf_diaryDateCreated'));
+execution.setVariable('pswf_diaryDateSetToLaunch', task.getVariable('pswf_diaryDateSetToLaunch'));
+execution.setVariable('pswf_diaryExpectedDeadline', task.getVariable('pswf_diaryExpectedDeadline'));
+execution.setVariable('pswf_diaryDiaryNote', task.getVariable('pswf_diaryDiaryNote'));
+execution.setVariable('pswf_diaryDeletionReason', task.getVariable('pswf_diaryDeletionReason'));
+execution.setVariable('pswf_diaryDeletionApproval', task.getVariable('pswf_diaryDeletionApproval'));
+execution.setVariable('pswf_diaryDeletionRequestMadeBy', task.getVariable('pswf_diaryDeletionRequestMadeBy'));
+execution.setVariable('pswf_diaryDecisionMadeBy', task.getVariable('pswf_diaryDecisionMadeBy'));
+execution.setVariable('bpm_comment', task.getVariable('bpm_comment'));
+execution.setVariable('pswf_diaryCentralID', task.getVariable('pswf_diaryCentralID'));
+execution.setVariable('pswf_diaryFirstName', task.getVariable('pswf_diaryFirstName'));
+execution.setVariable('pswf_diarySurname', task.getVariable('pswf_diarySurname'));
+execution.setVariable('pswf_diaryNino', task.getVariable('pswf_diaryNino'));
+execution.setVariable('pswf_diaryDob', task.getVariable('pswf_diaryDob'));
+execution.setVariable('pswf_diaryRelevantMemberID', task.getVariable('pswf_diaryRelevantMemberID'));
+execution.setVariable('pswf_diaryAdminSchemeName', task.getVariable('pswf_diaryAdminSchemeName'));
+execution.setVariable('pswf_diaryNoteIndex', task.getVariable('pswf_diaryNoteIndex'));]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <userTask id="alfrescoUsertaskDeletionResult" name="Diary Note Deletion Result" activiti:async="true" activiti:assignee="${pswf_diaryDeletionRequestMadeBy}" activiti:formKey="pswf:diaryNoteDeletionWorkflow">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+          <activiti:field name="script">
+            <activiti:string><![CDATA[execution.setVariableLocal('owdbpm_jspStepProcessor',"customJsp/psJsp/Workflows/DiaryNoteDeletion/DiaryDeletionResult.jsp");
+if (execution.getVariable('pswf_diaryDeletionApproval').toString()=='true'){
+	execution.setVariableLocal('bpm_description',"Diary note deletion approved");
+}
+else{
+	execution.setVariableLocal('bpm_description',"Diary note deletion rejected");
+}]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow13" sourceRef="alfrescoUsertaskDeletionResult" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow14" name="Rejected" sourceRef="exclusivegateway1" targetRef="servicetask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_diaryDeletionApproval == 'false'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow15" sourceRef="alfrescoStartevent1" targetRef="alfrescoUsertaskInitialRequest"></sequenceFlow>
+    <sequenceFlow id="flow16" sourceRef="alfrescoUsertaskInitialRequest" targetRef="exclusivegateway1"></sequenceFlow>
+    <serviceTask id="servicetaskDeleteDiaryNote" name="Delete Diary Note" activiti:class="com.puntersouthall.workflow.delegates.DiaryNoteApproveDeletionDelegate">
+      <extensionElements>
+        <activiti:field name="approvedBy">
+          <activiti:expression>${pswf_diaryDecisionMadeBy}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="diaryNoteIndex">
+          <activiti:expression>${pswf_diaryNoteIndex}</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow17" sourceRef="servicetaskDeleteDiaryNote" targetRef="alfrescoUsertaskDeletionResult"></sequenceFlow>
+    <sequenceFlow id="flow18" name="Approved" sourceRef="exclusivegateway1" targetRef="servicetaskDeleteDiaryNote">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${pswf_diaryDeletionApproval == 'true'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask1" name="Cancel Delete Diary Note" activiti:class="com.puntersouthall.workflow.delegates.DiaryNoteCancelDeletionDelegate">
+      <extensionElements>
+        <activiti:field name="diaryNoteIndex">
+          <activiti:expression>${pswf_diaryNoteIndex}</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow19" sourceRef="servicetask1" targetRef="alfrescoUsertaskDeletionResult"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_DiaryNoteDeletionRequest">
+    <bpmndi:BPMNPlane bpmnElement="DiaryNoteDeletionRequest" id="BPMNPlane_DiaryNoteDeletionRequest">
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1080.0" y="318.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoStartevent1" id="BPMNShape_alfrescoStartevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="40.0" y="318.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoUsertaskInitialRequest" id="BPMNShape_alfrescoUsertaskInitialRequest">
+        <omgdc:Bounds height="55.0" width="181.0" x="130.0" y="308.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="460.0" y="315.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="alfrescoUsertaskDeletionResult" id="BPMNShape_alfrescoUsertaskDeletionResult">
+        <omgdc:Bounds height="55.0" width="127.0" x="754.0" y="308.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetaskDeleteDiaryNote" id="BPMNShape_servicetaskDeleteDiaryNote">
+        <omgdc:Bounds height="55.0" width="116.0" x="560.0" y="308.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="117.0" x="560.0" y="157.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="881.0" y="335.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1080.0" y="335.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="480.0" y="315.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="225.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="184.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="184.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="42.0" x="510.0" y="212.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="75.0" y="335.0"></omgdi:waypoint>
+        <omgdi:waypoint x="130.0" y="335.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="311.0" y="335.0"></omgdi:waypoint>
+        <omgdi:waypoint x="460.0" y="335.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="676.0" y="335.0"></omgdi:waypoint>
+        <omgdi:waypoint x="754.0" y="335.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="500.0" y="335.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="335.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="48.0" x="510.0" y="335.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="677.0" y="184.0"></omgdi:waypoint>
+        <omgdi:waypoint x="817.0" y="184.0"></omgdi:waypoint>
+        <omgdi:waypoint x="817.0" y="308.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

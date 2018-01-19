@@ -1,4 +1,4 @@
-package com.puntersouthall.workflow.delegates.testWorkfow;
+package com.puntersouthall.workflow.delegates.testWorkflow;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.JavaDelegate;
@@ -14,11 +14,11 @@ public class InitWorkflowProperties implements JavaDelegate {
             {
                 // Set the initial value of the variable 'pswf_adminSchemeGroup'
                 execution.setVariable("pswf_adminSchemeGroup", "GROUP_ALF-SchemeAggregateIndustriesPensionPlan");
-                
+
                 return null;
             }
         });
-        
+
     }
 
 }

@@ -220,6 +220,14 @@
                             <type>amp</type>
                         </moduleDependency>
 
+                        <moduleDependency>
+                            <groupId>org.alfresco</groupId>
+                            <artifactId>support-tools</artifactId>
+                            <version>1.11</version>
+                            <type>amp</type>
+                        </moduleDependency>
+
+
                     </platformModules>
                 </configuration>
             </plugin>
@@ -432,6 +440,12 @@
             </activation>
             <properties>
                 <profile.puntersouthall.automatedDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.automatedDocumentImporter.cron>
+
+                <profile.puntersouthall.psgDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
+                <profile.puntersouthall.psgDocumentImporter.filesystemroot>/users/pedwards/import</profile.puntersouthall.psgDocumentImporter.filesystemroot>
+                <profile.puntersouthall.psgDocumentImporter.repositoryroot>/app:company_home</profile.puntersouthall.psgDocumentImporter.repositoryroot>
+                <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Wokingham,Bristol</profile.puntersouthall.psgDocumentImporter.officelocations>
+
                 <profile.puntersouthall.automatedDocumentImporter.scanningLocation>/users/pedwards/scanning</profile.puntersouthall.automatedDocumentImporter.scanningLocation>
 
                 <profile.puntersouthall.automatedDocumentUpdater.cron>0 0 * * * ?</profile.puntersouthall.automatedDocumentUpdater.cron>
@@ -455,6 +469,12 @@
                 </property>
             </activation>
             <properties>
+
+                <profile.puntersouthall.psgDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
+                <profile.puntersouthall.psgDocumentImporter.filesystemroot>/users/pedwards/import</profile.puntersouthall.psgDocumentImporter.filesystemroot>
+                <profile.puntersouthall.psgDocumentImporter.repositoryroot>/app:company_home</profile.puntersouthall.psgDocumentImporter.repositoryroot>
+                <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Wokingham,Bristol</profile.puntersouthall.psgDocumentImporter.officelocations>
+
                 <profile.puntersouthall.automatedDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.automatedDocumentImporter.cron>
                 <profile.puntersouthall.automatedDocumentImporter.scanningLocation>//sapp012/Output/Dev</profile.puntersouthall.automatedDocumentImporter.scanningLocation>
 
@@ -479,6 +499,12 @@
                 </property>
             </activation>
             <properties>
+
+                <profile.puntersouthall.psgDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
+                <profile.puntersouthall.psgDocumentImporter.filesystemroot>/users/pedwards/import</profile.puntersouthall.psgDocumentImporter.filesystemroot>
+                <profile.puntersouthall.psgDocumentImporter.repositoryroot>/app:company_home</profile.puntersouthall.psgDocumentImporter.repositoryroot>
+                <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Wokingham,Bristol</profile.puntersouthall.psgDocumentImporter.officelocations>
+
                 <profile.puntersouthall.automatedDocumentImporter.cron>0 0/10 * * * ?</profile.puntersouthall.automatedDocumentImporter.cron>
                 <profile.puntersouthall.automatedDocumentImporter.scanningLocation>//sapp012/Output/UAT</profile.puntersouthall.automatedDocumentImporter.scanningLocation>
 
@@ -503,6 +529,12 @@
                 </property>
             </activation>
             <properties>
+
+                <profile.puntersouthall.psgDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
+                <profile.puntersouthall.psgDocumentImporter.filesystemroot>/users/pedwards/import</profile.puntersouthall.psgDocumentImporter.filesystemroot>
+                <profile.puntersouthall.psgDocumentImporter.repositoryroot>/app:company_home</profile.puntersouthall.psgDocumentImporter.repositoryroot>
+                <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Wokingham,Bristol</profile.puntersouthall.psgDocumentImporter.officelocations>
+
                 <profile.puntersouthall.automatedDocumentImporter.cron>0 * 7-22 ? * MON-FRI *</profile.puntersouthall.automatedDocumentImporter.cron>
                 <profile.puntersouthall.automatedDocumentImporter.scanningLocation>//sapp012/Output/Live</profile.puntersouthall.automatedDocumentImporter.scanningLocation>
 

@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd 
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+                           http://www.springframework.org/schema/tx      http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<!-- addcorres -->
+	<bean id="ps_addcorresworkflow_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/Additional-Correspondence-Workflow.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+	<!-- certificate workflow -->
+	<bean id="ps_certificateworkflow_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/PS-Certificates-Workflow.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+	<!-- allocation -->
+	<bean id="ps_allocationworkflow_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/Post-Allocation-Stage-Workflow.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- doercheckerauthoriser  -->
+	<bean id="ps_doercheckerauthoriserworkflow_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/PS-Doer-Checker-Authoriser-Workflow.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- masteradmin -->
+	<bean id="ps_masterworkflow_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/Master-Admin-Member-Workflow-Path.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- newpost -->
+	<bean id="ps_newpostworkflow_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/PS-New-Post-Workflow.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- webservice -->
+	<bean id="ps_workflows_webserviceexample_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/WebServiceExample.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+	<!-- delete a file request -->
+	<bean id="ps_workflows_deletefile_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/PS-Delete-Document-Workflow.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+	<!-- delete a diary note request workflow -->
+	<bean id="ps_workflows_diarydelete_workflowBootstrap" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/DiaryNoteDeletionRequest.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- test workflow -->
+	<bean id="ps_masterworkflow_test" parent="workflowDeployer">
+		<property name="workflowDefinitions">
+			<list>
+				<props>
+					<prop key="engineId">activiti</prop>
+					<prop key="location">alfresco/module/${artifactId}/workflow/testing-workflow.bpmn20.xml</prop>
+					<prop key="mimetype">text/xml</prop>
+					<prop key="redeploy">false</prop>
+				</props>
+			</list>
+		</property>
+		<property name="models">
+			<list>
+				<value>alfresco/module/${artifactId}/model/workflowModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco.module.${artifactId}.messages.psgWorkflow</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Delegate Tasks -->
+	<bean id="getCreateTaskNumber" class="com.puntersouthall.workflow.delegates.GetCreateTaskNumberDelegate" />
+
+	<bean id="getChangeTaskNumber" class="com.puntersouthall.workflow.delegates.GetChangeTaskNumberDelegate" />
+
+	<bean id="getLogOffTask" class="com.puntersouthall.workflow.delegates.GetLogOffTaskDelegate" />
+
+	<bean id="initWorkflowProperties" class="com.puntersouthall.workflow.delegates.testWorkflow.InitWorkflowProperties" >
+	</bean>
+
+	<bean id="setBPMGroupAssignee" class="com.puntersouthall.workflow.delegates.testWorkflow.SetBPMGroupAssigneeTask" >
+		<property name="workflowUtils">
+			<ref bean="custom.WorkflowUtils"/>
+		</property>
+		<property name="serviceRegistry">
+			<ref bean="ServiceRegistry"/>
+		</property>
+	</bean>
+
+	<!-- It is necessary this map to initialise the services -->
+	<util:map id="activitiBeanRegistry" map-class="java.util.HashMap">
+		<entry key="services" value-ref="ServiceRegistry" />
+		<entry key="initWorkflowProperties" value-ref="initWorkflowProperties" />
+		<entry key="setBPMGroupAssignee" value-ref="setBPMGroupAssignee" />
+	</util:map>
+
+</beans>
