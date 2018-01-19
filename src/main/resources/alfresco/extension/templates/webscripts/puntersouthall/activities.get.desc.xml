@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Get Activities</shortname>
+  <description>Get Activities</description>
+  <url>/puntersouthall/activities</url>
+  <authentication>none</authentication>
+  <format default="">argument</format>
+  <family>Punter Southall WebScripts</family>
+</webscript>

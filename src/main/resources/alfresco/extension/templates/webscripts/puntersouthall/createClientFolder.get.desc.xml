@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Create Client Folder</shortname>
+  <description>Create Client and Scheme Folder, pas in CLient ID</description>
+  <url>/puntersouthall/CreateClientFolder?clientID={clientID}&amp;buildAll={buildAll}</url>
+  <authentication>none</authentication>
+  <format default="">argument</format>
+  <family>Punter Southall WebScripts</family>
+</webscript>

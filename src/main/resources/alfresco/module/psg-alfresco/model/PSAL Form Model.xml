@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Custom Model -->
+
+<!-- Note: This model is pre-configured to load at startup of the Repository.  So, all custom -->
+<!--       types and aspects added here will automatically be registered -->
+
+<model name="psform:formsModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+   <!-- Optional meta-data about the model -->
+   <description>PSAL Forms Content Model</description>
+   <author>Joe Bujok</author>
+   <version>1.0</version>
+
+   <imports>
+   	  <!-- Import Alfresco Dictionary Definitions -->
+      <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+      <!-- Import Alfresco Content Domain Model Definitions -->
+      <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+	  <!-- Import PSAL custom content Model Definitions -->
+      <import uri="custom.model.jb" prefix="psdoc"/>
+   </imports>
+
+   <!-- Introduction of new namespaces defined by this model -->
+   <!-- NOTE: The following namespace custom.model should be changed to reflect your own namespace -->
+   <namespaces>
+      <namespace uri="PSAL.Forms.Model/1.0" prefix="psform"/>
+   </namespaces>
+
+   <constraints></constraints>
+   
+ <types>
+ 		<!-- Enterprise-wide generic document type -->
+
+ 		<type name="psform:form">
+            <title>Form</title>
+            <description>Base level PS form</description>
+            <parent>psdoc:document</parent>
+        </type>
+
+ 		<type name="psform:newPayrollStarterForm">
+            <title>Payroll New Starter Form</title>
+            <description>Form for new pensioners taking their benefits</description>
+            <parent>psform:form</parent>
+            <mandatory-aspects>
+	        		<aspect>psdoc:activityAspect</aspect>
+					<aspect>psdoc:memberDetailsAspect</aspect>
+					<aspect>psform:generalFormAspect</aspect>
+					<aspect>psdoc:periodAspect</aspect>
+	        </mandatory-aspects>
+        </type>		
+ </types>
+ 
+  <aspects>
+		<aspect name="psform:generalFormAspect">
+            <title>General Form Aspect</title>
+            <properties>
+                <!--  key -->
+                <property name="psform:formID">
+					<title>Form ID</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>false</multiple>
+                </property>
+                <!--  key -->
+                <property name="psform:formStatus">
+					<title>Form Status</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                </property>  
+                <property name="psform:formDoer">
+					<title>Doer</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                </property>    
+                <property name="psform:formDoerTimeStamp">
+					<title>Doer Created</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <multiple>false</multiple>
+                </property>    				
+            </properties>
+        </aspect>
+		
+		<aspect name="psform:checkStage1">
+            <title>Form Check Stage 1 Aspect</title>
+            <properties>
+				<property name="psform:checkerStage1">
+					<title>Checker Stage 1</title>
+                	<type>d:text</type>
+                	<mandatory>true</mandatory>
+                </property>
+                <property name="psform:checkerStage1TimeStamp">
+					<title>Date Stage 1 Checked</title>
+                	<type>d:date</type>
+                	<mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+
+		<aspect name="psform:checkStage2">
+            <title>Form Check Stage 2 Aspect</title>
+            <properties>
+				<property name="psform:checkerStage2">
+					<title>Checker Stage 2</title>
+                	<type>d:text</type>
+                	<mandatory>true</mandatory>
+                </property>
+                <property name="psform:checkerStage2TimeStamp">
+					<title>Date Stage 2 Checked</title>
+                	<type>d:date</type>
+                	<mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+	
+    </aspects>
+</model>

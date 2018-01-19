@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Document search</shortname>
+    <description>Document search</description>
+    <url>/psdoc/search/{search}</url>
+    <format default="json" />
+    <authentication>user</authentication>
+    <family>Search Dashlet</family>
+</webscript>

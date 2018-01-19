@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Custom Model -->
+<!-- Note: This model is pre-configured to load at startup of the Repository. So, all custom -->
+<!-- types and aspects added here will automatically be registered -->
+
+<model name="pswf:workflowModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+	<!-- Optional meta-data about the model -->
+	<description>Punter Southall Custom Workflow Model</description>
+	<author>Joe Bujok</author>
+	<version>1.0</version>
+
+	<imports>
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+		<import uri="http://www.alfresco.org/model/bpm/1.0" prefix="bpm" />
+	</imports>
+
+	<namespaces>
+		<namespace uri="http://www.puntersouthall.com/model/workflow/1.0" prefix="pswf" />
+		<namespace uri="http://www.puntersouthall.com/model/workflowowdbpm/1.0" prefix="owdbpm" />
+	</namespaces>
+
+	<constraints></constraints>
+
+	<types>
+	
+		<type name="pswf:initialWorkflow">
+			<parent>bpm:workflowTask</parent>
+			<properties>
+				<property name="pswf:sourceSystem">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:dateReceived">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:teamName">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:certificateWorkflowRequired">
+					<type>d:boolean</type>
+				</property>
+			</properties>
+			<!-- 
+			<mandatory-aspects> 
+				<aspect>pswf:memberDetails</aspect> 
+			</mandatory-aspects> 
+			-->
+		</type>
+		
+		<type name="pswf:standardWorkflow">
+			<parent>pswf:initialWorkflow</parent>
+			<properties>
+				<property name="pswf:workflowTaskType">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:decision">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:activity">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:subActivity">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:deadline">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:internalDeadline">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:comment">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:taskDetail">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:taskStatus">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:taskNumber">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:calcs">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:centralID">
+					<type>d:int</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:firstName">
+					<type>d:text</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:surname">
+					<type>d:text</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:nino">
+					<type>d:text</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:dob">
+					<type>d:date</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:relevantMemberID">
+					<type>d:text</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:clientID">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:clientName">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:adminSchemeID">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:adminSchemeName">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:adminSchemeGroup">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:payrollSchemeID">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:payrollSchemeName">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:greenErrors">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:amberErrors">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:redErrors">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:errorExplanation">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:reworkNumber">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:accuracySubmitted">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:doer">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:doerDate">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:checker">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:checkerDate">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:authoriser">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:authoriserDate">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:completedBy">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:completedDate">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:processID">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:documentAddedBy">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:documentName">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:success">
+					<type>d:boolean</type>
+					<default>false</default>
+				</property>
+				<property name="pswf:boolVar1">
+					<type>d:boolean</type>
+					<default>false</default>
+				</property>
+				<property name="pswf:boolVar2">
+					<type>d:boolean</type>
+					<default>false</default>
+				</property>
+				<property name="pswf:boolVar3">
+					<type>d:boolean</type>
+					<default>false</default>
+				</property>
+				<property name="pswf:stringVar1">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:stringVar2">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:stringVar3">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:intVar1">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:intVar2">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:intVar3">
+					<type>d:int</type>
+				</property>
+				<property name="pswf:dateVar1">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:dateVar2">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:dateVar3">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:initiatingDocNode">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:selectedTasklist">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:selectedTasklistVersion">
+					<type>d:text</type>
+				</property>
+			</properties>
+			<mandatory-aspects>
+				<aspect>owdbpm:jspLayoutAspect</aspect>
+			</mandatory-aspects>
+		</type>
+		
+		<type name="pswf:diaryNoteDeletionWorkflow">
+			<parent>bpm:workflowTask</parent>
+			<properties>
+				<property name="pswf:diaryTeamName">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:diaryActivity">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:diarySubActivity">
+					<type>d:text</type>
+				</property>
+					<property name="pswf:diaryDateCreated">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:diaryDateSetToLaunch">
+					<type>d:date</type>
+				</property>
+					<property name="pswf:diaryExpectedDeadline">
+					<type>d:date</type>
+				</property>
+				<property name="pswf:diaryDiaryNote">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:diaryDeletionReason">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:diaryDeletionApproval">
+					<type>d:boolean</type>
+				</property>
+				<property name="pswf:diaryDeletionRequestMadeBy">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:diaryDecisionMadeBy">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:diaryCentralID">
+					<type>d:int</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:diaryFirstName">
+					<type>d:text</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:diarySurname">
+					<type>d:text</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:diaryNino">
+					<type>d:text</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:diaryDob">
+					<type>d:date</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:diaryRelevantMemberID">
+					<type>d:text</type>
+					<!-- <mandatory>true</mandatory> -->
+				</property>
+				<property name="pswf:diaryAdminSchemeName">
+					<type>d:text</type>
+				</property>
+				<property name="pswf:diaryNoteIndex">
+					<type>d:int</type>
+				</property>
+			</properties>
+
+			<mandatory-aspects> 
+				<aspect>owdbpm:jspLayoutAspect</aspect> 
+			</mandatory-aspects> 
+
+		</type>
+	
+	</types>
+	
+	<aspects>
+
+		<aspect name="owdbpm:jspLayoutAspect">
+			<properties>
+				<property name="owdbpm:jspStepProcessor">
+					<title>JSP page for task</title>
+					<type>d:text</type>
+				</property>
+			</properties>
+		</aspect>
+
+	</aspects>
+
+</model>

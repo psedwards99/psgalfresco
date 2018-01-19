@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Append Extensions</shortname>
+  <description>java backed webscript created that will append an extension where missing to cm:name based on the mimetype provided</description>
+  <url>/puntersouthall/adhoc/AppendExtension?MaxPermissionChecks={MaxPermissionChecks}&amp;MimeType={MimeType}&amp;SearchOnly={SearchOnly}</url>
+  <authentication>admin</authentication>
+  <format default="">argument</format>
+  <family>Punter Southall WebScripts</family>
+</webscript>

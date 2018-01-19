@@ -1,0 +1,6 @@
+<webscript>
+ <shortname>Unlock Node</shortname>
+ <description>Unlock Node</description>
+ <url>/puntersouthall/unlockNode</url>
+<authentication runas="admin">user</authentication>
+</webscript>

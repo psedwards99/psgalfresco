@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Custom Model -->
+
+<!-- Note: This model is pre-configured to load at startup of the Repository.  So, all custom -->
+<!--       types and aspects added here will automatically be registered -->
+
+<model name="psdoc:documentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+   <!-- Optional meta-data about the model -->
+   <description>Punter Southall Custom Content Model </description>
+   <author>Joe Bujok</author>
+   <version>1.0</version>
+
+   <imports>
+   	  <!-- Import Alfresco Dictionary Definitions -->
+      <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+      <!-- Import Alfresco Content Domain Model Definitions -->
+      <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+   </imports>
+
+   <!-- Introduction of new namespaces defined by this model -->
+   <!-- NOTE: The following namespace custom.model should be changed to reflect your own namespace -->
+   <namespaces>
+      <namespace uri="custom.model.jb" prefix="psdoc"/>
+   </namespaces>
+
+   <constraints></constraints>
+   
+ <types>
+ 		<!-- Enterprise-wide generic document type -->
+
+ 		<type name="psdoc:tasklist">
+            <title>Tasklist</title>
+            <description>Task list for processes</description>
+            <parent>cm:content</parent>
+            <mandatory-aspects>
+	        		<aspect>psdoc:activityAspect</aspect>
+					<aspect>psdoc:tasklistAspect</aspect>
+	        </mandatory-aspects>
+        </type>
+
+ 		<type name="psdoc:adminSchemeControlDocument">
+            <title>Admin Scheme Control Document</title>
+            <description>Admin Scheme Control Document</description>
+            <parent>cm:content</parent>
+            <mandatory-aspects>
+	        		<aspect>psdoc:generalAspect</aspect>
+					<aspect>psdoc:adminSchemeControlDocumentAspect</aspect>
+					<aspect>psdoc:clientAspect</aspect>
+	        </mandatory-aspects>
+        </type>		
+
+ 		<type name="psdoc:document">
+            <title>Root PS Document</title>
+            <description>Initial PS document type</description>
+            <parent>cm:content</parent>
+            <mandatory-aspects>
+	        		<aspect>psdoc:generalAspect</aspect>
+					<aspect>psdoc:schemeAspect</aspect>
+					<aspect>psdoc:clientAspect</aspect>
+	        </mandatory-aspects>
+        </type>		
+		
+        <type name="psdoc:adminMemberDocument">
+	        <title>Admin Member Document</title>
+	        <description>An Admin Member document</description>
+	        <parent>psdoc:document</parent>
+			<mandatory-aspects>
+	        		<aspect>psdoc:memberDetailsAspect</aspect>
+					<aspect>psdoc:myPensionAspect</aspect>
+					<aspect>psdoc:activityAspect</aspect>
+	        </mandatory-aspects>
+        </type>
+		
+		<type name="psdoc:adminSchemeDocument">
+	        <title>Admin Scheme Document</title>
+	        <description>An Admin Scheme document</description>
+	        <parent>psdoc:document</parent>
+	        <mandatory-aspects>
+					<aspect>psdoc:activityAspect</aspect>
+	        </mandatory-aspects>
+        </type>
+		
+        <type name="psdoc:payrollMemberDocument">
+	        <title>Payroll Member Document</title>
+	        <description>A Payroll Member document</description>
+	        <parent>psdoc:document</parent>     
+			<mandatory-aspects>
+					<aspect>psdoc:memberDetailsAspect</aspect>
+					<aspect>psdoc:activityAspect</aspect>
+	        </mandatory-aspects>
+        </type>
+		<type name="psdoc:payrollSchemeDocument">
+	        <title>Payroll Scheme Document</title>
+	        <description>A Payroll Scheme document </description>
+	        <parent>psdoc:document</parent>       
+			<mandatory-aspects>
+	        		<aspect>psdoc:periodAspect</aspect>
+					<aspect>psdoc:activityAspect</aspect>
+	        </mandatory-aspects>
+        </type>
+		
+        <type name="psdoc:cashieringMemberDocument">
+	        <title>Cashiering Member Document</title>
+	        <description>A Cashiering Member document</description>
+	        <parent>psdoc:document</parent>     
+			<mandatory-aspects>
+					<aspect>psdoc:cashieringAspect</aspect>
+	        		<aspect>psdoc:paymentDateAspect</aspect>
+					<aspect>psdoc:memberDetailsAspect</aspect>
+        	</mandatory-aspects>
+        </type>
+		
+		<type name="psdoc:cashieringSchemeDocument">
+	        <title>Cashiering Scheme Document</title>
+	        <description>A Cashiering Scheme document</description>
+	        <parent>psdoc:document</parent>     
+			<mandatory-aspects>
+					<aspect>psdoc:cashieringAspect</aspect>
+					<aspect>psdoc:paymentDateAspect</aspect>
+        	</mandatory-aspects>
+        </type>
+		
+		<type name="psdoc:microficheMemberDocument">
+	        <title>Microfiche Member Document</title>
+	        <description>A Microfiche Member document</description>
+	        <parent>psdoc:document</parent>
+			<mandatory-aspects>
+	        		<aspect>psdoc:microficheMemberAspect</aspect>
+	        </mandatory-aspects>
+        </type>
+ </types>
+ 
+  <aspects>
+		<aspect name="psdoc:generalAspect">
+            <title>General document fields</title>
+            <properties>
+                <!--  key -->
+                <property name="psdoc:type">
+					<title>Document Type</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>true</multiple>
+                </property>
+                <!--  key -->
+                <property name="psdoc:docDate">
+					<title>Document Date</title>
+                    <type>d:date</type>
+                    <mandatory>true</mandatory>
+                    <multiple>false</multiple>
+                </property>                              
+            </properties>
+        </aspect>
+		
+		<aspect name="psdoc:activityAspect">
+            <title>Activity aspect</title>
+            <properties>
+				<property name="psdoc:activity">
+					<title>Activity</title>
+                	<type>d:text</type>
+                	<mandatory>true</mandatory>
+                </property>
+                <property name="psdoc:subActivity">
+					<title>Sub Activity</title>
+                	<type>d:text</type>
+                	<mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+		
+		<aspect name="psdoc:schemeAspect">
+            <title>Scheme aspect</title>
+            <properties>
+				<property name="psdoc:schemeID">
+					<title>Scheme ID</title>
+                	<type>d:int</type>
+                	<mandatory>true</mandatory>
+                </property>
+                <property name="psdoc:schemeName">
+					<title>Scheme Name</title>
+					<description>Relevant Scheme name for department</description>
+                	<type>d:text</type>
+                	<mandatory>true</mandatory>
+                </property>
+				<property name="psdoc:department">
+					<title>PS department</title>
+					<description>e.g. Admin/Payroll/Cashiering</description>
+                	<type>d:text</type>
+                	<mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+		
+        <aspect name="psdoc:myPensionAspect">
+            <title>MyPension aspect</title>
+            <properties>
+                <property name="psdoc:webDocType">
+					<title>Web Document Type</title>
+                    <type>d:text</type>
+                </property>
+				<property name="psdoc:webDoc">
+					<title>Web Doc?</title>
+					<description>Should document be accessible on MyPension.com</description>
+                    <type>d:boolean</type>
+                </property>
+            </properties>
+        </aspect>
+		
+		<aspect name="psdoc:memberDetailsAspect">
+            <title>Member details aspect</title>
+            <properties>
+                <property name="psdoc:centralID">
+					<title>Central Person ID</title>
+					<description>The ID for the person</description>
+                    <type>d:int</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="psdoc:firstName">
+					<title>First Name</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+				<property name="psdoc:surname">
+					<title>Surname</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+				<property name="psdoc:nino">
+					<title>NI Number</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+				<property name="psdoc:dob">
+					<title>Date of Birth</title>
+                    <type>d:date</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="psdoc:memberRecordID">
+					<title>Member Record database ID</title>
+					<description>The ID for the person's specific membership record</description>
+                    <type>d:int</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+		<aspect name="psdoc:workflowAspect">
+            <title>Workflow data aspect</title>
+            <properties>
+                <property name="psdoc:taskNumber">
+					<title>Task Number</title>
+                    <type>d:int</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="psdoc:initiatingDoc">
+					<title>Initiating Workflow Document?</title>
+                    <type>d:boolean</type>
+                    <mandatory>false</mandatory>
+                </property>
+				<property name="psdoc:status">
+					<title>Document Status</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+                <property name="psdoc:initiatingDocWorkflowID">
+					<title>Initiating Doc Workflow ID</title>
+					<description>The actviti ID of the workflow initiated by the document</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>                
+            </properties>
+        </aspect>
+		<aspect name="psdoc:clientAspect">
+            <title>Client aspect</title>
+            <properties>
+                <property name="psdoc:clientID">
+					<title>Client ID</title>
+                    <type>d:int</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="psdoc:clientName">
+					<title>Client Name</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>          
+            </properties>
+        </aspect>
+		<aspect name="psdoc:periodAspect">
+            <title>Payment period aspect</title>
+            <properties>
+                <property name="psdoc:periodMonth">
+					<title>Period Month</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+				<property name="psdoc:periodYear">
+					<title>Period Year Start</title>
+                    <type>d:int</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+      	<aspect name="psdoc:paymentDateAspect"> 
+           <title>Payment date aspect</title>
+            <properties>               
+		       	<property name="psdoc:paymentDate">
+					<title>Payment Date</title>
+		            <type>d:date</type>
+		            <mandatory>false</mandatory>  
+		        </property>
+	        </properties>
+ 		</aspect> 
+		<aspect name="psdoc:cashieringAspect">
+            <title>Cashiering aspect</title>
+            <properties>
+	        	<property name="psdoc:paymentAmount">
+					<title>Payment Amount</title>
+	        		<type>d:float</type>
+	        		<mandatory>false</mandatory>
+	        	</property>
+	        	<property name="psdoc:payee">
+					<title>Payee</title>
+	        		<type>d:text</type>
+	        		<mandatory>false</mandatory>
+	        	</property>
+	        	<property name="psdoc:paymentType">
+					<title>Payment Type</title>
+	        		<type>d:text</type>
+	        		<mandatory>false</mandatory>
+	        	</property>
+	        </properties>
+        </aspect>
+        
+		<aspect name="psdoc:tasklistAspect">
+            <title>Tasklist aspect</title>
+            <properties>
+	        	<property name="psdoc:active">
+					<title>Tasklist Active?</title>
+	        		<description>If tasklist is active</description>
+	        		<type>d:boolean</type>
+	        		<mandatory>true</mandatory>
+	        	</property>
+	        	<property name="psdoc:schemeType">
+					<title>Scheme Type</title>
+	        		<description>Type of scheme (DB/DC/Hybrid etc)</description>
+	        		<type>d:text</type>
+	        		<mandatory>true</mandatory>
+	        	</property>
+	        	<property name="psdoc:processType">
+					<title>Process Type</title>
+	        		<description>Type of process (Member/Scheme/Payroll etc)</description>
+	        		<type>d:text</type>
+	        		<mandatory>true</mandatory>
+	        	</property>
+	        </properties>
+        </aspect>
+		<aspect name="psdoc:cashieringLegacyAspect">
+            <title>Cashiering legacy aspect</title>
+            <description>The legacy fields from FileNet for cashiering documents</description>
+            <properties>
+       	        <property name="psdoc:cashieringMemberNameLegacy">
+					<title>Cashiering Member Name (legacy field)</title>
+                    <type>d:text</type>
+                </property>
+       	        <property name="psdoc:cashieringReferenceLegacy">
+					<title>Cashiering Reference (legacy field)</title>
+                    <type>d:text</type>
+                </property>
+			</properties>
+        </aspect> 
+		<aspect name="psdoc:payrollLegacyAspect">
+            <title>Payroll legacy aspect</title>
+            <description>The legacy fields from FileNet for payroll documents</description>
+            <properties>
+            	<property name="psdoc:filenetSchemeName">
+					<title>Payroll FileNet Scheme Name(legacy field)</title>
+                    <type>d:text</type>
+                </property>             
+       	        <property name="psdoc:payrollDocTypeLegacy">
+					<title>Payroll Document Type(legacy field)</title>
+                    <type>d:text</type>
+                </property>
+       	        <property name="psdoc:payrollMemberNameLegacy">
+					<title>Payroll Member Name (legacy field)</title>
+                    <type>d:text</type>
+                </property>
+       	        <property name="psdoc:payrollPayeeLegacy">
+					<title>Payroll Payee Name (legacy field)</title>
+                    <type>d:text</type>
+                </property>
+       	        <property name="psdoc:payrollPaymentDateLegacy">
+					<title>Payroll payment date (legacy field)</title>
+                    <type>d:date</type>
+                </property>
+       	        <property name="psdoc:payrollPaymentAmountLegacy">
+					<title>Payroll payment amount (legacy field)</title>
+                    <type>d:float</type>
+                </property>
+       	        <property name="psdoc:payrollPeriodStartLegacy">
+					<title>Payroll period start (legacy field)</title>
+                    <type>d:date</type>
+                </property>
+       	        <property name="psdoc:payrollPeriodEndLegacy">
+					<title>Payroll period end (legacy field)</title>
+                    <type>d:date</type>
+                </property>
+				<property name="psdoc:payrollReferenceLegacy">
+					<title>Payroll reference (legacy field)</title>
+                    <type>d:text</type>
+                </property>                
+			</properties>
+        </aspect>          
+		<aspect name="psdoc:adminSchemeDocLegacyAspect">
+            <title>Admin Scheme legacy aspect</title>
+            <description>The legacy fields from FileNet for admin Scheme documents</description>
+            <properties>
+                <property name="psdoc:subjectLegacy">
+					<title>Subject (legacy field)</title>
+                    <type>d:text</type>
+                </property>
+                <property name="psdoc:subSubjectLegacy">
+					<title>Sub-Subject (legacy field)</title>
+                    <type>d:text</type>
+                </property>
+                <property name="psdoc:adminPeriodStartLegacy">
+					<title>Period start (legacy field)</title>
+                    <type>d:date</type>
+                </property>
+                <property name="psdoc:adminPeriodEndLegacy">
+					<title>Period end (legacy field)</title>
+                    <type>d:date</type>
+                </property>                
+			</properties>
+        </aspect>   
+        
+        <aspect name="psdoc:microficheMemberAspect">
+            <title>Microfiche member aspect</title>
+            <description>Member details for microfiche member documents</description>
+            <properties>
+                <property name="psdoc:microficheInitials">
+					<title>Initials</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+				<property name="psdoc:microficheSurname">
+					<title>Surname</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+				<property name="psdoc:microficheReference">
+					<title>Reference</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        
+		<aspect name="psdoc:bulkUploadAspect">
+            <title>Bulk upload aspect</title>
+            <description>Fields to assist with bulk document uploads</description>
+            <properties>
+            	<property name="psdoc:uploadReference">
+					<title>Upload Reference</title>
+                    <type>d:text</type>
+                </property>
+            	<property name="psdoc:preUploadDocumentName">
+					<title>Pre Upload Document Name</title>
+                    <type>d:text</type>
+                </property>
+       	        <property name="psdoc:postUploadDocumentName">
+					<title>Post Upload Document Name</title>
+                    <type>d:text</type>
+                </property>                
+			</properties>
+        </aspect>
+  		<aspect name="psdoc:adminSchemeControlDocumentAspect">
+            <title>Scheme control document aspect</title>
+            <properties>
+            	<property name="psdoc:schemeControlAdminScheme">
+					<title>Admin scheme name</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <multiple>true</multiple>
+                </property>
+			</properties>
+        </aspect>
+        <aspect name="psdoc:genysisInvensysLegacyAspect">
+            <title>Genysis Invensys legacy aspect</title>
+            <properties>
+            	<property name="psdoc:genysisStoragePlace">
+					<title>Genysis storage place (legacy field)</title>
+                    <type>d:text</type>
+                </property>
+            	<property name="psdoc:genysisDocumentType">
+					<title>Genysis document type (legacy field)</title>
+                    <type>d:text</type>
+                </property>
+			</properties>
+        </aspect>
+    </aspects>
+</model>

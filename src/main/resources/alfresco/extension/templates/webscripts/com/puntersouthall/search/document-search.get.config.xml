@@ -1,0 +1,233 @@
+<config>
+    <!-- Search configuration consists of following: -->
+    <search id="ps-admin-member-documents">
+        <!-- Query following document types -->
+        <type name="psdoc:adminMemberDocument" />
+        <type name="psform:newPayrollStarterForm" />
+        
+        <!-- Query based on following required and optional parameters. Both required and parameter have the same format. -->
+        <!-- Attributes of required and parameters tags: -->
+        <!-- - name - URL parameter name. -->
+        <!-- - property - Content model property to match. -->
+        <!-- - aspect - Aspect to join in query (property is defined on this aspect in content model). -->
+        <!--    - If not exist, property will be queried from document type. -->
+        <!-- - type - Type of property (either "literal" or "quoted"). Defines if value should be quoted in query filter. Defaults to "quoted". -->
+        <!--    - Number and boolean values should be literal while string and date values should be quoted. -->
+        <!-- - operator - Operator to use for filtering. Defaults to = (equals). Can be any of: =, <, >, <=, >=, <>, !=, like, not like -->
+        <!--    - NOTE: operator requires additional re-work for more complex fitering (e.g. in(), not in() contains, etc.) -->
+        <required name="DatabaseMemberID" aspect="psdoc:memberDetailsAspect" property="psdoc:memberRecordID" type="literal" />
+        <required name="CentralMemberRecordID" aspect="psdoc:memberDetailsAspect" property="psdoc:centralID" type="literal" />
+        
+        <parameter name="Activity" aspect="psdoc:activityAspect" property="psdoc:activity" />
+        <parameter name="SubActivity" aspect="psdoc:activityAspect" property="psdoc:subActivity" />
+        <parameter name="DocumentType" aspect="psdoc:generalAspect" property="psdoc:type" />
+        <parameter name="DocumentDateFrom" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&gt;=" />
+        <parameter name="DocumentDateTo" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&lt;=" />
+        <parameter name="WebDocument" aspect="psdoc:myPensionAspect" property="psdoc:webDoc" type="literal" />
+        <parameter name="WebDocumentType" aspect="psdoc:myPensionAspect" property="psdoc:webDocType" type="literal" />
+        
+        <!-- Use following properties in response JSON -->
+        <response property="psdoc:activity" />
+        <response property="psdoc:subActivity" />
+        <response property="cm:name" filter="true" aspect="cm:cmobject" type="quoted" operator="like"/>
+        <response property="psdoc:docDate" />
+        <response property="psdoc:type" />
+        <!-- aspect, type and operator are mandatory properties in case that field is used for filtering -->
+        <response property="psdoc:clientName" filter="true" aspect="psdoc:clientAspect" type="quoted" operator="like" />
+        <response property="psdoc:schemeName" filter="true" aspect="psdoc:schemeAspect" type="quoted" operator="like" />
+        <response property="psdoc:centralID" filter="true" aspect="psdoc:memberDetailsAspect" type="literal" operator="=" />
+        <response property="psdoc:memberRecordID" />
+        <response property="psdoc:firstName" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like" />
+        <response property="psdoc:surname" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like" />
+        <response property="psdoc:dob" />
+        <response property="psdoc:nino" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like" />
+        <response property="psdoc:webDoc" />
+        <response property="psdoc:webDocType" />
+    </search>
+    
+    <search id="all-member-virtual-folder">
+        <type name="psdoc:adminMemberDocument"/>
+        <type name="psdoc:payrollMemberDocument"/>
+        <type name="psform:newPayrollStarterForm"/>
+        
+        <required name="CentralMemberRecordID" aspect="psdoc:memberDetailsAspect" property="psdoc:centralID" type="literal" />
+        
+        <response property="psdoc:docDate" />
+        <response property="cm:name" filter="true" aspect="cm:cmobject" type="quoted" operator="like"/>
+        <response property="psdoc:activity" />
+        <response property="psdoc:subActivity" />
+        <response property="psdoc:type" />
+        <response property="psdoc:clientName" filter="true" aspect="psdoc:clientAspect" type="quoted" operator="like" />
+        <response property="psdoc:schemeName" filter="true" aspect="psdoc:schemeAspect" type="quoted" operator="like" />
+        <response property="psdoc:centralID" filter="true" aspect="psdoc:memberDetailsAspect" type="literal" operator="=" />
+        <response property="psdoc:memberRecordID" />
+        <response property="psdoc:firstName" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like" />
+        <response property="psdoc:surname" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like" />
+        <response property="psdoc:dob" />
+        <response property="psdoc:nino" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like"/>
+        <response property="psdoc:department" />
+    </search>
+    
+    <search id="ps-admin-scheme-documents">
+        <type name="psdoc:adminSchemeDocument" />
+        
+    	<parameter name="ClientName" aspect="psdoc:clientAspect" property="psdoc:clientName"/>
+       	<parameter name="SchemeName" aspect="psdoc:schemeAspect" property="psdoc:schemeName"/>
+       	<parameter name="Activity" aspect="psdoc:activityAspect" property="psdoc:activity"/>
+       	<parameter name="SubActivity" aspect="psdoc:activityAspect" property="psdoc:subActivity"/>
+       	<parameter name="DocumentType" aspect="psdoc:generalAspect" property="psdoc:type"/>
+       	<parameter name="DocumentDateFrom" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&gt;="/>
+       	<parameter name="DocumentDateTo" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&lt;="/>
+       	
+       	<response property="psdoc:activity" />
+       	<response property="psdoc:subActivity" />
+       	<response property="cm:name" />
+       	<response property="psdoc:docDate" />
+       	<response property="psdoc:type" />
+       	<response property="psdoc:clientName" />
+       	<response property="psdoc:schemeName" />
+     </search>
+    
+    <search id="ps-cashiering-member-documents">
+        <type name="psdoc:cashieringMemberDocument"/>
+        
+        <required name="DatabaseMemberID" aspect="psdoc:memberDetailsAspect" property="psdoc:memberRecordID" type="literal" />
+        <required name="CentralMemberRecordID" aspect="psdoc:memberDetailsAspect" property="psdoc:centralID" type="literal" />
+        
+        <parameter name="DocumentType" aspect="psdoc:generalAspect" property="psdoc:type"/>
+        <parameter name="DocumentDateFrom" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&gt;=" />
+        <parameter name="DocumentDateTo" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&lt;=" />
+        <parameter name="DocumentName" aspect="cm:cmobject" property="cm:name"/>
+        <parameter name="PaymentDateFrom" aspect="psdoc:paymentDateAspect" property="psdoc:paymentDate" operator="&gt;="/>
+        <parameter name="PaymentDateTo" aspect="psdoc:paymentDateAspect" property="psdoc:paymentDate" operator="&lt;="/>
+        <parameter name="PaymentAmount" aspect="psdoc:cashieringAspect" property="psdoc:paymentAmount" type="literal"/>
+        <parameter name="Payee" aspect="psdoc:cashieringAspect" property="psdoc:payee"/>
+        <parameter name="PaymentType" aspect="psdoc:cashieringAspect" property="psdoc:paymentType"/>
+        
+        <response property="psdoc:type" />
+        <response property="psdoc:paymentType" />
+        <response property="cm:name" filter="true" aspect="cm:cmobject" type="quoted" operator="like"/>
+        <response property="psdoc:docDate" />
+        <response property="psdoc:paymentDate" />
+        <response property="psdoc:paymentAmount" />
+        <response property="psdoc:payee" />
+        <response property="psdoc:clientName" filter="true" aspect="psdoc:clientAspect" type="quoted" operator="like" />
+        <response property="psdoc:schemeName" filter="true" aspect="psdoc:schemeAspect" type="quoted" operator="like" />
+        <response property="psdoc:centralID" filter="true" aspect="psdoc:memberDetailsAspect" type="literal" operator="=" />
+        <response property="psdoc:firstName" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like" />
+        <response property="psdoc:surname" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like" />
+        <response property="psdoc:dob" />
+        <response property="psdoc:nino" filter="true" aspect="psdoc:memberDetailsAspect" type="quoted" operator="like" />
+    </search>
+
+    <search id="ps-payroll-scheme-documents">
+        <type name="psdoc:payrollSchemeDocument" />
+        
+        <parameter name="PaymentDateFrom" aspect="psdoc:paymentDateAspect" property="psdoc:paymentDate" operator="&gt;="/>
+        <parameter name="PaymentDateTo" aspect="psdoc:paymentDateAspect" property="psdoc:paymentDate" operator="&lt;="/>
+        <parameter name="DocumentName" aspect="cm:cmobject" property="cm:name"/>
+        <parameter name="SubActivity" aspect="psdoc:activityAspect" property="psdoc:subActivity" />
+        <parameter name="ClientName" aspect="psdoc:clientAspect" property="psdoc:clientName"/>
+        <parameter name="SchemeName" aspect="psdoc:schemeAspect" property="psdoc:schemeName"/>
+        <parameter name="PeriodMonth" aspect="psdoc:periodAspect" property="psdoc:periodMonth"/>
+        <parameter name="PeriodYear" aspect="psdoc:periodAspect" property="psdoc:periodYear" type="literal"/>
+        
+        <response property="psdoc:activity" />
+        <response property="psdoc:subActivity" />
+        <response property="cm:name" filter="true" aspect="cm:cmobject" type="quoted" operator="like"/>
+        <response property="psdoc:docDate" />
+        <response property="psdoc:periodMonth" />
+        <response property="psdoc:periodYear" />
+        <response property="psdoc:clientName" filter="true" aspect="psdoc:clientAspect" type="quoted" operator="like" />
+        <response property="psdoc:schemeName" filter="true" aspect="psdoc:schemeAspect" type="quoted" operator="like" />
+    </search>
+    
+    <search id="ps-payroll-member-documents">
+        <type name="psdoc:payrollMemberDocument" />
+        
+        <required name="DatabaseMemberID" aspect="psdoc:memberDetailsAspect" property="psdoc:memberRecordID" type="literal" />
+        <required name="CentralMemberRecordID" aspect="psdoc:memberDetailsAspect" property="psdoc:centralID" type="literal" />
+        
+        <parameter name="DocumentDateFrom" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&gt;=" />
+        <parameter name="DocumentDateTo" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&lt;=" />
+        <parameter name="PayrollSubActivity" aspect="psdoc:activityAspect" property="psdoc:subActivity" />
+        
+        <response property="psdoc:activity" />
+        <response property="psdoc:subActivity"  filter="true" aspect="psdoc:activityAspect" type="quoted" operator="like"/>
+        <response property="cm:name" filter="true" aspect="cm:cmobject" type="quoted" operator="like"/>
+        <response property="psdoc:docDate" />
+        <response property="psdoc:clientName" />
+        <response property="psdoc:schemeName" />
+        <response property="psdoc:centralID" />
+        <response property="psdoc:memberRecordID" />
+        <response property="psdoc:firstName" />
+        <response property="psdoc:surname" />
+        <response property="psdoc:dob" />
+        <response property="psdoc:nino" />
+    </search>
+    
+    <search id="ps-admin-member-microfiche-documents">
+        <type name="psdoc:microficheMemberDocument" />
+        
+        <parameter name="DocumentDateFrom" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&gt;=" />
+        <parameter name="DocumentDateTo" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&lt;=" />
+        <parameter name="DocumentName" aspect="cm:cmobject" property="cm:name"/>
+        <parameter name="ClientName" aspect="psdoc:clientAspect" property="psdoc:clientName"/>
+        <parameter name="SchemeName" aspect="psdoc:schemeAspect" property="psdoc:schemeName"/>
+        <parameter name="MicroficheSurname" aspect="psdoc:microficheMemberAspect" property="psdoc:microficheSurname"/>
+        <parameter name="MicroficheInitials" aspect="psdoc:microficheMemberAspect" property="psdoc:microficheInitials"/>
+        <parameter name="MicroficheReference" aspect="psdoc:microficheMemberAspect" property="psdoc:microficheReference"/>
+        
+        <response property="cm:name" filter="true" aspect="cm:cmobject" type="quoted" operator="like"/>
+        <response property="psdoc:docDate" />
+        <response property="psdoc:type" />
+        <response property="psdoc:clientName" />
+        <response property="psdoc:schemeName" />
+        <response property="psdoc:microficheSurname" />
+        <response property="psdoc:microficheInitials" />
+        <response property="psdoc:microficheReference" filter="true" aspect="psdoc:microficheMemberAspect" type="quoted" operator="like"/>
+    </search>
+    
+    <search id="ps-admin-scheme-control-documents">
+        <type name="psdoc:adminSchemeControlDocument" />
+        
+        <parameter name="DocumentType" aspect="psdoc:generalAspect" property="psdoc:type"/>
+        <parameter name="DocumentDateFrom" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&gt;=" />
+        <parameter name="DocumentDateTo" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&lt;=" />
+        <parameter name="DocumentName" aspect="cm:cmobject" property="cm:name"/>
+        <parameter name="ClientName" aspect="psdoc:clientAspect" property="psdoc:clientName"/>
+        <parameter name="SchemeControlAdminScheme" aspect="psdoc:adminSchemeControlDocumentAspect" property="psdoc:schemeControlAdminScheme"/>
+        
+        <response property="cm:name" filter="true" aspect="cm:cmobject" type="quoted" operator="like"/>
+        <response property="psdoc:docDate" />
+        <response property="psdoc:type" />
+        <response property="psdoc:microficheMemberAspect" />
+    </search>
+    
+    <search id="ps-cashiering-scheme-documents">
+        <type name="psdoc:cashieringSchemeDocument"/>
+        
+        <parameter name="DocumentType" aspect="psdoc:generalAspect" property="psdoc:type"/>
+        <parameter name="DocumentDateFrom" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&gt;=" />
+        <parameter name="DocumentDateTo" aspect="psdoc:generalAspect" property="psdoc:docDate" operator="&lt;=" />
+        <parameter name="DocumentName" aspect="cm:cmobject" property="cm:name"/>
+        <parameter name="ClientName" aspect="psdoc:clientAspect" property="psdoc:clientName"/>
+        <parameter name="SchemeName" aspect="psdoc:schemeAspect" property="psdoc:schemeName"/>
+        <parameter name="PaymentDateFrom" aspect="psdoc:paymentDateAspect" property="psdoc:paymentDate" operator="&gt;="/>
+        <parameter name="PaymentDateTo" aspect="psdoc:paymentDateAspect" property="psdoc:paymentDate" operator="&lt;="/>
+        <parameter name="PaymentAmount" aspect="psdoc:cashieringAspect" property="psdoc:paymentAmount" type="literal"/>
+        <parameter name="Payee" aspect="psdoc:cashieringAspect" property="psdoc:payee"/>
+        <parameter name="PaymentType" aspect="psdoc:cashieringAspect" property="psdoc:paymentType"/>
+        
+        <response property="psdoc:type" />
+        <response property="psdoc:paymentType" />
+        <response property="cm:name" filter="true" aspect="cm:cmobject" type="quoted" operator="like"/>
+        <response property="psdoc:docDate" />
+        <response property="psdoc:paymentDate" />
+        
+        <response property="psdoc:paymentAmount" filter="true" aspect="psdoc:cashieringAspect" type="literal" operator="="/>
+        <response property="psdoc:payee" filter="true" aspect="psdoc:cashieringAspect" type="quoted" operator="like"/>
+        <response property="psdoc:clientName"  />
+        <response property="psdoc:schemeName"  />
+    </search>
+</config>

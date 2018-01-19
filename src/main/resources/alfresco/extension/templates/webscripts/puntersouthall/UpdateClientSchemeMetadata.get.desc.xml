@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Update Client or Scheme Metadata</shortname>
+  <description>Webscript that takes the Clients or Scheme ID from the CMDB and updates any nodes with the new name provided. A search can be run first to see how many nodes and number of nodes returned can be limited too</description>
+  <url>/puntersouthall/UpdateClientScheme?UpdateType={UpdateType}&amp;ID={ID}&amp;NewName={NewName}&amp;MaxPermissionChecks={MaxPermissionChecks}&amp;MaxPermissionCheckTimeMillis={MaxPermissionCheckTimeMillis}&amp;RunUpdate={RunUpdate}</url>
+  <authentication>admin</authentication>
+  <format default="">argument</format>
+  <family>Punter Southall WebScripts</family>
+</webscript>

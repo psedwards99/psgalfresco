@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Get Help Html</shortname>
+  <description>Get Help Html</description>
+  <url>/puntersouthall/help-html?activity={activity}&amp;subActivity={subActivity}</url>
+  <authentication>none</authentication>
+  <format default="">argument</format>
+  <family>Punter Southall WebScripts</family>
+</webscript>

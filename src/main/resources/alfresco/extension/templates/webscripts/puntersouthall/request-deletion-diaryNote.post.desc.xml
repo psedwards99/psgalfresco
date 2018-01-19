@@ -1,0 +1,9 @@
+<webscript>
+  <shortname>Delete Diary Note Entry</shortname>
+  <description>Delete Diary Note Entry</description>
+  <url>/puntersouthall/diaryNote-delete-entry</url>
+  <authentication>user</authentication>
+  <format default="json">argument</format>
+  <transaction>required</transaction>
+  <family>Punter Southall WebScripts</family>
+</webscript>

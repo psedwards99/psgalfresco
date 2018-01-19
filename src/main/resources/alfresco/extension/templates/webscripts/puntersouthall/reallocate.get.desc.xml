@@ -1,0 +1,6 @@
+<webscript>
+ <shortname>Re-allocate workflow</shortname>
+ <description>Re-allocate workflow task to new user</description>
+ <url>/puntersouthall/reallocate</url>
+<authentication runas="admin">user</authentication>
+</webscript>

@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Lock Nodes</shortname>
+  <description>java backed webscript created to lock all documents that were previously locked within filenet</description>
+  <url>/puntersouthall/LockNodes?MaxPermissionChecks={MaxPermissionChecks}&amp;MaxPermissionCheckTimeMillis={MaxPermissionCheckTimeMillis}&amp;LockFiles={LockFiles}&amp;SearchOnly={SearchOnly}</url>
+  <authentication>admin</authentication>
+  <format default="">argument</format>
+  <family>Punter Southall WebScripts</family>
+</webscript>

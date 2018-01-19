@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>External Endpoint Proxy</shortname>
+  <description>Webscript used as a proxy to external webservice</description>
+  <url>/external/{method}</url>
+  <format default="json">extension</format> 
+  <authentication>user</authentication>
+  <family>External Endpoint</family>
+</webscript> 
