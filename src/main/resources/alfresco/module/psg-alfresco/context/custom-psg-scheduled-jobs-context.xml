@@ -22,7 +22,7 @@
 		</property>
 	</bean>
 
-	<bean id="com.puntersouthall.psgdocumentimporter.jobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+	<bean id="PSGDocumentImporter" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass">
 			<value>com.puntersouthall.schedule.PSGDocumentImporterScheduledJob</value>
 		</property>
@@ -40,7 +40,7 @@
 
 	<bean id="com.puntersouthall.psgdocumentimporter.scheduledjob.trigger" class="org.alfresco.util.CronTriggerBean">
 		<property name="jobDetail">
-			<ref bean="com.puntersouthall.psgdocumentimporter.jobDetail" />
+			<ref bean="PSGDocumentImporter" />
 		</property>
 		<property name="scheduler">
 			<ref bean="schedulerFactory"/>
