@@ -41,6 +41,8 @@
 					<type>d:boolean</type>
 				</property>
 			</properties>
+
+
 			<!-- 
 			<mandatory-aspects> 
 				<aspect>pswf:memberDetails</aspect> 

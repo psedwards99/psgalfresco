@@ -11,4 +11,5 @@ public interface CustomLockService {
 	 * @return true if the lock is made, false if it fails
 	 */
 	public boolean lockNode(NodeRef nodeDocument);
+
 }

@@ -13,7 +13,6 @@ public class CustomLockServiceImpl extends BaseProcessorExtension implements Cus
 	private final Logger logger = Logger.getLogger(CustomLockServiceImpl.class);
 	private ServiceRegistry serviceRegistry;
 	private LockService lockService;
-	
 
 	public void setServiceRegistry(ServiceRegistry serviceRegistry) {
 		this.serviceRegistry = serviceRegistry;
@@ -40,5 +39,6 @@ public class CustomLockServiceImpl extends BaseProcessorExtension implements Cus
 		logger.info("File has NOT been locked - " + nodeDocument);	
 		return false;
 	}
+
 
 }

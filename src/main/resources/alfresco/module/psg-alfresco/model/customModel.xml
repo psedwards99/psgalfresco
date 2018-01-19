@@ -12,6 +12,7 @@
    <author>Joe Bujok</author>
    <version>1.0</version>
 
+
    <imports>
    	  <!-- Import Alfresco Dictionary Definitions -->
       <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
@@ -26,7 +27,7 @@
    </namespaces>
 
    <constraints></constraints>
-   
+
  <types>
  		<!-- Enterprise-wide generic document type -->
 
