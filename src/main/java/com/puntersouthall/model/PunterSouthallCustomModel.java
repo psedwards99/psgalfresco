@@ -13,6 +13,7 @@ public interface PunterSouthallCustomModel {
 	/**
 	 * Types
 	 */
+
 	static final QName TYPE_DOCUMENT = QName.createQName(NS_MODEL_URI, "document");
 	static final QName TYPE_ADMIN_MEMBER_DOCUMENT = QName.createQName(NS_MODEL_URI, "adminMemberDocument");
 	static final QName TYPE_ADMIN_SCHEME_DOCUMENT = QName.createQName(NS_MODEL_URI, "adminSchemeDocument");
