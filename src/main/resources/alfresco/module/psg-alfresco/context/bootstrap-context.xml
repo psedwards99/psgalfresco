@@ -18,7 +18,6 @@
         </property>
         <property name="labels">
             <list>
-                <value>alfresco/module/${project.artifactId}/messages/content-model</value>
                 <value>alfresco/module/${project.artifactId}/messages/psgActions</value>
                 <value>alfresco/module/${project.artifactId}/messages/psgWorkflow</value>
             </list>
