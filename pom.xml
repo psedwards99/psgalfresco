@@ -66,7 +66,13 @@
         <puntersouthall.webservice.location>${profile.puntersouthall.webservice.location}</puntersouthall.webservice.location>
         <puntersouthall.webservice.webServiceClient>${profile.puntersouthall.webservice.webServiceClient}</puntersouthall.webservice.webServiceClient>
 
-        <puntersouthall.payrollNewStarterForm.outputLocation>${puntersouthall.payrollNewStarterForm.outputLocation}</puntersouthall.payrollNewStarterForm.outputLocation>
+        <puntersouthall.payrollNewStarterForm.outputLocation>${profile.puntersouthall.payrollNewStarterForm.outputLocation}</puntersouthall.payrollNewStarterForm.outputLocation>
+
+        <!-- New Scheduled Job Parameters -->
+        <puntersouthall.psgDocumentImporter.cron>${profile.puntersouthall.psgDocumentImporter.cron}</puntersouthall.psgDocumentImporter.cron>
+        <puntersouthall.psgDocumentImporter.filesystemroot>${profile.puntersouthall.psgDocumentImporter.filesystemroot}</puntersouthall.psgDocumentImporter.filesystemroot>
+        <puntersouthall.psgDocumentImporter.repositoryroot>${profile.puntersouthall.psgDocumentImporter.repositoryroot}</puntersouthall.psgDocumentImporter.repositoryroot>
+        <puntersouthall.psgDocumentImporter.officelocations>${profile.puntersouthall.psgDocumentImporter.officelocations}</puntersouthall.psgDocumentImporter.officelocations>
 
     </properties>
 
@@ -441,7 +447,7 @@
             <properties>
                 <profile.puntersouthall.automatedDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.automatedDocumentImporter.cron>
 
-                <profile.puntersouthall.psgDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
+                <profile.puntersouthall.psgDocumentImporter.cron>0 30 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
                 <profile.puntersouthall.psgDocumentImporter.filesystemroot>/users/pedwards/import</profile.puntersouthall.psgDocumentImporter.filesystemroot>
                 <profile.puntersouthall.psgDocumentImporter.repositoryroot>/app:company_home</profile.puntersouthall.psgDocumentImporter.repositoryroot>
                 <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Wokingham,Bristol</profile.puntersouthall.psgDocumentImporter.officelocations>
@@ -457,7 +463,7 @@
 
                 <profile.puntersouthall.webservice.location>https://alfrescodevwebservice:9090</profile.puntersouthall.webservice.location>
                 <profile.puntersouthall.webservice.webServiceClient>@WebServiceClient(name="PunterSouthallService", targetNamespace="http://puntersouthall.com/webservice/alfresco/", wsdlLocation="https://alfrescodevwebservice:9090/PunterSouthallWCF/PunterSouthallService.svc?wsdl")</profile.puntersouthall.webservice.webServiceClient>
-                <puntersouthall.payrollNewStarterForm.outputLocation>/users/pedwards/newstarter</puntersouthall.payrollNewStarterForm.outputLocation>
+                <profile.puntersouthall.payrollNewStarterForm.outputLocation>/users/pedwards/newstarter</profile.puntersouthall.payrollNewStarterForm.outputLocation>
             </properties>
         </profile>
         <profile>
@@ -487,7 +493,7 @@
 
                 <profile.puntersouthall.webservice.location>https://alfrescodevwebservice:9090</profile.puntersouthall.webservice.location>
                 <profile.puntersouthall.webservice.webServiceClient>@WebServiceClient(name="PunterSouthallService", targetNamespace="http://puntersouthall.com/webservice/alfresco/", wsdlLocation="https://alfrescodevwebservice:9090/PunterSouthallWCF/PunterSouthallService.svc?wsdl")</profile.puntersouthall.webservice.webServiceClient>
-                <puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/UAT/</puntersouthall.payrollNewStarterForm.outputLocation>
+                <profile.puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/UAT/</profile.puntersouthall.payrollNewStarterForm.outputLocation>
             </properties>
         </profile>
         <profile>
@@ -517,7 +523,7 @@
 
                 <profile.puntersouthall.webservice.location>https://alfrescouatwebservice:9090</profile.puntersouthall.webservice.location>
                 <profile.puntersouthall.webservice.webServiceClient>@WebServiceClient(name="PunterSouthallService", targetNamespace="http://puntersouthall.com/webservice/alfresco/", wsdlLocation="https://alfrescouatwebservice:9090/PunterSouthallWCF/PunterSouthallService.svc?wsdl")</profile.puntersouthall.webservice.webServiceClient>
-                <puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/UAT/</puntersouthall.payrollNewStarterForm.outputLocation>
+                <profile.puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/UAT/</profile.puntersouthall.payrollNewStarterForm.outputLocation>
             </properties>
         </profile>
         <profile>
@@ -547,7 +553,7 @@
 
                 <profile.puntersouthall.webservice.location>https://alfrescowebservice:9090</profile.puntersouthall.webservice.location>
                 <profile.puntersouthall.webservice.webServiceClient>@WebServiceClient(name="PunterSouthallService", targetNamespace="http://puntersouthall.com/webservice/alfresco/", wsdlLocation="https://alfrescowebservice:9090/PunterSouthallWCF/PunterSouthallService.svc?wsdl")</profile.puntersouthall.webservice.webServiceClient>
-                <puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/Live/</puntersouthall.payrollNewStarterForm.outputLocation>
+                <profile.puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/Live/</profile.puntersouthall.payrollNewStarterForm.outputLocation>
             </properties>
         </profile>
     </profiles>
