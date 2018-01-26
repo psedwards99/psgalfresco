@@ -52,7 +52,7 @@ public class PSGDocumentImporter {
 	private static final QName LOCK_QNAME = QName.createQName(NamespaceService.SYSTEM_MODEL_1_0_URI, "PSGDocumentImporterJob"); 
 	private static final long LOCK_TTL = 30000L;
 
-	/*************************************************************************************************/
+	//************************************************************************************************
 	public void setServiceRegistry(ServiceRegistry serviceRegistry) {
 		this.serviceRegistry = serviceRegistry;
 		this.fileFolderService = serviceRegistry.getFileFolderService();
@@ -65,7 +65,7 @@ public class PSGDocumentImporter {
 	public ServiceRegistry getServiceRegistry() {
 		return this.serviceRegistry;
 	}
-	/*************************************************************************************************/
+	//************************************************************************************************
 	/**
 	 * Acquire the job lock
 	 */
@@ -84,7 +84,7 @@ public class PSGDocumentImporter {
 
 		return lockToken;
 	}
-	/*************************************************************************************************/
+	//************************************************************************************************
 	/**
 	 * Release the lock after the job completes
 	 */
@@ -104,7 +104,7 @@ public class PSGDocumentImporter {
 			}
 		}
 	}
-	/*************************************************************************************************/
+	//************************************************************************************************
 	private class LockCallback implements JobLockRefreshCallback
 	{
 		final AtomicBoolean running = new AtomicBoolean(true);
@@ -126,22 +126,22 @@ public class PSGDocumentImporter {
 		}
 	}
 
-	/*************************************************************************************************/
+	//************************************************************************************************
 	public void setOfficeLocations(String officeLocations) {
 		this.officeLocations = officeLocations;
 	}
 	
-	/*************************************************************************************************/
+	//************************************************************************************************
 	public void setRepositoryRoot(String repositoryRoot) {
 		this.repositoryRoot = repositoryRoot;
 	}
 	
-	/*************************************************************************************************/
+	//************************************************************************************************
 	public void setFileSystemRoot(String filesystemRoot) {
 		this.fileSystemRoot = filesystemRoot;
 	}
 	
-	/*************************************************************************************************/
+	//************************************************************************************************
 	/**
 	 * Executer implementation
 	 */
@@ -156,31 +156,27 @@ public class PSGDocumentImporter {
 			// eg : Map<location of input file outside alfresco, lucene search to find folder location within Alfresco to put file>
 			Map<String, String> uploadPathNames = new HashMap<String,String>();
 			String[] offices = officeLocations.split(",");
-			
+			logger.debug("Offices = " + offices);
+			logger.debug("repositoryRoot = " + repositoryRoot);
+			logger.debug("fileSystemRoot  = " + fileSystemRoot);
 			for (int i=0; i<offices.length; i++) {
 				String fileSystemPath = fileSystemRoot.concat("/"+offices[i]);
-				String repoPath="PATH:\"/app:company_home/"+(repositoryRoot.replace("/","/cm:") + "\"");
+				String repoPath="PATH:\"/app:company_home"+(repositoryRoot.replace("/","/cm:") + "/cm:"+offices[i]+"\"");
+				repoPath = repoPath.replace(" " ,"_x0020_");
 				logger.debug("Adding fileSystemPath : " + fileSystemPath);
 				logger.debug("Adding repoPath : " + repoPath);
 				uploadPathNames.put(fileSystemPath, repoPath);
 			}
 			
-//			uploadPathNames.put(scanningLocation.concat("/Scanning - Birmingham"), "PATH:\"/app:company_home/cm:Uploads/cm:Scanning/cm:Birmingham/cm:Paper_x0020_Post\"");
-//			uploadPathNames.put(scanningLocation.concat("/Scanning - Bristol"), "PATH:\"/app:company_home/cm:Uploads/cm:Scanning/cm:Bristol/cm:Paper_x0020_Post\"");
-//			uploadPathNames.put(scanningLocation.concat("/Scanning - Chelmsford"), "PATH:\"/app:company_home/cm:Uploads/cm:Scanning/cm:Chelmsford/cm:Paper_x0020_Post\"");
-//			uploadPathNames.put(scanningLocation.concat("/Scanning - Edinburgh"), "PATH:\"/app:company_home/cm:Uploads/cm:Scanning/cm:Edinburgh/cm:Paper_x0020_Post\"");
-//			uploadPathNames.put(scanningLocation.concat("/Scanning - London"), "PATH:\"/app:company_home/cm:Uploads/cm:Scanning/cm:London/cm:Paper_x0020_Post\"");
-//			uploadPathNames.put(scanningLocation.concat("/Scanning - Newcastle"), "PATH:\"/app:company_home/cm:Uploads/cm:Scanning/cm:Newcastle/cm:Paper_x0020_Post\"");
-//			uploadPathNames.put(scanningLocation.concat("/Scanning - Perth"), "PATH:\"/app:company_home/cm:Uploads/cm:Scanning/cm:Perth/cm:Paper_x0020_Post\"");
-//			uploadPathNames.put(scanningLocation.concat("/Scanning - Wokingham"), "PATH:\"/app:company_home/cm:Uploads/cm:Scanning/cm:Wokingham/cm:Paper_x0020_Post\"");
 			// Get registries and services
 			ServiceRegistry serviceRegistry = getServiceRegistry();
 			SearchService searchService = serviceRegistry.getSearchService();
 			
 			StoreRef storeRef = new StoreRef(StoreRef.PROTOCOL_WORKSPACE, "SpacesStore");			
-			
+
+
 			for (String key : uploadPathNames.keySet())
-			{	
+			{
 			// get the noderef based on the search path 	
 			   ResultSet rs = searchService.query(storeRef, SearchService.LANGUAGE_LUCENE, uploadPathNames.get(key));
 		       NodeRef searchResultNodeRef = null;
@@ -191,6 +187,7 @@ public class PSGDocumentImporter {
 		               throw new AlfrescoRuntimeException("Didn't find single folder based on search : " + uploadPathNames.get(key));
 		           }
 		           searchResultNodeRef = rs.getNodeRef(0);
+		           logger.debug("Found destination folder node ref for " + key);
 		       }
 		       finally
 		       {
@@ -201,40 +198,46 @@ public class PSGDocumentImporter {
 				File uploadPath = new File(key);
 				
 				if (uploadPath.isDirectory()) {
+				    logger.debug("Found source folder on file system : " + key);
 					
 					File[] files = uploadPath.listFiles();
-					Arrays.sort( files, new Comparator<Object>()
-					{
-					    public int compare(Object o1, Object o2) {
+					if (files != null) {
+                        Arrays.sort(files, new Comparator<Object>() {
+                            public int compare(Object o1, Object o2) {
 
-					        if (((File)o1).lastModified() < ((File)o2).lastModified()) {
-					            return -1;
-					        } else if (((File)o1).lastModified() > ((File)o2).lastModified()) {
-					            return +1;
-					        } else {
-					            return 0;
-					        }
-					    }
+                                if (((File) o1).lastModified() < ((File) o2).lastModified()) {
+                                    return -1;
+                                } else if (((File) o1).lastModified() > ((File) o2).lastModified()) {
+                                    return +1;
+                                } else {
+                                    return 0;
+                                }
+                            }
 
-					}); 
-					
-					for (File file : files) {						
-						NodeRef uploadedFile = createFile(serviceRegistry, documentLibrary, file);
+                        });
+                    }
+					logger.debug("Found " + files.length + " files to upload from " + key);
+					for (File file : files) {
+					    String officeName  = key.substring(key.lastIndexOf('/')+1);
+						NodeRef uploadedFile = createFile(serviceRegistry, documentLibrary, file, officeName );
 						String fileName = file.getName();
 						
 						if (uploadedFile == null) { 
-							System.out.println("File not uploaded : " + fileName);
+							logger.error("File not uploaded : " + fileName);
 						}
 						else {							
-							System.out.println("File uploaded : " + fileName);
+							logger.info("File uploaded : " + fileName);
 							
 							if(file.delete())
-								System.out.println("File deleted : " + fileName);
+								logger.info("File deleted : " + fileName);
 							else
-								System.out.println("File not deleted : " + fileName);
+								logger.error("File not deleted : " + fileName);
 						}
 					}
-				}									
+				}
+				else {
+				    logger.warn("No source folder found on file system : " + key);
+                }
 			}
 		}
 		catch (LockAcquisitionException e)
@@ -262,7 +265,7 @@ public class PSGDocumentImporter {
 		}
 	}
 	
-	/*************************************************************************************************/
+	//************************************************************************************************
 	private QName getAssocTypeQName(ServiceRegistry serviceRegistry, NodeRef parentNodeRef)
     {
 		NodeService nodeService = serviceRegistry.getNodeService();
@@ -283,8 +286,8 @@ public class PSGDocumentImporter {
         return assocTypeQName;
     }
 	
-	/*************************************************************************************************/
-	private NodeRef createFile(ServiceRegistry serviceRegistry, NodeRef parentNodeRef, File file) {
+	//************************************************************************************************
+	private NodeRef createFile(ServiceRegistry serviceRegistry, NodeRef parentNodeRef, File file, String officeName) {
 		
 		AuthenticationService authenticationService = serviceRegistry.getAuthenticationService();
 		ContentService contentService = serviceRegistry.getContentService();
@@ -312,7 +315,7 @@ public class PSGDocumentImporter {
         String currentUser = authenticationService.getCurrentUserName();
         contentProps.put(ContentModel.PROP_CREATOR, currentUser == null ? "unknown" : currentUser);
 
-        // create the node to represent the node
+        // create the node to represent the file
         String assocName = QName.createValidLocalName(file.getName());
         ChildAssociationRef assocRef = nodeService.createNode(
                 parentNodeRef,
@@ -325,9 +328,7 @@ public class PSGDocumentImporter {
         // apply the titled aspect - title and description
         Map<QName, Serializable> titledProps = new HashMap<QName, Serializable>(5);
         titledProps.put(ContentModel.PROP_TITLE, file.getName());
-        String FilePathStr = file.getPath();
-        String ScanningOffice = FilePathStr.substring(FilePathStr.indexOf("Scanning"), FilePathStr.indexOf("\\",FilePathStr.indexOf("Scanning")));
-        titledProps.put(ContentModel.PROP_DESCRIPTION, ScanningOffice);
+        titledProps.put(ContentModel.PROP_DESCRIPTION, officeName);
 
         nodeService.addAspect(fileNodeRef, ContentModel.ASPECT_TITLED, titledProps);
 
