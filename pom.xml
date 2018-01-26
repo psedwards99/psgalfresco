@@ -446,13 +446,13 @@
             </activation>
             <properties>
                 <profile.puntersouthall.automatedDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.automatedDocumentImporter.cron>
-
-                <profile.puntersouthall.psgDocumentImporter.cron>0 30 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
-                <profile.puntersouthall.psgDocumentImporter.filesystemroot>/users/pedwards/import</profile.puntersouthall.psgDocumentImporter.filesystemroot>
-                <profile.puntersouthall.psgDocumentImporter.repositoryroot>/app:company_home</profile.puntersouthall.psgDocumentImporter.repositoryroot>
-                <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Wokingham,Bristol</profile.puntersouthall.psgDocumentImporter.officelocations>
-
                 <profile.puntersouthall.automatedDocumentImporter.scanningLocation>/users/pedwards/scanning</profile.puntersouthall.automatedDocumentImporter.scanningLocation>
+
+                <profile.puntersouthall.psgDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
+                <profile.puntersouthall.psgDocumentImporter.filesystemroot>/users/pedwards/import</profile.puntersouthall.psgDocumentImporter.filesystemroot>
+                <profile.puntersouthall.psgDocumentImporter.repositoryroot>/Activiti/Post Room</profile.puntersouthall.psgDocumentImporter.repositoryroot>
+                <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Bristol,Chelmsford,Edinburgh,London,Newcastle,Perth,Wokingham</profile.puntersouthall.psgDocumentImporter.officelocations>
+
 
                 <profile.puntersouthall.automatedDocumentUpdater.cron>0 0 * * * ?</profile.puntersouthall.automatedDocumentUpdater.cron>
 
@@ -478,8 +478,8 @@
 
                 <profile.puntersouthall.psgDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.psgDocumentImporter.cron>
                 <profile.puntersouthall.psgDocumentImporter.filesystemroot>/users/pedwards/import</profile.puntersouthall.psgDocumentImporter.filesystemroot>
-                <profile.puntersouthall.psgDocumentImporter.repositoryroot>/app:company_home</profile.puntersouthall.psgDocumentImporter.repositoryroot>
-                <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Wokingham,Bristol</profile.puntersouthall.psgDocumentImporter.officelocations>
+                <profile.puntersouthall.psgDocumentImporter.repositoryroot>/Activiti/PostRoom</profile.puntersouthall.psgDocumentImporter.repositoryroot>
+                <profile.puntersouthall.psgDocumentImporter.officelocations>Birmingham,Bristol,Chelmsford,Edinburgh,London,Newcastle,Perth,Wokingham</profile.puntersouthall.psgDocumentImporter.officelocations>
 
                 <profile.puntersouthall.automatedDocumentImporter.cron>0 0 * * * ?</profile.puntersouthall.automatedDocumentImporter.cron>
                 <profile.puntersouthall.automatedDocumentImporter.scanningLocation>//sapp012/Output/Dev</profile.puntersouthall.automatedDocumentImporter.scanningLocation>

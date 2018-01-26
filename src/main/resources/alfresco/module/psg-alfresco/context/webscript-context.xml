@@ -20,4 +20,10 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
+	<bean id="webscript.com.puntersouthall.remote.external.get" class="com.puntersouthall.remote.ExternalResourcesWebScript"
+		  parent="webscript">
+		<property name="externalUrlBase">
+			<value>${external.resource.base_url}</value>
+		</property>
+	</bean>
 </beans>
