@@ -156,7 +156,7 @@ public class PSGDocumentImporter {
 			// eg : Map<location of input file outside alfresco, lucene search to find folder location within Alfresco to put file>
 			Map<String, String> uploadPathNames = new HashMap<String,String>();
 			String[] offices = officeLocations.split(",");
-			logger.debug("Offices = " + offices);
+			logger.debug("Offices = " + officeLocations);
 			logger.debug("repositoryRoot = " + repositoryRoot);
 			logger.debug("fileSystemRoot  = " + fileSystemRoot);
 			for (int i=0; i<offices.length; i++) {
@@ -317,35 +317,40 @@ public class PSGDocumentImporter {
 
         // create the node to represent the file
         String assocName = QName.createValidLocalName(file.getName());
-        ChildAssociationRef assocRef = nodeService.createNode(
-                parentNodeRef,
-                assocTypeQName,
-                QName.createQName(NamespaceService.CONTENT_MODEL_1_0_URI, assocName),
-                ContentModel.TYPE_CONTENT, contentProps);
 
-        NodeRef fileNodeRef = assocRef.getChildRef();
-        
-        // apply the titled aspect - title and description
-        Map<QName, Serializable> titledProps = new HashMap<QName, Serializable>(5);
-        titledProps.put(ContentModel.PROP_TITLE, file.getName());
-        titledProps.put(ContentModel.PROP_DESCRIPTION, officeName);
+        NodeRef exsitingNode = nodeService.getChildByName(parentNodeRef,assocTypeQName,assocName);
+        if (exsitingNode == null) {
 
-        nodeService.addAspect(fileNodeRef, ContentModel.ASPECT_TITLED, titledProps);
+            ChildAssociationRef assocRef = nodeService.createNode(
+                    parentNodeRef,
+                    assocTypeQName,
+                    QName.createQName(NamespaceService.CONTENT_MODEL_1_0_URI, assocName),
+                    ContentModel.TYPE_CONTENT, contentProps);
 
-         // get a writer for the content and put the file
-        ContentWriter writer = contentService.getWriter(fileNodeRef, ContentModel.PROP_CONTENT, true);
-        try
-        {
-            writer.putContent(new BufferedInputStream(new FileInputStream(file)));
+            NodeRef fileNodeRef = assocRef.getChildRef();
+
+            // apply the titled aspect - title and description
+            Map<QName, Serializable> titledProps = new HashMap<QName, Serializable>(5);
+            titledProps.put(ContentModel.PROP_TITLE, file.getName());
+            titledProps.put(ContentModel.PROP_DESCRIPTION, officeName);
+
+            nodeService.addAspect(fileNodeRef, ContentModel.ASPECT_TITLED, titledProps);
+
+            // get a writer for the content and put the file
+            ContentWriter writer = contentService.getWriter(fileNodeRef, ContentModel.PROP_CONTENT, true);
+            try {
+                writer.putContent(new BufferedInputStream(new FileInputStream(file)));
+            } catch (ContentIOException e) {
+                throw new FileImporterException("Failed to load content from " + file.getPath(), e);
+            } catch (java.io.FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            return fileNodeRef;
         }
-        catch (ContentIOException e)
-        {
-            throw new FileImporterException("Failed to load content from "+file.getPath(), e);
+        else {
+            logger.error("File with same name (" + assocName +") already exists in target folder.");
+            return null;
         }
-        catch (java.io.FileNotFoundException e) {
-			e.printStackTrace();
-		}
-        
-        return fileNodeRef;	
 	}
 }
