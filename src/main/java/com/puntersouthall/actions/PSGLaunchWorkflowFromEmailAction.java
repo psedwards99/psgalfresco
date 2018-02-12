@@ -31,6 +31,8 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
+
 
 public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase {
 
@@ -136,11 +138,11 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
                 if (nodeService.hasAspect(theEmailNodeRef, ContentModel.ASPECT_EMAILED)) {
 
                     // Set initiator as the creator
-                    NodeRef initiator = personService.getPerson((String) nodeService.getProperty(theEmailNodeRef, ContentModel.PROP_CREATOR));
-                    Serializable initiatorHomeFolder = nodeService.getProperty(initiator, ContentModel.PROP_HOMEFOLDER);
+                    //NodeRef initiator = personService.getPerson((String) nodeService.getProperty(theEmailNodeRef, ContentModel.PROP_CREATOR));
+                    //Serializable initiatorHomeFolder = nodeService.getProperty(initiator, ContentModel.PROP_HOMEFOLDER);
 
                     //Get the parent (MyPension Emails) folder where the email enters alfresco.
-                    NodeRef parentFolder = nodeService.getPrimaryParent(theEmailNodeRef).getParentRef();
+                    //NodeRef parentFolder = nodeService.getPrimaryParent(theEmailNodeRef).getParentRef();
 
                     // Get the attachments from the email node
                     List<AssociationRef> assocs = nodeService.getTargetAssocs(theEmailNodeRef, ContentModel.ASSOC_ATTACHMENTS);
@@ -237,13 +239,11 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
                         logger.debug("Return from start : " + contentObject.toString());
 
                     } catch (InvalidStoreRefException e) {
-                        //logger.error(e.getMessage());
-                        PSErrorLoggingHelper.psErrorLogger(logger, loggedInUser, fileFolderService.getFileInfo(theEmailNodeRef).toString(), e.getMessage().toString());
+                        logger.error(e.getMessage());
                     } catch (FileNotFoundException e) {
-                        //logger.error(e.getMessage());
-                        PSErrorLoggingHelper.psErrorLogger(logger, loggedInUser, fileFolderService.getFileInfo(theEmailNodeRef).toString(), e.getMessage().toString());
+                        logger.error(e.getMessage());
                     } catch (JSONException je) {
-                        PSErrorLoggingHelper.psErrorLogger(logger, loggedInUser, fileFolderService.getFileInfo(theEmailNodeRef).toString(), je.getMessage().toString());
+                        logger.error(je.getMessage());
                     }
                 }
 
@@ -306,7 +306,12 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Authorization", "Basic YWRtaW5AYXBwLmFjdGl2aXRpLmNvbTphZG1pbg==");
+
+            String authString=USERNAME+":"+PASSWORD;
+            byte[] authEncBytes = Base64.encodeBase64(authString.getBytes());
+            String encodedAuthString = new String(authEncBytes);
+
+            conn.setRequestProperty("Authorization", "Basic " + encodedAuthString);
             conn.setRequestProperty("Content-Type", "application/json");
 
             String requestBody = body.toString();
