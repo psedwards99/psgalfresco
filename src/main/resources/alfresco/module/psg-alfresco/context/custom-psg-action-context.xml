@@ -114,16 +114,11 @@
 			<ref bean="ServiceRegistry"/>
 		</property>
 		<property name="PROP_SOURCE_SYSTEM">
-			<value>${action.custom.startWorkflowFromEmail.sourceSystem}</value>
+			<value>${action.custom.PSGstartWorkflowFromEmail.sourceSystem}</value>
 		</property>
-		<property name="PROP_ADMIN_SCHEME_GROUP">
-			<value>${action.custom.startWorkflowFromEmail.adminSchemGroup}</value>
-		</property>
+
 		<property name="ATTACHMENTS_TARGET_FOLDER_PATH">
 			<value>${action.custom.PSGstartWorkflowFromEmail.targetFolderAttachments}</value>
-		</property>
-		<property name="ARCHIVED_EMAIL_FOLDER_PATH">
-			<value>${action.custom.startWorkflowFromEmail.targetFolderEmails}</value>
 		</property>
 
 		<property name="REST_URI">
@@ -147,6 +142,38 @@
             <value>${action.custom.PSGStartWorkflowFromEmail.attachment.form.field}</value>
         </property>
 	</bean>
+
+    <bean id="action.psgstartWorkflowFromScannedDocument" class="com.puntersouthall.actions.PSGLaunchWorkflowFromScannedDocumentAction" parent="action-executer">
+        <!-- property values here come from the alfresco-global.propeties file -->
+        <property name="serviceRegistry">
+            <ref bean="ServiceRegistry"/>
+        </property>
+
+        <property name="HOLDING_FOLDER_PATH">
+            <value>${action.custom.PSGstartWorkflowFromScannedDocument.documentHoldingFolder}</value>
+        </property>
+
+        <property name="REST_URI">
+            <value>${action.custom.PSGStartWorkflowFromScannedDocument.restUri}</value>
+        </property>
+
+        <property name="PROCESS_DEFINITION_KEY">
+            <value>${action.custom.PSGStartWorkflowFromScannedDocument.processDefinitionKey}</value>
+        </property>
+
+        <property name="REPOSITORY_NAME_USED_BY_ACTIVITI">
+            <value>${action.custom.PSGStartWorkflowFromScannedDocument.repositoryName}</value>
+        </property>
+        <property name="USERNAME">
+            <value>${action.custom.PSGStartWorkflowFromScannedDocument.username}</value>
+        </property>
+        <property name="PASSWORD">
+            <value>${action.custom.PSGStartWorkflowFromScannedDocument.password}</value>
+        </property>
+        <property name="ATTACHMENT_FORM_FIELD">
+            <value>${action.custom.PSGStartWorkflowFromScannedDocument.attachment.form.field}</value>
+        </property>
+    </bean>
 
 	<bean id="psg.actionResourceBundles" parent="actionResourceBundles">
 		<property name="resourceBundles">

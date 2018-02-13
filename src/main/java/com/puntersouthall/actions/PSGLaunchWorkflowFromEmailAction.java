@@ -46,19 +46,14 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
      */
     private ServiceRegistry serviceRegistry;
     private NodeService nodeService;
-    private PersonService personService;
     private FileFolderService fileFolderService;
     private SearchService searchService;
-    private AuthenticationService authenticationService;
 
     /**
      * workflow properties
      */
     private String PROP_SOURCE_SYSTEM;
-    private String PROP_ADMIN_SCHEME_GROUP;
     private String ATTACHMENTS_TARGET_FOLDER_PATH;
-    private String ARCHIVED_EMAIL_FOLDER_PATH;
-
     private String REST_URI;
     private String USERNAME;
     private String PASSWORD;
@@ -71,46 +66,45 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
     public void setServiceRegistry(ServiceRegistry serviceRegistry) {
         this.serviceRegistry = serviceRegistry;
         this.nodeService = serviceRegistry.getNodeService();
-        this.personService = serviceRegistry.getPersonService();
         this.fileFolderService = serviceRegistry.getFileFolderService();
         this.searchService = serviceRegistry.getSearchService();
-        this.authenticationService = serviceRegistry.getAuthenticationService();
     }
 
     public void setPROP_SOURCE_SYSTEM(String pROP_SOURCE_SYSTEM) {
+
         PROP_SOURCE_SYSTEM = pROP_SOURCE_SYSTEM;
     }
 
-    public void setPROP_ADMIN_SCHEME_GROUP(String pROP_ADMIN_SCHEME_GROUP) {
-        PROP_ADMIN_SCHEME_GROUP = pROP_ADMIN_SCHEME_GROUP;
-    }
     public void setATTACHMENTS_TARGET_FOLDER_PATH(String aTTACHMENTS_TARGET_FOLDER_PATH) {
         ATTACHMENTS_TARGET_FOLDER_PATH = aTTACHMENTS_TARGET_FOLDER_PATH;
     }
 
-    public void setARCHIVED_EMAIL_FOLDER_PATH(String aRCHIVED_EMAIL_FOLDER_PATH) {
-        ARCHIVED_EMAIL_FOLDER_PATH = aRCHIVED_EMAIL_FOLDER_PATH;
-    }
     public void setREST_URI(String restURI) {
+
         REST_URI = restURI;
     }
 
     public void setPROCESS_DEFINITION_KEY(String processDefKey) {
+
         PROCESS_DEFINITION_KEY = processDefKey;
     }
     public void setREPOSITORY_NAME_USED_BY_ACTIVITI(String repositoryName) {
+
         REPOSITORY_NAME_USED_BY_ACTIVITI = repositoryName;
     }
 
     public void setUSERNAME(String username) {
+
         USERNAME = username;
     }
     public void setPASSWORD(String password) {
+
         PASSWORD = password;
     }
 
     //The name of the field on the start form that accepts file uploads
     public void setATTACHMENT_FORM_FIELD(String formFieldName) {
+
         ATTACHMENT_FORM_FIELD = formFieldName;
     }
 
@@ -167,7 +161,7 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
 
 
                         // Upload all attachments to activiti
-                        // The uplaod process returns an activiti content ID that we use in the workflow start process
+                        // The upload process returns an activiti content ID that we use in the workflow start process
                         String contentIDList = "";
                         for (AssociationRef assoc : assocs) {
 
@@ -214,11 +208,13 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
                         JSONObject startProcessBody = new JSONObject();
                         startProcessBody.put("processDefinitionKey",PROCESS_DEFINITION_KEY);
                         startProcessBody.put("name",PROCESS_NAME);
-                        JSONObject startProcessContentID = new JSONObject();
-                        startProcessContentID.put("name","attached document");
-                        startProcessContentID.put(ATTACHMENT_FORM_FIELD,contentIDList);
 
-                        startProcessBody.put("values",startProcessContentID);
+                        JSONObject startFormBody = new JSONObject();
+                        startFormBody.put("name","Attached document");
+                        startFormBody.put(ATTACHMENT_FORM_FIELD,contentIDList);
+                        startFormBody.put("sourcesystem",PROP_SOURCE_SYSTEM);
+
+                        startProcessBody.put("values",startFormBody);
 
                         logger.info("About to start workflow. JSON Body : "+startProcessBody.toString());
                         JSONObject contentObject = doJsonPost("api/enterprise/process-instances", startProcessBody);

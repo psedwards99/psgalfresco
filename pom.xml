@@ -81,6 +81,16 @@
         <puntersouthall.psglaunchworkflowfromemail.action.password>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password}</puntersouthall.psglaunchworkflowfromemail.action.password>
         <puntersouthall.psglaunchworkflowfromemail.action.attachment.form.field>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field}</puntersouthall.psglaunchworkflowfromemail.action.attachment.form.field>
         <puntersouthall.psglaunchworkflowfromemail.action.attachment.holding.folder>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder}</puntersouthall.psglaunchworkflowfromemail.action.attachment.holding.folder>
+        <puntersouthall.psglaunchworkflowfromemail.action.source.system>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system}</puntersouthall.psglaunchworkflowfromemail.action.source.system>
+
+        <puntersouthall.psglaunchworkflowfromscanneddocument.action.resturi>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri}</puntersouthall.psglaunchworkflowfromscanneddocument.action.resturi>
+        <puntersouthall.psglaunchworkflowfromscanneddocument.action.process.definition.key>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey}</puntersouthall.psglaunchworkflowfromscanneddocument.action.process.definition.key>
+        <puntersouthall.psglaunchworkflowfromscanneddocument.action.repository.name>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName}</puntersouthall.psglaunchworkflowfromscanneddocument.action.repository.name>
+        <puntersouthall.psglaunchworkflowfromscanneddocument.action.username>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username}</puntersouthall.psglaunchworkflowfromscanneddocument.action.username>
+        <puntersouthall.psglaunchworkflowfromscanneddocument.action.password>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password}</puntersouthall.psglaunchworkflowfromscanneddocument.action.password>
+        <puntersouthall.psglaunchworkflowfromscanneddocument.action.attachment.form.field>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field}</puntersouthall.psglaunchworkflowfromscanneddocument.action.attachment.form.field>
+        <puntersouthall.psglaunchworkflowfromscanneddocument.action.document.holding.folder>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder}</puntersouthall.psglaunchworkflowfromscanneddocument.action.document.holding.folder>
+
 
         <!-- Restlet Framework for calling REST APIs in Activiti from Alfresco -->
         <restlet-version>2.3.12</restlet-version>
@@ -500,6 +510,15 @@
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>addsignedform</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>MyPensions.com request</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>
+
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>http://fedora:9080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>AdminHolidayRequest</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>admin@app.activiti.com</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>addsignedform</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>
 
             </properties>
         </profile>
@@ -539,6 +558,16 @@
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>MyPensions.com request</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>
+
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>http://activitidev.psadmin.com:8080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>PR-ReceiveCorrespondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>Paul.Test</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>
+
 
             </properties>
         </profile>
@@ -570,15 +599,24 @@
                 <profile.puntersouthall.webservice.location>https://alfrescodevwebservice:9090</profile.puntersouthall.webservice.location>
                 <profile.puntersouthall.webservice.webServiceClient>@WebServiceClient(name="PunterSouthallService", targetNamespace="http://puntersouthall.com/webservice/alfresco/", wsdlLocation="https://alfrescodevwebservice:9090/PunterSouthallWCF/PunterSouthallService.svc?wsdl")</profile.puntersouthall.webservice.webServiceClient>
                 <profile.puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/UAT/</profile.puntersouthall.payrollNewStarterForm.outputLocation>
-<!--
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>http://fedora:9080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>AdminHolidayRequest</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>
+
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>http://activitidev.psadmin.com:8080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>PR-ReceiveCorrespondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>admin@app.activiti.com</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>Paul.Test</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>
--->
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>MyPensions.com request</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>
+
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>http://activitidev.psadmin.com:8080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>PR-ReceiveCorrespondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>Paul.Test</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>
+
             </properties>
         </profile>
         <profile>
@@ -610,14 +648,23 @@
                 <profile.puntersouthall.webservice.webServiceClient>@WebServiceClient(name="PunterSouthallService", targetNamespace="http://puntersouthall.com/webservice/alfresco/", wsdlLocation="https://alfrescouatwebservice:9090/PunterSouthallWCF/PunterSouthallService.svc?wsdl")</profile.puntersouthall.webservice.webServiceClient>
                 <profile.puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/UAT/</profile.puntersouthall.payrollNewStarterForm.outputLocation>
 
-<!--
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>http://fedora:9080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>AdminHolidayRequest</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>http://activitidev.psadmin.com:8080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>PR-ReceiveCorrespondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>admin@app.activiti.com</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
--->
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>Paul.Test</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>MyPensions.com request</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>
+
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>http://activitidev.psadmin.com:8080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>PR-ReceiveCorrespondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>Paul.Test</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>
+
             </properties>
         </profile>
         <profile>
@@ -648,14 +695,24 @@
                 <profile.puntersouthall.webservice.location>https://alfrescowebservice:9090</profile.puntersouthall.webservice.location>
                 <profile.puntersouthall.webservice.webServiceClient>@WebServiceClient(name="PunterSouthallService", targetNamespace="http://puntersouthall.com/webservice/alfresco/", wsdlLocation="https://alfrescowebservice:9090/PunterSouthallWCF/PunterSouthallService.svc?wsdl")</profile.puntersouthall.webservice.webServiceClient>
                 <profile.puntersouthall.payrollNewStarterForm.outputLocation>//ssql024/Payroll/Payroll New Pensioner Forms/Live/</profile.puntersouthall.payrollNewStarterForm.outputLocation>
-<!--
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>http://fedora:9080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>AdminHolidayRequest</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>
+
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>http://activitidev.psadmin.com:8080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>PR-ReceiveCorrespondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>admin@app.activiti.com</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
--->
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>Paul.Test</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>MyPensions.com request</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.source.system>
+
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>http://activitidev.psadmin.com:8080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>PR-ReceiveCorrespondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.processDefinitionKey>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.repositoryName>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>Paul.Test</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromScannedDocument.document.holding.folder>
+
             </properties>
         </profile>
     </profiles>
