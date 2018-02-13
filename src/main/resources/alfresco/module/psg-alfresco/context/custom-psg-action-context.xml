@@ -120,7 +120,7 @@
 			<value>${action.custom.startWorkflowFromEmail.adminSchemGroup}</value>
 		</property>
 		<property name="ATTACHMENTS_TARGET_FOLDER_PATH">
-			<value>${action.custom.startWorkflowFromEmail.targetFolderAttachments}</value>
+			<value>${action.custom.PSGstartWorkflowFromEmail.targetFolderAttachments}</value>
 		</property>
 		<property name="ARCHIVED_EMAIL_FOLDER_PATH">
 			<value>${action.custom.startWorkflowFromEmail.targetFolderEmails}</value>

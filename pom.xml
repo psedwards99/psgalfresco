@@ -80,6 +80,7 @@
         <puntersouthall.psglaunchworkflowfromemail.action.username>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username}</puntersouthall.psglaunchworkflowfromemail.action.username>
         <puntersouthall.psglaunchworkflowfromemail.action.password>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password}</puntersouthall.psglaunchworkflowfromemail.action.password>
         <puntersouthall.psglaunchworkflowfromemail.action.attachment.form.field>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field}</puntersouthall.psglaunchworkflowfromemail.action.attachment.form.field>
+        <puntersouthall.psglaunchworkflowfromemail.action.attachment.holding.folder>${profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder}</puntersouthall.psglaunchworkflowfromemail.action.attachment.holding.folder>
 
         <!-- Restlet Framework for calling REST APIs in Activiti from Alfresco -->
         <restlet-version>2.3.12</restlet-version>
@@ -497,7 +498,8 @@
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>admin@app.activiti.com</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>addsignedform</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>
 
             </properties>
         </profile>
@@ -530,12 +532,13 @@
                 <profile.puntersouthall.webservice.webServiceClient>@WebServiceClient(name="PunterSouthallService", targetNamespace="http://puntersouthall.com/webservice/alfresco/", wsdlLocation="https://alfrescodevwebservice:9090/PunterSouthallWCF/PunterSouthallService.svc?wsdl")</profile.puntersouthall.webservice.webServiceClient>
                 <profile.puntersouthall.payrollNewStarterForm.outputLocation>c:\temp\newstarter</profile.puntersouthall.payrollNewStarterForm.outputLocation>
 
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>http://fedora:9080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>AdminHolidayRequest</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>http://activitidev.psadmin.com:8080/activiti-app</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.restUri>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>PR-ReceiveCorrespondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.processDefinitionKey>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>alfresco-1</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.repositoryName>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>admin@app.activiti.com</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
-                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>Paul.Test</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>?3cuGune</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>correspondence</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>
 
             </properties>
         </profile>
@@ -574,6 +577,7 @@
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>admin@app.activiti.com</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.username>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.password>
                 <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>admin</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.form.field>
+                <profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>Activiti/email/Holding</profile.puntersouthall.action.custom.PSGLaunchWorkflowFromEmail.attachment.holding.folder>
 -->
             </properties>
         </profile>

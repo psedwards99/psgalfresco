@@ -39,7 +39,7 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
     /**
      * the logger
      */
-    private final Log logger = LogFactory.getLog(LaunchWorkflowFromEmailAction.class);
+    private final Log logger = LogFactory.getLog(PSGLaunchWorkflowFromEmailAction.class);
 
     /**
      * Alfresco services
@@ -84,7 +84,6 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
     public void setPROP_ADMIN_SCHEME_GROUP(String pROP_ADMIN_SCHEME_GROUP) {
         PROP_ADMIN_SCHEME_GROUP = pROP_ADMIN_SCHEME_GROUP;
     }
-
     public void setATTACHMENTS_TARGET_FOLDER_PATH(String aTTACHMENTS_TARGET_FOLDER_PATH) {
         ATTACHMENTS_TARGET_FOLDER_PATH = aTTACHMENTS_TARGET_FOLDER_PATH;
     }
@@ -131,22 +130,11 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
         AuthenticationUtil.runAsSystem(new AuthenticationUtil.RunAsWork<String>() {
             public String doWork() {
 
-                // get logged in user
-                String loggedInUser = authenticationService.getCurrentUserName();
-
                 // Check if the node has the email aspect
                 if (nodeService.hasAspect(theEmailNodeRef, ContentModel.ASPECT_EMAILED)) {
 
-                    // Set initiator as the creator
-                    //NodeRef initiator = personService.getPerson((String) nodeService.getProperty(theEmailNodeRef, ContentModel.PROP_CREATOR));
-                    //Serializable initiatorHomeFolder = nodeService.getProperty(initiator, ContentModel.PROP_HOMEFOLDER);
-
-                    //Get the parent (MyPension Emails) folder where the email enters alfresco.
-                    //NodeRef parentFolder = nodeService.getPrimaryParent(theEmailNodeRef).getParentRef();
-
                     // Get the attachments from the email node
                     List<AssociationRef> assocs = nodeService.getTargetAssocs(theEmailNodeRef, ContentModel.ASSOC_ATTACHMENTS);
-
 
                     // Get the target folder noderef where move the attachments
                     NodeRef targetFolderNoderef = null;
