@@ -212,7 +212,7 @@ public class PSGLaunchWorkflowFromEmailAction extends ActionExecuterAbstractBase
                         JSONObject startFormBody = new JSONObject();
                         startFormBody.put("name","Attached document");
                         startFormBody.put(ATTACHMENT_FORM_FIELD,contentIDList);
-                        startFormBody.put("sourcesystem",PROP_SOURCE_SYSTEM);
+                        startFormBody.put("sourceSystem",PROP_SOURCE_SYSTEM);
 
                         startProcessBody.put("values",startFormBody);
 

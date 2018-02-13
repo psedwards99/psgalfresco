@@ -155,7 +155,7 @@ public class PSGLaunchWorkflowFromScannedDocumentAction extends ActionExecuterAb
                             JSONObject startFormBody = new JSONObject();
                             startFormBody.put("name","Attached Document");
                             startFormBody.put(ATTACHMENT_FORM_FIELD,contentID);
-                            startFormBody.put("sourcesystem",sourceSystem);
+                            startFormBody.put("sourceSystem",sourceSystem);
 
                             startProcessBody.put("values",startFormBody);
 
